@@ -9,8 +9,6 @@
 .idea
 
 # Build
-zenchaind
-zenchaincli
 vendor
 build
 tools/
