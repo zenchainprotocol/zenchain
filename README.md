@@ -3,8 +3,6 @@ Efficient Blockchain For DEFI and NTFs
 ![banner](./docs/images/ZenChain-Logo-Text-Black.png)
 
 [![version](https://img.shields.io/github/tag/zenchainprotocol/zenchain-node.svg)](https://github.com/zenchainprotocol/zenchain-node/releases/latest)
-[![CircleCI](https://circleci.com/gh/zenchainprotocol/zenchain-node/tree/master.svg?style=shield)](https://circleci.com/gh/zenchainprotocol/zenchain-node/tree/master)
-[![codecov](https://codecov.io/gh/zenchainprotocol/zenchain-node/branch/master/graph/badge.svg)](https://codecov.io/gh/zenchainprotocol/zenchain-node)
 [![Go Report Card](https://goreportcard.com/badge/github.com/zenchainprotocol/zenchain-node)](https://goreportcard.com/report/github.com/zenchainprotocol/zenchain-node)
 [![license](https://img.shields.io/github/license/zenchainprotocol/zenchain-node.svg)](https://github.com/zenchainprotocol/zenchain-node/blob/master/LICENSE)
 [![LoC](https://tokei.rs/b1/github/zenchainprotocol/zenchain-node)](https://github.com/zenchainprotocol/zenchain-node)
