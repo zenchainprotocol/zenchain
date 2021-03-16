@@ -19,7 +19,7 @@ require (
 	github.com/json-iterator/go v1.1.9
 	github.com/miguelmota/go-ethereum-hdwallet v0.0.0-20200123000308-a60dcd172b4c
 	github.com/nacos-group/nacos-sdk-go v1.0.0
-	github.com/zenchainprotocol/zenchain-node v0.16.8
+	github.com/zenchainprotocol/zenchain-node v0.11.1
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.5.1
 	github.com/segmentio/kafka-go v0.2.2
