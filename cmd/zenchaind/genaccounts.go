@@ -18,10 +18,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	authexported "github.com/cosmos/cosmos-sdk/x/auth/exported"
 	authvesting "github.com/cosmos/cosmos-sdk/x/auth/vesting"
-	"github.com/okex/zenchain/x/genutil"
+	"github.com/zenchainprotocol/zenchain-node/x/genutil"
 
-	zenchain "github.com/okex/zenchain/app/types"
-	"github.com/okex/zenchain/app/crypto/hd"
+	zenchain "github.com/zenchainprotocol/zenchain-node/app/types"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/hd"
 
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 )
