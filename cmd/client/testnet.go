@@ -6,7 +6,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 	"github.com/spf13/viper"
 	"net"
 	"os"
@@ -35,12 +35,12 @@ import (
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/cosmos/cosmos-sdk/x/mint"
-	"github.com/okex/okexchain/x/genutil"
-	stakingtypes "github.com/okex/okexchain/x/staking/types"
+	"github.com/zenchainprotocol/zenchain-node/x/genutil"
+	stakingtypes "github.com/zenchainprotocol/zenchain-node/x/staking/types"
 
-	"github.com/okex/okexchain/app/crypto/hd"
-	ethermint "github.com/okex/okexchain/app/types"
-	evmtypes "github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/hd"
+	ethermint "github.com/zenchainprotocol/zenchain-node/app/types"
+	evmtypes "github.com/zenchainprotocol/zenchain-node/x/evm/types"
 )
 
 var (
@@ -65,13 +65,13 @@ func TestnetCmd(ctx *server.Context, cdc *codec.Codec,
 ) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "testnet",
-		Short: "Initialize files for an OKExChain testnet",
+		Short: "Initialize files for an zenChain testnet",
 		Long: `testnet will create "v" number of directories and populate each with
 necessary files (private validator, genesis, config, etc.).
 
 Note, strict routability for addresses is turned off in the config file.`,
 
-		Example: "okexchaind testnet --v 4 --keyring-backend test --output-dir ./output --starting-ip-address 192.168.10.2",
+		Example: "zenchaind testnet --v 4 --keyring-backend test --output-dir ./output --starting-ip-address 192.168.10.2",
 		RunE: func(cmd *cobra.Command, _ []string) error {
 			config := ctx.Config
 
@@ -99,8 +99,8 @@ Note, strict routability for addresses is turned off in the config file.`,
 	cmd.Flags().Int(flagNumValidators, 4, "Number of validators to initialize the testnet with")
 	cmd.Flags().StringP(flagOutputDir, "o", "./build", "Directory to store initialization data for the testnet")
 	cmd.Flags().String(flagNodeDirPrefix, "node", "Prefix the directory name for each node with (node results in node0, node1, ...)")
-	cmd.Flags().String(flagNodeDaemonHome, "okexchaind", "Home directory of the node's daemon configuration")
-	cmd.Flags().String(flagNodeCLIHome, "okexchaincli", "Home directory of the node's cli configuration")
+	cmd.Flags().String(flagNodeDaemonHome, "zenchaind", "Home directory of the node's daemon configuration")
+	cmd.Flags().String(flagNodeCLIHome, "zenchaincli", "Home directory of the node's cli configuration")
 	cmd.Flags().String(flagStartingIPAddress, "192.168.0.1", "Starting IP address (192.168.0.1 results in persistent peers list ID0@192.168.0.1:46656, ID1@192.168.0.2:46656, ...)")
 	cmd.Flags().StringSlice(flagIPAddrs, []string{}, "List of IP addresses to use (i.e. `192.168.0.1,172.168.0.1` results in persistent peers list ID0@192.168.0.1:46656, ID1@172.168.0.1)")
 	cmd.Flags().String(flags.FlagChainID, "", "genesis file chain-id, if left blank will be randomly created")
@@ -136,7 +136,7 @@ func InitTestnet(
 ) error {
 
 	if chainID == "" {
-		chainID = fmt.Sprintf("okexchain-%d", tmrand.Int63n(9999999999999)+1)
+		chainID = fmt.Sprintf("zenchain-%d", tmrand.Int63n(9999999999999)+1)
 	}
 
 	if !ethermint.IsValidChainID(chainID) {

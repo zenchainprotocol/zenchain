@@ -4,11 +4,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okex/okexchain/x/gov/keeper"
-	"github.com/okex/okexchain/x/gov/types"
-	"github.com/okex/okexchain/x/params"
-	paramsTypes "github.com/okex/okexchain/x/params/types"
-	"github.com/okex/okexchain/x/staking"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
+	paramsTypes "github.com/zenchainprotocol/zenchain-node/x/params/types"
+	"github.com/zenchainprotocol/zenchain-node/x/staking"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"

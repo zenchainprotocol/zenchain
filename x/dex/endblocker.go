@@ -3,8 +3,8 @@ package dex
 import (
 	"fmt"
 
-	"github.com/okex/okexchain/x/common/perf"
-	"github.com/okex/okexchain/x/dex/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common/perf"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

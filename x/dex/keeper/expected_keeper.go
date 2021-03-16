@@ -5,9 +5,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/supply/exported"
-	"github.com/okex/okexchain/x/dex/types"
-	ordertypes "github.com/okex/okexchain/x/order/types"
-	"github.com/okex/okexchain/x/params"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/types"
+	ordertypes "github.com/zenchainprotocol/zenchain-node/x/order/types"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
 )
 
 // SupplyKeeper defines the expected supply Keeper

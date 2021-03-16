@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"testing"
 
-	token "github.com/okex/okexchain/x/token/types"
+	token "github.com/zenchainprotocol/zenchain-node/x/token/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/dex"
-	"github.com/okex/okexchain/x/order/types"
+	"github.com/zenchainprotocol/zenchain-node/x/dex"
+	"github.com/zenchainprotocol/zenchain-node/x/order/types"
 	"github.com/stretchr/testify/require"
 )
 

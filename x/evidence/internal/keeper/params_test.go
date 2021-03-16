@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/okex/okexchain/x/evidence/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/internal/types"
 )
 
 func (suite *KeeperTestSuite) TestParams() {

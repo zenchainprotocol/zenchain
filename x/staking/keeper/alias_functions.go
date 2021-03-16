@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/staking/exported"
-	"github.com/okex/okexchain/x/staking/types"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/exported"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/types"
 )
 
 //_______________________________________________________________________

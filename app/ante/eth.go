@@ -10,8 +10,8 @@ import (
 	authante "github.com/cosmos/cosmos-sdk/x/auth/ante"
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	ethermint "github.com/okex/okexchain/app/types"
-	evmtypes "github.com/okex/okexchain/x/evm/types"
+	ethermint "github.com/zenchainprotocol/zenchain-node/app/types"
+	evmtypes "github.com/zenchainprotocol/zenchain-node/x/evm/types"
 
 	"github.com/ethereum/go-ethereum/common"
 	ethcore "github.com/ethereum/go-ethereum/core"

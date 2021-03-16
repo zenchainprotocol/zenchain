@@ -6,7 +6,7 @@ import (
 	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/types"
 	"github.com/stretchr/testify/require"
 )
 

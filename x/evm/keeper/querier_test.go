@@ -7,7 +7,7 @@ import (
 	ethcmn "github.com/ethereum/go-ethereum/common"
 
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/types"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 )

@@ -8,7 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/context"
 	"github.com/cosmos/cosmos-sdk/types/rest"
 
-	"github.com/okex/okexchain/x/evidence/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/internal/types"
 
 	"github.com/gorilla/mux"
 )

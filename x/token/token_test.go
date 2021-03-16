@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	app "github.com/okex/okexchain/app/types"
+	app "github.com/zenchainprotocol/zenchain-node/app/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -15,9 +15,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/mock"
 	"github.com/cosmos/cosmos-sdk/x/supply"
 	"github.com/cosmos/cosmos-sdk/x/supply/exported"
-	"github.com/okex/okexchain/x/common"
-	"github.com/okex/okexchain/x/common/version"
-	"github.com/okex/okexchain/x/token/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common/version"
+	"github.com/zenchainprotocol/zenchain-node/x/token/types"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto"

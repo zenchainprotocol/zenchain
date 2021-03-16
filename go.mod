@@ -1,4 +1,4 @@
-module github.com/okex/okexchain
+module github.com/zenchainprotocol/zenchain-node
 
 go 1.14
 
@@ -51,7 +51,7 @@ require (
 )
 
 replace (
-	github.com/cosmos/cosmos-sdk => github.com/okex/cosmos-sdk v0.39.2-okexchain12
-	github.com/tendermint/iavl => github.com/okex/iavl v0.14.1-okexchain2
-	github.com/tendermint/tendermint => github.com/okex/tendermint v0.33.9-okexchain5
+	github.com/cosmos/cosmos-sdk => github.com/zenchainprotocol/cosmos-sdk v0.39.2
+	github.com/tendermint/iavl => github.com/zenchainprotocol/iavl v0.14.1
+	github.com/tendermint/tendermint => github.com/zenchainprotocol/tendermint v0.33.9
 )

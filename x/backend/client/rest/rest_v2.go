@@ -9,8 +9,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/context"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/gorilla/mux"
-	"github.com/okex/okexchain/x/backend/types"
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 )
 
 const (

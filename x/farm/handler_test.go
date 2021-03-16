@@ -7,14 +7,14 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	swap "github.com/okex/okexchain/x/ammswap"
-	swaptypes "github.com/okex/okexchain/x/ammswap/types"
-	"github.com/okex/okexchain/x/farm/keeper"
-	"github.com/okex/okexchain/x/farm/types"
-	"github.com/okex/okexchain/x/token"
+	swap "github.com/zenchainprotocol/zenchain-node/x/ammswap"
+	swaptypes "github.com/zenchainprotocol/zenchain-node/x/ammswap/types"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/token"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
@@ -360,7 +360,7 @@ func TestHandlerMsgDestroyPool(t *testing.T) {
 				return destroyPoolMsg
 			},
 			verification: verification,
-			expectedErr:  types.ErrInvalidPoolOwner("okexchain15ky9du8a2wlstz6fpx3p4mqpjyrm5cgpq6kh8f", "abc"),
+			expectedErr:  types.ErrInvalidPoolOwner("zenchain15ky9du8a2wlstz6fpx3p4mqpjyrm5cgpq6kh8f", "abc"),
 		},
 		{
 			caseName: "failed. insufficient fee coins",
@@ -718,7 +718,7 @@ func TestHandlerMsgUnlock(t *testing.T) {
 			},
 			getMsg:       normalGetUnlockMsg,
 			verification: verification,
-			expectedErr:  types.ErrNoLockInfoFound("okexchain15ky9du8a2wlstz6fpx3p4mqpjyrm5cgqavzz6m", "abc"),
+			expectedErr:  types.ErrNoLockInfoFound("zenchain15ky9du8a2wlstz6fpx3p4mqpjyrm5cgqavzz6m", "abc"),
 		},
 		{
 			caseName: "failed. The coin name should be %s, not %s",

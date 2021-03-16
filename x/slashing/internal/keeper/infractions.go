@@ -6,7 +6,7 @@ import (
 	"github.com/tendermint/tendermint/crypto"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/slashing/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/slashing/internal/types"
 )
 
 // HandleValidatorSignature handles a validator signature, must be called once per validator per block.

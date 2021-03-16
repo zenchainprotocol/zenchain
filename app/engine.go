@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/okex/okexchain/x/common/monitor"
+	"github.com/zenchainprotocol/zenchain-node/x/common/monitor"
 )
 
 var (

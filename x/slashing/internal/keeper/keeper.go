@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/slashing/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/slashing/internal/types"
 )
 
 // Keeper of the slashing store

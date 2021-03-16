@@ -2,7 +2,7 @@ package keeper
 
 import (
 	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 	"github.com/tendermint/tendermint/crypto"
 	"strings"
 
@@ -10,7 +10,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/staking/types"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/types"
 )
 
 // NewQuerier creates a querier for staking REST endpoints
@@ -25,7 +25,7 @@ func NewQuerier(k Keeper) sdk.Querier {
 			return queryPool(ctx, k)
 		case types.QueryParameters:
 			return queryParameters(ctx, k)
-			// required by okexchain
+			// required by zenchain
 		case types.QueryUnbondingDelegation:
 			return queryUndelegation(ctx, req, k)
 		case types.QueryValidatorAllShares:

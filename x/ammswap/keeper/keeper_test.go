@@ -5,12 +5,12 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/supply"
-	"github.com/okex/okexchain/x/ammswap/types"
+	"github.com/zenchainprotocol/zenchain-node/x/ammswap/types"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
-const addrTest = "okexchain1a20d4xmqj4m9shtm0skt0aaahsgeu4h6746fs2"
+const addrTest = "zenchain1a20d4xmqj4m9shtm0skt0aaahsgeu4h6746fs2"
 
 func TestKeeper_GetPoolTokenInfo(t *testing.T) {
 	mapp, _ := GetTestInput(t, 1)

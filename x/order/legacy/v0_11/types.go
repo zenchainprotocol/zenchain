@@ -2,7 +2,7 @@ package v0_11
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/order/legacy/v0_10"
+	"github.com/zenchainprotocol/zenchain-node/x/order/legacy/v0_10"
 )
 
 const (

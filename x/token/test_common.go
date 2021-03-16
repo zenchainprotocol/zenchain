@@ -9,14 +9,14 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 	"github.com/cosmos/cosmos-sdk/x/supply"
-	"github.com/okex/okexchain/x/params"
-	"github.com/okex/okexchain/x/token/types"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
+	"github.com/zenchainprotocol/zenchain-node/x/token/types"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 	dbm "github.com/tendermint/tm-db"
 )
 
-// CreateParam create okexchain parm for test
+// CreateParam create zenchain parm for test
 func CreateParam(t *testing.T, isCheckTx bool) (sdk.Context, Keeper, *sdk.KVStoreKey, []byte) {
 	keyAcc := sdk.NewKVStoreKey(auth.StoreKey)
 	keyParams := sdk.NewKVStoreKey(params.StoreKey)

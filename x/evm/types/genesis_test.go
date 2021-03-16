@@ -9,7 +9,7 @@ import (
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 
-	"github.com/okex/okexchain/app/crypto/ethsecp256k1"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/ethsecp256k1"
 )
 
 var address = ethcmn.BytesToAddress([]byte{1, 2, 3, 4, 5})

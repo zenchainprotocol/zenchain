@@ -1,8 +1,8 @@
 package ammswap
 
 import (
-	"github.com/okex/okexchain/x/ammswap/keeper"
-	"github.com/okex/okexchain/x/ammswap/types"
+	"github.com/zenchainprotocol/zenchain-node/x/ammswap/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/ammswap/types"
 )
 
 const (

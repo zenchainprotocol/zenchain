@@ -13,8 +13,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	"github.com/okex/okexchain/x/distribution/client/common"
-	"github.com/okex/okexchain/x/distribution/types"
+	"github.com/zenchainprotocol/zenchain-node/x/distribution/client/common"
+	"github.com/zenchainprotocol/zenchain-node/x/distribution/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module
@@ -64,7 +64,7 @@ func GetCmdQueryValidatorCommission(queryRoute string, cdc *codec.Codec) *cobra.
 			fmt.Sprintf(`Query available rewards by a specified validator address.
 
 Example:
-$ %s query distr commission okexchainvaloper1alq9na49n9yycysh889rl90g9nhe58lcqkfpfg
+$ %s query distr commission zenchainvaloper1alq9na49n9yycysh889rl90g9nhe58lcqkfpfg
 `,
 				version.ClientName,
 			),

@@ -1,6 +1,6 @@
-# Makefile for the "okexchainnode" docker image.
+# Makefile for the "zenchainnode" docker image.
 
 all:
-	docker build --tag okexchain/node -f node/Dockerfile ../../../okexchain
+	docker build --tag zenchain/node -f node/Dockerfile ../../../zenchain
 
 .PHONY: all

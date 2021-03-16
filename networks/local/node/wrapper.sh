@@ -4,16 +4,16 @@
 ## Input parameters
 ##
 ID=${ID:-0}
-LOG=${LOG:-okexchaind.log}
+LOG=${LOG:-zenchaind.log}
 
 ##
 ## Run binary with all parameters
 ##
-export OKEXCHAINDHOME="/okexchaind/node${ID}/okexchaind"
+export zenCHAINDHOME="/zenchaind/node${ID}/zenchaind"
 
-if [ -d "$(dirname "${OKEXCHAINDHOME}"/"${LOG}")" ]; then
-  okexchaind --chain-id okexchain-1 --home "${OKEXCHAINDHOME}" "$@" | tee "${OKExCHAINDHOME}/${LOG}"
+if [ -d "$(dirname "${zenCHAINDHOME}"/"${LOG}")" ]; then
+  zenchaind --chain-id zenchain-1 --home "${zenCHAINDHOME}" "$@" | tee "${zenCHAINDHOME}/${LOG}"
 else
-  okexchaind --chain-id okexchain-1 --home "${OKEXCHAINDHOME}" "$@"
+  zenchaind --chain-id zenchain-1 --home "${zenCHAINDHOME}" "$@"
 fi
 

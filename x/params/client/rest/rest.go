@@ -8,9 +8,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/rest"
 	"github.com/cosmos/cosmos-sdk/x/auth/client/utils"
 	"github.com/cosmos/cosmos-sdk/x/params"
-	"github.com/okex/okexchain/x/gov"
-	govrest "github.com/okex/okexchain/x/gov/client/rest"
-	paramscutils "github.com/okex/okexchain/x/params/client/utils"
+	"github.com/zenchainprotocol/zenchain-node/x/gov"
+	govrest "github.com/zenchainprotocol/zenchain-node/x/gov/client/rest"
+	paramscutils "github.com/zenchainprotocol/zenchain-node/x/params/client/utils"
 )
 
 // ProposalRESTHandler returns a ProposalRESTHandler that exposes the param change REST handler with a given sub-route

@@ -2,8 +2,8 @@ package keeper
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	swaptypes "github.com/okex/okexchain/x/ammswap/types"
-	"github.com/okex/okexchain/x/farm/types"
+	swaptypes "github.com/zenchainprotocol/zenchain-node/x/ammswap/types"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/types"
 )
 
 // GetWhitelist gets the whole whitelist currently

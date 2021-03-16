@@ -2,8 +2,8 @@ package keeper
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/common"
-	"github.com/okex/okexchain/x/order/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/order/types"
 )
 
 // ===============================================

@@ -14,8 +14,8 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/okex/okexchain/app/crypto/ethsecp256k1"
-	evmtypes "github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/ethsecp256k1"
+	evmtypes "github.com/zenchainprotocol/zenchain-node/x/evm/types"
 	tmbytes "github.com/tendermint/tendermint/libs/bytes"
 	tmtypes "github.com/tendermint/tendermint/types"
 )

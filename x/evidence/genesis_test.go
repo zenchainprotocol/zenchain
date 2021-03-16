@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/okex/okexchain/app"
+	"github.com/zenchainprotocol/zenchain-node/app"
 	"github.com/tendermint/tendermint/libs/log"
 	dbm "github.com/tendermint/tm-db"
 
@@ -13,9 +13,9 @@ import (
 	"github.com/tendermint/tendermint/crypto/ed25519"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/evidence"
-	"github.com/okex/okexchain/x/evidence/exported"
-	"github.com/okex/okexchain/x/evidence/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/exported"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/internal/types"
 
 	"github.com/stretchr/testify/suite"
 )
@@ -27,28 +27,28 @@ type GenesisTestSuite struct {
 	keeper evidence.Keeper
 }
 
-func MakeOKEXApp() *app.OKExChainApp {
+func MakezenApp() *app.zenChainApp {
 	genesisState := app.NewDefaultGenesisState()
 	db := dbm.NewMemDB()
-	okexapp := app.NewOKExChainApp(log.NewTMLogger(log.NewSyncWriter(os.Stdout)), db, nil, true, map[int64]bool{}, 0)
+	zenapp := app.NewzenChainApp(log.NewTMLogger(log.NewSyncWriter(os.Stdout)), db, nil, true, map[int64]bool{}, 0)
 
-	stateBytes, err := codec.MarshalJSONIndent(okexapp.Codec(), genesisState)
+	stateBytes, err := codec.MarshalJSONIndent(zenapp.Codec(), genesisState)
 	if err != nil {
 		panic(err)
 	}
-	okexapp.InitChain(
+	zenapp.InitChain(
 		abci.RequestInitChain{
 			Validators:    []abci.ValidatorUpdate{},
 			AppStateBytes: stateBytes,
 		},
 	)
-	return okexapp
+	return zenapp
 }
 
 func (suite *GenesisTestSuite) SetupTest() {
 	checkTx := false
 
-	app := MakeOKEXApp()
+	app := MakezenApp()
 	// get the app's codec and register custom testing types
 	cdc := app.Codec()
 	cdc.RegisterConcrete(types.TestEquivocationEvidence{}, "test/TestEquivocationEvidence", nil)

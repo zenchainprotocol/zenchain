@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	swap "github.com/okex/okexchain/x/ammswap"
-	"github.com/okex/okexchain/x/gov"
-	govkeeper "github.com/okex/okexchain/x/gov/keeper"
-	govtypes "github.com/okex/okexchain/x/gov/types"
-	stakingtypes "github.com/okex/okexchain/x/staking/types"
+	swap "github.com/zenchainprotocol/zenchain-node/x/ammswap"
+	"github.com/zenchainprotocol/zenchain-node/x/gov"
+	govkeeper "github.com/zenchainprotocol/zenchain-node/x/gov/keeper"
+	govtypes "github.com/zenchainprotocol/zenchain-node/x/gov/types"
+	stakingtypes "github.com/zenchainprotocol/zenchain-node/x/staking/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/store"
@@ -19,10 +19,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 	"github.com/cosmos/cosmos-sdk/x/supply"
-	swaptypes "github.com/okex/okexchain/x/ammswap/types"
-	"github.com/okex/okexchain/x/farm/types"
-	"github.com/okex/okexchain/x/params"
-	"github.com/okex/okexchain/x/token"
+	swaptypes "github.com/zenchainprotocol/zenchain-node/x/ammswap/types"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
+	"github.com/zenchainprotocol/zenchain-node/x/token"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
@@ -31,7 +31,7 @@ import (
 )
 
 const (
-	TestChainID = "okexchain"
+	TestChainID = "zenchain"
 )
 
 var (

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/evidence/exported"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/exported"
 )
 
 type (

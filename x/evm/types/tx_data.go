@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/okex/okexchain/app/utils"
+	"github.com/zenchainprotocol/zenchain-node/app/utils"
 
 	ethcmn "github.com/ethereum/go-ethereum/common"
 )

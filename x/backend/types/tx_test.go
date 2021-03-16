@@ -8,20 +8,20 @@ import (
 
 	"github.com/willf/bitset"
 
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/okex/okexchain/x/order"
-	orderKeeper "github.com/okex/okexchain/x/order/keeper"
-	tokenKeeper "github.com/okex/okexchain/x/token"
-	token "github.com/okex/okexchain/x/token/types"
+	"github.com/zenchainprotocol/zenchain-node/x/order"
+	orderKeeper "github.com/zenchainprotocol/zenchain-node/x/order/keeper"
+	tokenKeeper "github.com/zenchainprotocol/zenchain-node/x/token"
+	token "github.com/zenchainprotocol/zenchain-node/x/token/types"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/tendermint/crypto/secp256k1"
 )
 
 func TestGenerateTx(t *testing.T) {
-	txbldr := auth.NewTxBuilder(auth.DefaultTxEncoder(auth.ModuleCdc), 1, 2, 3, 4, false, "okexchain", "memo", nil, nil)
+	txbldr := auth.NewTxBuilder(auth.DefaultTxEncoder(auth.ModuleCdc), 1, 2, 3, 4, false, "zenchain", "memo", nil, nil)
 	testInput := orderKeeper.CreateTestInput(t)
 	keeper := testInput.OrderKeeper
 

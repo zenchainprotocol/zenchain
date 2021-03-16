@@ -10,7 +10,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authexported "github.com/cosmos/cosmos-sdk/x/auth/exported"
 
-	"github.com/okex/okexchain/app/types"
+	"github.com/zenchainprotocol/zenchain-node/app/types"
 
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	ethstate "github.com/ethereum/go-ethereum/core/state"

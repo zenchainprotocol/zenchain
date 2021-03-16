@@ -7,8 +7,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/okex/okexchain/x/evidence/exported"
-	"github.com/okex/okexchain/x/evidence/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/exported"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/internal/types"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 )

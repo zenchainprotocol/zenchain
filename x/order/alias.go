@@ -1,8 +1,8 @@
 package order
 
 import (
-	"github.com/okex/okexchain/x/order/keeper"
-	"github.com/okex/okexchain/x/order/types"
+	"github.com/zenchainprotocol/zenchain-node/x/order/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/order/types"
 )
 
 // nolint

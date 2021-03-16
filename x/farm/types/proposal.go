@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	govtypes "github.com/okex/okexchain/x/gov/types"
+	govtypes "github.com/zenchainprotocol/zenchain-node/x/gov/types"
 )
 
 const (
@@ -15,7 +15,7 @@ const (
 
 func init() {
 	govtypes.RegisterProposalType(proposalTypeManageWhiteList)
-	govtypes.RegisterProposalTypeCodec(ManageWhiteListProposal{}, "okexchain/farm/ManageWhiteListProposal")
+	govtypes.RegisterProposalTypeCodec(ManageWhiteListProposal{}, "zenchain/farm/ManageWhiteListProposal")
 }
 
 var _ govtypes.Content = (*ManageWhiteListProposal)(nil)

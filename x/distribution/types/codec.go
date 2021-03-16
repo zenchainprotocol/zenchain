@@ -6,9 +6,9 @@ import (
 
 // RegisterCodec registers concrete types on codec codec
 func RegisterCodec(cdc *codec.Codec) {
-	cdc.RegisterConcrete(MsgWithdrawValidatorCommission{}, "okexchain/distribution/MsgWithdrawReward", nil)
-	cdc.RegisterConcrete(MsgSetWithdrawAddress{}, "okexchain/distribution/MsgModifyWithdrawAddress", nil)
-	cdc.RegisterConcrete(CommunityPoolSpendProposal{}, "okexchain/distribution/CommunityPoolSpendProposal", nil)
+	cdc.RegisterConcrete(MsgWithdrawValidatorCommission{}, "zenchain/distribution/MsgWithdrawReward", nil)
+	cdc.RegisterConcrete(MsgSetWithdrawAddress{}, "zenchain/distribution/MsgModifyWithdrawAddress", nil)
+	cdc.RegisterConcrete(CommunityPoolSpendProposal{}, "zenchain/distribution/CommunityPoolSpendProposal", nil)
 }
 
 // ModuleCdc generic sealed codec to be used throughout module

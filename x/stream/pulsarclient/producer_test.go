@@ -1,15 +1,15 @@
 package pulsarclient
 
 import (
-	"github.com/okex/okexchain/x/common"
-	"github.com/okex/okexchain/x/stream/common/kline"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/stream/common/kline"
 	"math/rand"
 	"os"
 	"testing"
 	"time"
 
 	appCfg "github.com/cosmos/cosmos-sdk/server/config"
-	"github.com/okex/okexchain/x/backend"
+	"github.com/zenchainprotocol/zenchain-node/x/backend"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/tendermint/libs/log"
 )

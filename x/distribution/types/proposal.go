@@ -6,7 +6,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	govtypes "github.com/okex/okexchain/x/gov/types"
+	govtypes "github.com/zenchainprotocol/zenchain-node/x/gov/types"
 )
 
 const (
@@ -19,7 +19,7 @@ var _ govtypes.Content = CommunityPoolSpendProposal{}
 
 func init() {
 	govtypes.RegisterProposalType(ProposalTypeCommunityPoolSpend)
-	govtypes.RegisterProposalTypeCodec(CommunityPoolSpendProposal{}, "okexchain/distribution/CommunityPoolSpendProposal")
+	govtypes.RegisterProposalTypeCodec(CommunityPoolSpendProposal{}, "zenchain/distribution/CommunityPoolSpendProposal")
 }
 
 // CommunityPoolSpendProposal spends from the community pool

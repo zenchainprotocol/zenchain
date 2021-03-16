@@ -6,15 +6,15 @@ import (
 
 // RegisterCodec registers concrete types for codec
 func RegisterCodec(cdc *codec.Codec) {
-	cdc.RegisterConcrete(MsgCreateValidator{}, "okexchain/staking/MsgCreateValidator", nil)
-	cdc.RegisterConcrete(MsgEditValidator{}, "okexchain/staking/MsgEditValidator", nil)
-	cdc.RegisterConcrete(MsgDestroyValidator{}, "okexchain/staking/MsgDestroyValidator", nil)
-	cdc.RegisterConcrete(MsgDeposit{}, "okexchain/staking/MsgDeposit", nil)
-	cdc.RegisterConcrete(MsgWithdraw{}, "okexchain/staking/MsgWithdraw", nil)
-	cdc.RegisterConcrete(MsgAddShares{}, "okexchain/staking/MsgAddShares", nil)
-	cdc.RegisterConcrete(MsgRegProxy{}, "okexchain/staking/MsgRegProxy", nil)
-	cdc.RegisterConcrete(MsgBindProxy{}, "okexchain/staking/MsgBindProxy", nil)
-	cdc.RegisterConcrete(MsgUnbindProxy{}, "okexchain/staking/MsgUnbindProxy", nil)
+	cdc.RegisterConcrete(MsgCreateValidator{}, "zenchain/staking/MsgCreateValidator", nil)
+	cdc.RegisterConcrete(MsgEditValidator{}, "zenchain/staking/MsgEditValidator", nil)
+	cdc.RegisterConcrete(MsgDestroyValidator{}, "zenchain/staking/MsgDestroyValidator", nil)
+	cdc.RegisterConcrete(MsgDeposit{}, "zenchain/staking/MsgDeposit", nil)
+	cdc.RegisterConcrete(MsgWithdraw{}, "zenchain/staking/MsgWithdraw", nil)
+	cdc.RegisterConcrete(MsgAddShares{}, "zenchain/staking/MsgAddShares", nil)
+	cdc.RegisterConcrete(MsgRegProxy{}, "zenchain/staking/MsgRegProxy", nil)
+	cdc.RegisterConcrete(MsgBindProxy{}, "zenchain/staking/MsgBindProxy", nil)
+	cdc.RegisterConcrete(MsgUnbindProxy{}, "zenchain/staking/MsgUnbindProxy", nil)
 }
 
 // ModuleCdc is generic sealed codec to be used throughout this module

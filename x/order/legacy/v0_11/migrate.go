@@ -1,7 +1,7 @@
 package v0_11
 
 import (
-	"github.com/okex/okexchain/x/order/legacy/v0_10"
+	"github.com/zenchainprotocol/zenchain-node/x/order/legacy/v0_10"
 )
 
 func Migrate(oldGenState v0_10.GenesisState) GenesisState {

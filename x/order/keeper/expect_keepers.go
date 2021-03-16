@@ -4,9 +4,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/supply/exported"
 
-	dex "github.com/okex/okexchain/x/dex/types"
-	"github.com/okex/okexchain/x/order/types"
-	token "github.com/okex/okexchain/x/token/types"
+	dex "github.com/zenchainprotocol/zenchain-node/x/dex/types"
+	"github.com/zenchainprotocol/zenchain-node/x/order/types"
+	token "github.com/zenchainprotocol/zenchain-node/x/token/types"
 )
 
 // TokenKeeper : expected token keeper

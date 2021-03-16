@@ -12,11 +12,11 @@ import (
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/okex/okexchain/x/common/version"
-	"github.com/okex/okexchain/x/order/client/cli"
-	"github.com/okex/okexchain/x/order/client/rest"
-	"github.com/okex/okexchain/x/order/keeper"
-	"github.com/okex/okexchain/x/order/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common/version"
+	"github.com/zenchainprotocol/zenchain-node/x/order/client/cli"
+	"github.com/zenchainprotocol/zenchain-node/x/order/client/rest"
+	"github.com/zenchainprotocol/zenchain-node/x/order/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/order/types"
 )
 
 var (

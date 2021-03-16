@@ -14,10 +14,10 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/okex/okexchain/app"
-	"github.com/okex/okexchain/app/ante"
-	"github.com/okex/okexchain/app/types"
-	evmtypes "github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/app"
+	"github.com/zenchainprotocol/zenchain-node/app/ante"
+	"github.com/zenchainprotocol/zenchain-node/app/types"
+	evmtypes "github.com/zenchainprotocol/zenchain-node/x/evm/types"
 )
 
 func requireValidTx(

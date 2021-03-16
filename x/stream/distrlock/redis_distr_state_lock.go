@@ -3,7 +3,7 @@ package distrlock
 import (
 	"fmt"
 
-	"github.com/okex/okexchain/x/stream/common"
+	"github.com/zenchainprotocol/zenchain-node/x/stream/common"
 	"github.com/garyburd/redigo/redis"
 	"github.com/tendermint/tendermint/libs/log"
 )

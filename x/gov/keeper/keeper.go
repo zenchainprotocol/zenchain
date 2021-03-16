@@ -5,13 +5,13 @@ import (
 	"time"
 
 	supplyexported "github.com/cosmos/cosmos-sdk/x/supply/exported"
-	"github.com/okex/okexchain/x/common"
-	"github.com/okex/okexchain/x/gov/types"
-	"github.com/okex/okexchain/x/staking/exported"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/exported"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/params"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
 	"github.com/tendermint/tendermint/libs/log"
 )
 

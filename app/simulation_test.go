@@ -20,12 +20,12 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	distr "github.com/cosmos/cosmos-sdk/x/distribution"
-	"github.com/okex/okexchain/x/gov"
+	"github.com/zenchainprotocol/zenchain-node/x/gov"
 	"github.com/cosmos/cosmos-sdk/x/mint"
-	"github.com/okex/okexchain/x/params"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
 	"github.com/cosmos/cosmos-sdk/x/simulation"
 	"github.com/cosmos/cosmos-sdk/x/slashing"
-	"github.com/okex/okexchain/x/staking"
+	"github.com/zenchainprotocol/zenchain-node/x/staking"
 	"github.com/cosmos/cosmos-sdk/x/supply"
 )
 
@@ -63,7 +63,7 @@ func TestFullAppSimulation(t *testing.T) {
 		require.NoError(t, os.RemoveAll(dir))
 	}()
 
-	app := NewOKExChainApp(logger, db, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
+	app := NewzenChainApp(logger, db, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
 	require.Equal(t, appName, app.Name())
 
 	// run randomized simulation
@@ -95,7 +95,7 @@ func TestAppImportExport(t *testing.T) {
 		require.NoError(t, os.RemoveAll(dir))
 	}()
 
-	app := NewOKExChainApp(logger, db, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
+	app := NewzenChainApp(logger, db, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
 	require.Equal(t, appName, app.Name())
 
 	// Run randomized simulation
@@ -130,7 +130,7 @@ func TestAppImportExport(t *testing.T) {
 		require.NoError(t, os.RemoveAll(newDir))
 	}()
 
-	newApp := NewOKExChainApp(log.NewNopLogger(), newDB, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
+	newApp := NewzenChainApp(log.NewNopLogger(), newDB, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
 	require.Equal(t, appName, newApp.Name())
 
 	var genesisState map[string]json.RawMessage
@@ -180,7 +180,7 @@ func TestAppSimulationAfterImport(t *testing.T) {
 		require.NoError(t, os.RemoveAll(dir))
 	}()
 
-	app := NewOKExChainApp(logger, db, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
+	app := NewzenChainApp(logger, db, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
 	require.Equal(t, appName, app.Name())
 
 	// Run randomized simulation
@@ -220,7 +220,7 @@ func TestAppSimulationAfterImport(t *testing.T) {
 		require.NoError(t, os.RemoveAll(newDir))
 	}()
 
-	newApp := NewOKExChainApp(log.NewNopLogger(), newDB, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
+	newApp := NewzenChainApp(log.NewNopLogger(), newDB, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, fauxMerkleModeOpt)
 	require.Equal(t, appName, newApp.Name())
 
 	newApp.InitChain(abci.RequestInitChain{
@@ -262,7 +262,7 @@ func TestAppStateDeterminism(t *testing.T) {
 
 		db := dbm.NewMemDB()
 
-		app := NewOKExChainApp(logger, db, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, interBlockCacheOpt())
+		app := NewzenChainApp(logger, db, nil, true, map[int64]bool{}, simapp.FlagPeriodValue, interBlockCacheOpt())
 
 		fmt.Printf(
 			"running non-determinism simulation; seed %d: attempt: %d/%d\n",

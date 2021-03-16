@@ -22,9 +22,9 @@ import (
 	tmtypes "github.com/tendermint/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/okex/okexchain/x/gov/types"
-	"github.com/okex/okexchain/x/params"
-	"github.com/okex/okexchain/x/staking"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
+	"github.com/zenchainprotocol/zenchain-node/x/staking"
 )
 
 var (
@@ -115,7 +115,7 @@ func CreateTestInput(
 	err := ms.LoadLatestVersion()
 	require.Nil(t, err)
 
-	ctx := sdk.NewContext(ms, abci.Header{ChainID: "okexchain"}, isCheckTx, log.NewNopLogger())
+	ctx := sdk.NewContext(ms, abci.Header{ChainID: "zenchain"}, isCheckTx, log.NewNopLogger())
 	ctx = ctx.WithConsensusParams(
 		&abci.ConsensusParams{
 			Validator: &abci.ValidatorParams{

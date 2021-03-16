@@ -3,8 +3,8 @@ package keeper
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/okex/okexchain/x/distribution/types"
-	stakingtypes "github.com/okex/okexchain/x/staking/types"
+	"github.com/zenchainprotocol/zenchain-node/x/distribution/types"
+	stakingtypes "github.com/zenchainprotocol/zenchain-node/x/staking/types"
 )
 
 // Hooks is struct of keepers from other module

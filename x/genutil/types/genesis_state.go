@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	stakingtypes "github.com/okex/okexchain/x/staking/types"
+	stakingtypes "github.com/zenchainprotocol/zenchain-node/x/staking/types"
 
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 )

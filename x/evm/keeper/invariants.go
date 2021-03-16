@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authexported "github.com/cosmos/cosmos-sdk/x/auth/exported"
 
-	ethermint "github.com/okex/okexchain/app/types"
-	"github.com/okex/okexchain/x/evm/types"
+	ethermint "github.com/zenchainprotocol/zenchain-node/app/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/types"
 )
 
 const (

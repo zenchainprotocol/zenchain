@@ -7,10 +7,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/okex/okexchain/x/backend/cache"
-	"github.com/okex/okexchain/x/backend/orm"
-	"github.com/okex/okexchain/x/backend/types"
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/cache"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/orm"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -27,7 +27,7 @@
 package rest
 
 import (
-	"github.com/okex/okexchain/x/token/types"
+	"github.com/zenchainprotocol/zenchain-node/x/token/types"
 )
 
 // A Products is the info of the market.

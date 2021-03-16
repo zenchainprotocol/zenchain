@@ -3,7 +3,7 @@ package cli
 import (
 	"fmt"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/evm/client/rest"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/client/rest"
 	"strings"
 
 	"github.com/pkg/errors"
@@ -14,7 +14,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/codec"
 
-	"github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/types"
 )
 
 // GetQueryCmd defines evm module queries through the cli
@@ -131,7 +131,7 @@ func GetCmdQueryParams(queryRoute string, cdc *codec.Codec) *cobra.Command {
 		Short: "Query all the modifiable parameters of gov proposal",
 		Long: strings.TrimSpace(`Query the all the parameters for the governance process:
 
-$ okexchaincli query evm params
+$ zenchaincli query evm params
 `),
 		Args: cobra.NoArgs,
 		RunE: func(_ *cobra.Command, _ []string) error {

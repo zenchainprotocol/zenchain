@@ -10,11 +10,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/slashing"
-	"github.com/okex/okexchain/x/staking"
-	"github.com/okex/okexchain/x/staking/exported"
+	"github.com/zenchainprotocol/zenchain-node/x/slashing"
+	"github.com/zenchainprotocol/zenchain-node/x/staking"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/exported"
 
-	ethcdc "github.com/okex/okexchain/app/codec"
+	ethcdc "github.com/zenchainprotocol/zenchain-node/app/codec"
 )
 
 // NewDefaultGenesisState generates the default state for the application.
@@ -25,7 +25,7 @@ func NewDefaultGenesisState() simapp.GenesisState {
 
 // ExportAppStateAndValidators exports the state of the application for a genesis
 // file.
-func (app *OKExChainApp) ExportAppStateAndValidators(
+func (app *zenChainApp) ExportAppStateAndValidators(
 	forZeroHeight bool, jailWhiteList []string,
 ) (appState json.RawMessage, validators []tmtypes.GenesisValidator, err error) {
 
@@ -52,7 +52,7 @@ func (app *OKExChainApp) ExportAppStateAndValidators(
 // prepare for fresh start at zero height
 // NOTE zero height genesis is a temporary feature which will be deprecated
 //      in favour of export at a block height
-func (app *OKExChainApp) prepForZeroHeightGenesis(ctx sdk.Context, jailWhiteList []string) {
+func (app *zenChainApp) prepForZeroHeightGenesis(ctx sdk.Context, jailWhiteList []string) {
 	applyWhiteList := false
 
 	//Check if there is a whitelist

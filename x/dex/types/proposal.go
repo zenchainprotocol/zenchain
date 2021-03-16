@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	govtypes "github.com/okex/okexchain/x/gov/types"
+	govtypes "github.com/zenchainprotocol/zenchain-node/x/gov/types"
 )
 
 const (
@@ -14,7 +14,7 @@ const (
 
 func init() {
 	govtypes.RegisterProposalType(proposalTypeDelist)
-	govtypes.RegisterProposalTypeCodec(DelistProposal{}, "okexchain/dex/DelistProposal")
+	govtypes.RegisterProposalTypeCodec(DelistProposal{}, "zenchain/dex/DelistProposal")
 
 }
 

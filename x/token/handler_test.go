@@ -8,12 +8,12 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/mock"
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
-	okexchain "github.com/okex/okexchain/app"
-	app "github.com/okex/okexchain/app/types"
-	"github.com/okex/okexchain/x/common"
-	"github.com/okex/okexchain/x/common/version"
-	"github.com/okex/okexchain/x/token"
-	"github.com/okex/okexchain/x/token/types"
+	zenchain "github.com/zenchainprotocol/zenchain-node/app"
+	app "github.com/zenchainprotocol/zenchain-node/app/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common/version"
+	"github.com/zenchainprotocol/zenchain-node/x/token"
+	"github.com/zenchainprotocol/zenchain-node/x/token/types"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto/secp256k1"
@@ -22,15 +22,15 @@ import (
 )
 
 func TestHandlerBlockedContractAddrSend(t *testing.T) {
-	okexapp := initApp(true)
-	ctx := okexapp.BaseApp.NewContext(true, abci.Header{Height: 1})
+	zenapp := initApp(true)
+	ctx := zenapp.BaseApp.NewContext(true, abci.Header{Height: 1})
 	gAcc := CreateEthAccounts(3, sdk.SysCoins{
 		sdk.NewDecCoinFromDec(common.NativeToken, sdk.NewDec(10000)),
 	})
-	okexapp.AccountKeeper.SetAccount(ctx, gAcc[0])
-	okexapp.AccountKeeper.SetAccount(ctx, gAcc[1])
+	zenapp.AccountKeeper.SetAccount(ctx, gAcc[0])
+	zenapp.AccountKeeper.SetAccount(ctx, gAcc[1])
 	gAcc[2].CodeHash = []byte("contract code hash")
-	okexapp.AccountKeeper.SetAccount(ctx, gAcc[2])
+	zenapp.AccountKeeper.SetAccount(ctx, gAcc[2])
 
 	// multi send
 	multiSendStr := `[{"to":"` + gAcc[1].Address.String() + `","amount":" 10` + common.NativeToken + `"}]`
@@ -44,8 +44,8 @@ func TestHandlerBlockedContractAddrSend(t *testing.T) {
 	sendToContractMsg := types.NewMsgTokenSend(gAcc[0].Address, gAcc[2].Address, sdk.SysCoins{sdk.NewDecCoinFromDec(common.NativeToken, sdk.NewDec(1))})
 	successfulMultiSendMsg := types.NewMsgMultiSend(gAcc[0].Address, transfers)
 	multiSendToContractMsg := types.NewMsgMultiSend(gAcc[0].Address, transfers2)
-	handler := token.NewTokenHandler(okexapp.TokenKeeper, version.CurrentProtocolVersion)
-	okexapp.BankKeeper.SetSendEnabled(ctx, true)
+	handler := token.NewTokenHandler(zenapp.TokenKeeper, version.CurrentProtocolVersion)
+	zenapp.BankKeeper.SetSendEnabled(ctx, true)
 	TestSets := []struct {
 		description string
 		balance     string
@@ -64,23 +64,23 @@ func TestHandlerBlockedContractAddrSend(t *testing.T) {
 	}
 	for i, tt := range TestSets {
 		t.Run(tt.description, func(t *testing.T) {
-			ctx = okexapp.NewContext(true, abci.Header{})
+			ctx = zenapp.NewContext(true, abci.Header{})
 			handler(ctx, TestSets[i].msg)
-			acc := okexapp.AccountKeeper.GetAccount(ctx, tt.account.Address)
+			acc := zenapp.AccountKeeper.GetAccount(ctx, tt.account.Address)
 			acc.GetCoins().String()
 			require.Equal(t, acc.GetCoins().String(), tt.balance)
 		})
 	}
 }
 
-// Setup initializes a new OKExChainApp. A Nop logger is set in OKExChainApp.
-func initApp(isCheckTx bool) *okexchain.OKExChainApp {
+// Setup initializes a new zenChainApp. A Nop logger is set in zenChainApp.
+func initApp(isCheckTx bool) *zenchain.zenChainApp {
 	db := dbm.NewMemDB()
-	app := okexchain.NewOKExChainApp(log.NewNopLogger(), db, nil, true, map[int64]bool{}, 0)
+	app := zenchain.NewzenChainApp(log.NewNopLogger(), db, nil, true, map[int64]bool{}, 0)
 
 	if !isCheckTx {
 		// init chain must be called to stop deliverState from being nil
-		genesisState := okexchain.NewDefaultGenesisState()
+		genesisState := zenchain.NewDefaultGenesisState()
 		stateBytes, err := codec.MarshalJSONIndent(app.Codec(), genesisState)
 		if err != nil {
 			panic(err)

@@ -3,9 +3,9 @@ package distribution
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/okex/okexchain/x/distribution/keeper"
-	"github.com/okex/okexchain/x/distribution/types"
-	govtypes "github.com/okex/okexchain/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/distribution/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/distribution/types"
+	govtypes "github.com/zenchainprotocol/zenchain-node/x/gov/types"
 )
 
 // NewHandler manages all distribution tx

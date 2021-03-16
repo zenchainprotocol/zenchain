@@ -10,7 +10,7 @@ import (
 	"strconv"
 
 	"github.com/nacos-group/nacos-sdk-go/vo"
-	"github.com/okex/okexchain/x/stream/nacos"
+	"github.com/zenchainprotocol/zenchain-node/x/stream/nacos"
 	"github.com/tendermint/tendermint/libs/log"
 )
 

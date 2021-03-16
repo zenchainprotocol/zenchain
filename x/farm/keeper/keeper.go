@@ -4,9 +4,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/supply"
-	swap "github.com/okex/okexchain/x/ammswap/keeper"
-	"github.com/okex/okexchain/x/farm/types"
-	"github.com/okex/okexchain/x/token"
+	swap "github.com/zenchainprotocol/zenchain-node/x/ammswap/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/token"
 	"github.com/tendermint/tendermint/libs/log"
 )
 

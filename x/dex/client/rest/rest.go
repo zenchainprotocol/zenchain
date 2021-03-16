@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/okex/okexchain/x/dex/types"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/rest"
-	"github.com/okex/okexchain/x/common"
-	govRest "github.com/okex/okexchain/x/gov/client/rest"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	govRest "github.com/zenchainprotocol/zenchain-node/x/gov/client/rest"
 
 	"github.com/cosmos/cosmos-sdk/client/context"
 	"github.com/gorilla/mux"

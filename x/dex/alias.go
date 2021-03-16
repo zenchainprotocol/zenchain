@@ -1,14 +1,14 @@
 // nolint
 // aliases generated for the following subdirectories:
-// ALIASGEN: github.com/okex/okexchain/x/dex/keeper
-// ALIASGEN: github.com/okex/okexchain/x/dex/types
+// ALIASGEN: github.com/zenchainprotocol/zenchain-node/x/dex/keeper
+// ALIASGEN: github.com/zenchainprotocol/zenchain-node/x/dex/types
 package dex
 
 import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/okex/okexchain/x/common/version"
-	"github.com/okex/okexchain/x/dex/keeper"
-	"github.com/okex/okexchain/x/dex/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common/version"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/types"
 )
 
 const (

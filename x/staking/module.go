@@ -5,9 +5,9 @@ import (
 	"math/rand"
 
 	sim "github.com/cosmos/cosmos-sdk/x/simulation"
-	"github.com/okex/okexchain/x/staking/simulation"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/simulation"
 
-	"github.com/okex/okexchain/x/staking/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/keeper"
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
@@ -22,9 +22,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/okex/okexchain/x/staking/client/cli"
-	"github.com/okex/okexchain/x/staking/client/rest"
-	"github.com/okex/okexchain/x/staking/types"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/client/cli"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/client/rest"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/types"
 )
 
 var (
@@ -118,7 +118,7 @@ func NewAppModule(keeper Keeper, accKeeper types.AccountKeeper,
 
 // RegisterInvariants registers invariants
 func (am AppModule) RegisterInvariants(ir sdk.InvariantRegistry) {
-	// required by okexchain
+	// required by zenchain
 	keeper.RegisterInvariantsCustom(ir, am.keeper)
 }
 

@@ -3,7 +3,7 @@ package keeper
 import (
 	"fmt"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/farm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/types"
 )
 
 // RegisterInvariants registers all farm invariants

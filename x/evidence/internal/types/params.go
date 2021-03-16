@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/okex/okexchain/x/params"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
 
 	"gopkg.in/yaml.v2"
 )

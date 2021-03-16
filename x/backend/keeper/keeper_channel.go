@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/okex/okexchain/x/backend/config"
-	"github.com/okex/okexchain/x/backend/orm"
-	"github.com/okex/okexchain/x/backend/types"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/config"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/orm"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/types"
 )
 
 func pushAllKline1M(klines map[string][]types.KlineM1, keeper Keeper, nextStartTS int64) {

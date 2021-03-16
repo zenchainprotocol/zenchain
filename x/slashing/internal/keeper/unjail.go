@@ -2,7 +2,7 @@ package keeper
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/slashing/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/slashing/internal/types"
 )
 
 // Unjail calls the staking Unjail function to unjail a validator if the

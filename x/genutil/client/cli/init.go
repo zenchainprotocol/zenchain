@@ -18,7 +18,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/okex/okexchain/x/genutil"
+	"github.com/zenchainprotocol/zenchain-node/x/genutil"
 )
 
 const (

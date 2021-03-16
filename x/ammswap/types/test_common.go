@@ -5,9 +5,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/supply"
-	"github.com/okex/okexchain/x/common"
-	"github.com/okex/okexchain/x/token"
-	tokentypes "github.com/okex/okexchain/x/token/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/token"
+	tokentypes "github.com/zenchainprotocol/zenchain-node/x/token/types"
 )
 
 // nolint

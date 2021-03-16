@@ -3,9 +3,9 @@ package common
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/okex/okexchain/x/ammswap"
-	"github.com/okex/okexchain/x/backend"
-	"github.com/okex/okexchain/x/dex/types"
+	"github.com/zenchainprotocol/zenchain-node/x/ammswap"
+	"github.com/zenchainprotocol/zenchain-node/x/backend"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/types"
 )
 
 type Cache struct {

@@ -10,7 +10,7 @@ import (
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/eth/filters"
 
-	rpctypes "github.com/okex/okexchain/app/rpc/types"
+	rpctypes "github.com/zenchainprotocol/zenchain-node/app/rpc/types"
 )
 
 // Filter can be used to retrieve and filter logs.

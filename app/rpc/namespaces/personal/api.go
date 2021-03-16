@@ -17,10 +17,10 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	"github.com/okex/okexchain/app/crypto/ethsecp256k1"
-	"github.com/okex/okexchain/app/crypto/hd"
-	"github.com/okex/okexchain/app/rpc/namespaces/eth"
-	rpctypes "github.com/okex/okexchain/app/rpc/types"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/ethsecp256k1"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/hd"
+	"github.com/zenchainprotocol/zenchain-node/app/rpc/namespaces/eth"
+	rpctypes "github.com/zenchainprotocol/zenchain-node/app/rpc/types"
 )
 
 // PrivateAccountAPI is the personal_ prefixed set of APIs in the Web3 JSON-RPC spec.
@@ -142,7 +142,7 @@ func (api *PrivateAccountAPI) NewAccount(password string) (common.Address, error
 
 	addr := common.BytesToAddress(info.GetPubKey().Address().Bytes())
 	api.logger.Info("Your new key was generated", "address", addr.String())
-	api.logger.Info("Please backup your key file!", "path", os.Getenv("HOME")+"/.okexchaind/"+name)
+	api.logger.Info("Please backup your key file!", "path", os.Getenv("HOME")+"/.zenchaind/"+name)
 	api.logger.Info("Please remember your password!")
 	return addr, nil
 }

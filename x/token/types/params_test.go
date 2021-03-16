@@ -3,9 +3,9 @@ package types
 import (
 	"testing"
 
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 
-	"github.com/okex/okexchain/x/params"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
 	"github.com/stretchr/testify/require"
 )
 

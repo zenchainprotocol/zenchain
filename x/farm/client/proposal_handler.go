@@ -1,9 +1,9 @@
 package client
 
 import (
-	"github.com/okex/okexchain/x/farm/client/cli"
-	"github.com/okex/okexchain/x/farm/client/rest"
-	govcli "github.com/okex/okexchain/x/gov/client"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/client/cli"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/client/rest"
+	govcli "github.com/zenchainprotocol/zenchain-node/x/gov/client"
 )
 
 var (

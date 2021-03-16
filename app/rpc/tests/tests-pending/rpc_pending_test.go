@@ -12,7 +12,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	util "github.com/okex/okexchain/app/rpc/tests"
+	util "github.com/zenchainprotocol/zenchain-node/app/rpc/tests"
 	"github.com/stretchr/testify/require"
 	"math/big"
 	"os"

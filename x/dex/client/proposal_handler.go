@@ -1,9 +1,9 @@
 package client
 
 import (
-	"github.com/okex/okexchain/x/dex/client/cli"
-	"github.com/okex/okexchain/x/dex/client/rest"
-	govclient "github.com/okex/okexchain/x/gov/client"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/client/cli"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/client/rest"
+	govclient "github.com/zenchainprotocol/zenchain-node/x/gov/client"
 )
 
 // param change proposal handler

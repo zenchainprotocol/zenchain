@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"github.com/okex/okexchain/x/params/subspace"
+	"github.com/zenchainprotocol/zenchain-node/x/params/subspace"
 	"math/big"
 	"math/rand"
 	"net/http"
@@ -20,7 +20,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/context"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/rest"
-	apptypes "github.com/okex/okexchain/app/types"
+	apptypes "github.com/zenchainprotocol/zenchain-node/app/types"
 )
 
 const (
@@ -107,7 +107,7 @@ func HasSufficientCoins(addr sdk.AccAddress, availableCoins, amt sdk.Coins) (err
 }
 
 // SkipSysTestChecker is supported to used in System Unit Test
-// (described in http://gitlab.okcoin-inc.com/dex/okexchain/issues/472)
+// (described in http://gitlab.okcoin-inc.com/dex/zenchain/issues/472)
 // if System environment variables "SYS_TEST_ALL" is set to 1, all of the system test will be enable. \n
 // if System environment variables "ORM_MYSQL_SYS_TEST" is set to 1,
 // 				all of the system test in orm_mysql_sys_test.go will be enble.

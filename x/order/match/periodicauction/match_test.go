@@ -5,13 +5,13 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/okex/okexchain/x/dex"
-	orderkeeper "github.com/okex/okexchain/x/order/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/dex"
+	orderkeeper "github.com/zenchainprotocol/zenchain-node/x/order/keeper"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	"github.com/okex/okexchain/x/order/types"
+	"github.com/zenchainprotocol/zenchain-node/x/order/types"
 )
 
 type BookItemTestData struct {

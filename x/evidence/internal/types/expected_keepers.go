@@ -4,7 +4,7 @@ import (
 	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	stakingexported "github.com/okex/okexchain/x/staking/exported"
+	stakingexported "github.com/zenchainprotocol/zenchain-node/x/staking/exported"
 
 	"github.com/tendermint/tendermint/crypto"
 )

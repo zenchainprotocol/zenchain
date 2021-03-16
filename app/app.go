@@ -5,34 +5,34 @@ import (
 	"io"
 	"os"
 
-	"github.com/okex/okexchain/x/common/perf"
+	"github.com/zenchainprotocol/zenchain-node/x/common/perf"
 
-	evmtypes "github.com/okex/okexchain/x/evm/types"
+	evmtypes "github.com/zenchainprotocol/zenchain-node/x/evm/types"
 
-	"github.com/okex/okexchain/app/ante"
-	okexchaincodec "github.com/okex/okexchain/app/codec"
-	okexchain "github.com/okex/okexchain/app/types"
-	"github.com/okex/okexchain/x/ammswap"
-	"github.com/okex/okexchain/x/backend"
-	commonversion "github.com/okex/okexchain/x/common/version"
-	"github.com/okex/okexchain/x/debug"
-	"github.com/okex/okexchain/x/dex"
-	dexclient "github.com/okex/okexchain/x/dex/client"
-	distr "github.com/okex/okexchain/x/distribution"
-	"github.com/okex/okexchain/x/evidence"
-	"github.com/okex/okexchain/x/evm"
-	"github.com/okex/okexchain/x/farm"
-	farmclient "github.com/okex/okexchain/x/farm/client"
-	"github.com/okex/okexchain/x/genutil"
-	"github.com/okex/okexchain/x/gov"
-	"github.com/okex/okexchain/x/gov/keeper"
-	"github.com/okex/okexchain/x/order"
-	"github.com/okex/okexchain/x/params"
-	paramsclient "github.com/okex/okexchain/x/params/client"
-	"github.com/okex/okexchain/x/slashing"
-	"github.com/okex/okexchain/x/staking"
-	"github.com/okex/okexchain/x/stream"
-	"github.com/okex/okexchain/x/token"
+	"github.com/zenchainprotocol/zenchain-node/app/ante"
+	zenchaincodec "github.com/zenchainprotocol/zenchain-node/app/codec"
+	zenchain "github.com/zenchainprotocol/zenchain-node/app/types"
+	"github.com/zenchainprotocol/zenchain-node/x/ammswap"
+	"github.com/zenchainprotocol/zenchain-node/x/backend"
+	commonversion "github.com/zenchainprotocol/zenchain-node/x/common/version"
+	"github.com/zenchainprotocol/zenchain-node/x/debug"
+	"github.com/zenchainprotocol/zenchain-node/x/dex"
+	dexclient "github.com/zenchainprotocol/zenchain-node/x/dex/client"
+	distr "github.com/zenchainprotocol/zenchain-node/x/distribution"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence"
+	"github.com/zenchainprotocol/zenchain-node/x/evm"
+	"github.com/zenchainprotocol/zenchain-node/x/farm"
+	farmclient "github.com/zenchainprotocol/zenchain-node/x/farm/client"
+	"github.com/zenchainprotocol/zenchain-node/x/genutil"
+	"github.com/zenchainprotocol/zenchain-node/x/gov"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/order"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
+	paramsclient "github.com/zenchainprotocol/zenchain-node/x/params/client"
+	"github.com/zenchainprotocol/zenchain-node/x/slashing"
+	"github.com/zenchainprotocol/zenchain-node/x/staking"
+	"github.com/zenchainprotocol/zenchain-node/x/stream"
+	"github.com/zenchainprotocol/zenchain-node/x/token"
 
 	bam "github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -58,18 +58,18 @@ import (
 func init() {
 	// set the address prefixes
 	config := sdk.GetConfig()
-	okexchain.SetBech32Prefixes(config)
-	okexchain.SetBip44CoinType(config)
+	zenchain.SetBech32Prefixes(config)
+	zenchain.SetBip44CoinType(config)
 }
 
-const appName = "OKExChain"
+const appName = "zenChain"
 
 var (
 	// DefaultCLIHome sets the default home directories for the application CLI
-	DefaultCLIHome = os.ExpandEnv("$HOME/.okexchaincli")
+	DefaultCLIHome = os.ExpandEnv("$HOME/.zenchaincli")
 
 	// DefaultNodeHome sets the folder where the applcation data and configuration will be stored
-	DefaultNodeHome = os.ExpandEnv("$HOME/.okexchaind")
+	DefaultNodeHome = os.ExpandEnv("$HOME/.zenchaind")
 
 	// ModuleBasics defines the module BasicManager is in charge of setting up basic,
 	// non-dependant module elements, such as codec registration
@@ -127,12 +127,12 @@ var (
 	}
 )
 
-var _ simapp.App = (*OKExChainApp)(nil)
+var _ simapp.App = (*zenChainApp)(nil)
 
-// OKExChainApp implements an extended ABCI application. It is an application
+// zenChainApp implements an extended ABCI application. It is an application
 // that may process transactions through Ethereum's EVM running atop of
 // Tendermint consensus.
-type OKExChainApp struct {
+type zenChainApp struct {
 	*bam.BaseApp
 	cdc *codec.Codec
 
@@ -174,8 +174,8 @@ type OKExChainApp struct {
 	sm *module.SimulationManager
 }
 
-// NewOKExChainApp returns a reference to a new initialized OKExChain application.
-func NewOKExChainApp(
+// NewzenChainApp returns a reference to a new initialized zenChain application.
+func NewzenChainApp(
 	logger log.Logger,
 	db dbm.DB,
 	traceStore io.Writer,
@@ -183,17 +183,17 @@ func NewOKExChainApp(
 	skipUpgradeHeights map[int64]bool,
 	invCheckPeriod uint,
 	baseAppOptions ...func(*bam.BaseApp),
-) *OKExChainApp {
+) *zenChainApp {
 	// get config
 	appConfig, err := config.ParseConfig()
 	if err != nil {
-		logger.Error(fmt.Sprintf("the config of OKExChain was parsed error : %s", err.Error()))
+		logger.Error(fmt.Sprintf("the config of zenChain was parsed error : %s", err.Error()))
 		panic(err)
 	}
 
-	cdc := okexchaincodec.MakeCodec(ModuleBasics)
+	cdc := zenchaincodec.MakeCodec(ModuleBasics)
 
-	// NOTE we use custom OKExChain transaction decoder that supports the sdk.Tx interface instead of sdk.StdTx
+	// NOTE we use custom zenChain transaction decoder that supports the sdk.Tx interface instead of sdk.StdTx
 	bApp := bam.NewBaseApp(appName, logger, db, evm.TxDecoder(cdc), baseAppOptions...)
 	bApp.SetCommitMultiStoreTracer(traceStore)
 	bApp.SetAppVersion(version.Version)
@@ -208,7 +208,7 @@ func NewOKExChainApp(
 
 	tkeys := sdk.NewTransientStoreKeys(params.TStoreKey)
 
-	app := &OKExChainApp{
+	app := &zenChainApp{
 		BaseApp:        bApp,
 		cdc:            cdc,
 		invCheckPeriod: invCheckPeriod,
@@ -235,9 +235,9 @@ func NewOKExChainApp(
 	app.subspaces[ammswap.ModuleName] = app.ParamsKeeper.Subspace(ammswap.DefaultParamspace)
 	app.subspaces[farm.ModuleName] = app.ParamsKeeper.Subspace(farm.DefaultParamspace)
 
-	// use custom OKExChain account for contracts
+	// use custom zenChain account for contracts
 	app.AccountKeeper = auth.NewAccountKeeper(
-		cdc, keys[auth.StoreKey], app.subspaces[auth.ModuleName], okexchain.ProtoAccount,
+		cdc, keys[auth.StoreKey], app.subspaces[auth.ModuleName], zenchain.ProtoAccount,
 	)
 	app.BankKeeper = bank.NewBaseKeeper(
 		app.AccountKeeper, app.subspaces[bank.ModuleName], app.BlacklistedAccAddrs(),
@@ -427,19 +427,19 @@ func NewOKExChainApp(
 }
 
 // Name returns the name of the App
-func (app *OKExChainApp) Name() string { return app.BaseApp.Name() }
+func (app *zenChainApp) Name() string { return app.BaseApp.Name() }
 
 // BeginBlocker updates every begin block
-func (app *OKExChainApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+func (app *zenChainApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
 	return app.mm.BeginBlock(ctx, req)
 }
 
 // EndBlocker updates every end block
-func (app *OKExChainApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
+func (app *zenChainApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
 	return app.mm.EndBlock(ctx, req)
 }
 
-func (app *OKExChainApp) DeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx) {
+func (app *zenChainApp) DeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx) {
 
 	seq := perf.GetPerf().OnAppDeliverTxEnter(app.LastBlockHeight()+1)
 	defer perf.GetPerf().OnAppDeliverTxExit(app.LastBlockHeight()+1, seq)
@@ -452,7 +452,7 @@ func (app *OKExChainApp) DeliverTx(req abci.RequestDeliverTx) (res abci.Response
 	return resp
 }
 
-func (app *OKExChainApp) syncTx(txBytes []byte) {
+func (app *zenChainApp) syncTx(txBytes []byte) {
 
 	if tx, err := auth.DefaultTxDecoder(app.Codec())(txBytes); err == nil {
 		if stdTx, ok := tx.(auth.StdTx); ok {
@@ -468,19 +468,19 @@ func (app *OKExChainApp) syncTx(txBytes []byte) {
 }
 
 // InitChainer updates at chain initialization
-func (app *OKExChainApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+func (app *zenChainApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
 	var genesisState simapp.GenesisState
 	app.cdc.MustUnmarshalJSON(req.AppStateBytes, &genesisState)
 	return app.mm.InitGenesis(ctx, genesisState)
 }
 
 // LoadHeight loads state at a particular height
-func (app *OKExChainApp) LoadHeight(height int64) error {
+func (app *zenChainApp) LoadHeight(height int64) error {
 	return app.LoadVersion(height, app.keys[bam.MainStoreKey])
 }
 
 // ModuleAccountAddrs returns all the app's module account addresses.
-func (app *OKExChainApp) ModuleAccountAddrs() map[string]bool {
+func (app *zenChainApp) ModuleAccountAddrs() map[string]bool {
 	modAccAddrs := make(map[string]bool)
 	for acc := range maccPerms {
 		modAccAddrs[supply.NewModuleAddress(acc).String()] = true
@@ -490,7 +490,7 @@ func (app *OKExChainApp) ModuleAccountAddrs() map[string]bool {
 }
 
 // BlacklistedAccAddrs returns all the app's module account addresses black listed for receiving tokens.
-func (app *OKExChainApp) BlacklistedAccAddrs() map[string]bool {
+func (app *zenChainApp) BlacklistedAccAddrs() map[string]bool {
 	blacklistedAddrs := make(map[string]bool)
 	for acc := range maccPerms {
 		blacklistedAddrs[supply.NewModuleAddress(acc).String()] = !allowedReceivingModAcc[acc]
@@ -500,34 +500,34 @@ func (app *OKExChainApp) BlacklistedAccAddrs() map[string]bool {
 }
 
 // SimulationManager implements the SimulationApp interface
-func (app *OKExChainApp) SimulationManager() *module.SimulationManager {
+func (app *zenChainApp) SimulationManager() *module.SimulationManager {
 	return app.sm
 }
 
 // GetKey returns the KVStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *OKExChainApp) GetKey(storeKey string) *sdk.KVStoreKey {
+func (app *zenChainApp) GetKey(storeKey string) *sdk.KVStoreKey {
 	return app.keys[storeKey]
 }
 
-// Codec returns OKExChain's codec.
+// Codec returns zenChain's codec.
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
-func (app *OKExChainApp) Codec() *codec.Codec {
+func (app *zenChainApp) Codec() *codec.Codec {
 	return app.cdc
 }
 
 // GetSubspace returns a param subspace for a given module name.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *OKExChainApp) GetSubspace(moduleName string) params.Subspace {
+func (app *zenChainApp) GetSubspace(moduleName string) params.Subspace {
 	return app.subspaces[moduleName]
 }
 
 // BeginBlock implements the Application interface
-func (app *OKExChainApp) BeginBlock(req abci.RequestBeginBlock) (res abci.ResponseBeginBlock) {
+func (app *zenChainApp) BeginBlock(req abci.RequestBeginBlock) (res abci.ResponseBeginBlock) {
 
 	seq := perf.GetPerf().OnAppBeginBlockEnter(app.LastBlockHeight() + 1)
 	defer perf.GetPerf().OnAppBeginBlockExit(app.LastBlockHeight()+1, seq)
@@ -536,7 +536,7 @@ func (app *OKExChainApp) BeginBlock(req abci.RequestBeginBlock) (res abci.Respon
 }
 
 // EndBlock implements the Application interface
-func (app *OKExChainApp) EndBlock(req abci.RequestEndBlock) (res abci.ResponseEndBlock) {
+func (app *zenChainApp) EndBlock(req abci.RequestEndBlock) (res abci.ResponseEndBlock) {
 
 	seq := perf.GetPerf().OnAppEndBlockEnter(app.LastBlockHeight() + 1)
 	defer perf.GetPerf().OnAppEndBlockExit(app.LastBlockHeight()+1, seq)
@@ -545,7 +545,7 @@ func (app *OKExChainApp) EndBlock(req abci.RequestEndBlock) (res abci.ResponseEn
 }
 
 // Commit implements the Application interface
-func (app *OKExChainApp) Commit() abci.ResponseCommit {
+func (app *zenChainApp) Commit() abci.ResponseCommit {
 
 	seq := perf.GetPerf().OnCommitEnter(app.LastBlockHeight() + 1)
 	defer perf.GetPerf().OnCommitExit(app.LastBlockHeight()+1, seq, app.Logger())

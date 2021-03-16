@@ -2,10 +2,10 @@
 package backend
 
 import (
-	"github.com/okex/okexchain/x/backend/config"
-	"github.com/okex/okexchain/x/backend/keeper"
-	"github.com/okex/okexchain/x/backend/orm"
-	"github.com/okex/okexchain/x/backend/types"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/config"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/orm"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/types"
 )
 
 const (

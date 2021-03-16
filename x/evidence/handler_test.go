@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/evidence"
-	"github.com/okex/okexchain/x/evidence/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/internal/types"
 
 	"github.com/stretchr/testify/suite"
 	abci "github.com/tendermint/tendermint/abci/types"
@@ -22,7 +22,7 @@ type HandlerTestSuite struct {
 
 func (suite *HandlerTestSuite) SetupTest() {
 	checkTx := false
-	app := MakeOKEXApp()
+	app := MakezenApp()
 	// get the app's codec and register custom testing types
 	cdc := app.Codec()
 	cdc.RegisterConcrete(types.TestEquivocationEvidence{}, "test/TestEquivocationEvidence", nil)

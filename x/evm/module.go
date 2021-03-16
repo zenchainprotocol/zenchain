@@ -13,9 +13,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/okex/okexchain/x/evm/client/cli"
-	"github.com/okex/okexchain/x/evm/keeper"
-	"github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/client/cli"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/types"
 )
 
 var _ module.AppModuleBasic = AppModuleBasic{}

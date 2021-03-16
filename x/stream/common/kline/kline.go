@@ -4,10 +4,10 @@ import (
 	"sync"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/backend"
-	"github.com/okex/okexchain/x/dex"
-	"github.com/okex/okexchain/x/stream/common"
-	"github.com/okex/okexchain/x/stream/types"
+	"github.com/zenchainprotocol/zenchain-node/x/backend"
+	"github.com/zenchainprotocol/zenchain-node/x/dex"
+	"github.com/zenchainprotocol/zenchain-node/x/stream/common"
+	"github.com/zenchainprotocol/zenchain-node/x/stream/types"
 )
 
 var (

@@ -5,9 +5,9 @@ import (
 	"math"
 	"time"
 
-	"github.com/okex/okexchain/x/common"
-	govtypes "github.com/okex/okexchain/x/gov/types"
-	"github.com/okex/okexchain/x/params/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	govtypes "github.com/zenchainprotocol/zenchain-node/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/params/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"

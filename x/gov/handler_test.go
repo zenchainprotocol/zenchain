@@ -4,12 +4,12 @@ import (
 	"testing"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/staking"
+	"github.com/zenchainprotocol/zenchain-node/x/staking"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/tendermint/libs/cli/flags"
 
-	"github.com/okex/okexchain/x/gov/keeper"
-	"github.com/okex/okexchain/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/types"
 )
 
 func TestNewHandler(t *testing.T) {

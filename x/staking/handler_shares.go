@@ -4,8 +4,8 @@ import (
 	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/staking/keeper"
-	"github.com/okex/okexchain/x/staking/types"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/staking/types"
 )
 
 func handleMsgBindProxy(ctx sdk.Context, msg types.MsgBindProxy, k keeper.Keeper) (*sdk.Result, error) {
@@ -30,7 +30,7 @@ func handleMsgBindProxy(ctx sdk.Context, msg types.MsgBindProxy, k keeper.Keeper
 		return types.ErrProxyNotFound(msg.ProxyAddress.String()).Result()
 	}
 
-	// double proxy is denied on okexchain
+	// double proxy is denied on zenchain
 	if delegator.IsProxy {
 		return types.ErrDoubleProxy(delegator.DelegatorAddress.String()).Result()
 	}

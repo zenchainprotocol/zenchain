@@ -6,9 +6,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	"github.com/okex/okexchain/x/gov/types"
-	"github.com/okex/okexchain/x/params"
-	paramsTypes "github.com/okex/okexchain/x/params/types"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/params"
+	paramsTypes "github.com/zenchainprotocol/zenchain-node/x/params/types"
 )
 
 func TestKeeper_AddDeposit(t *testing.T) {

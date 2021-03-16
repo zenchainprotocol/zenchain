@@ -7,7 +7,7 @@ import (
 	"math/rand"
 
 	"github.com/cosmos/cosmos-sdk/x/simulation"
-	"github.com/okex/okexchain/x/slashing/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/slashing/internal/types"
 )
 
 const (

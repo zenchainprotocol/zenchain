@@ -5,9 +5,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/okex/okexchain/x/dex/types"
-	govTypes "github.com/okex/okexchain/x/gov/types"
-	ordertypes "github.com/okex/okexchain/x/order/types"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/types"
+	govTypes "github.com/zenchainprotocol/zenchain-node/x/gov/types"
+	ordertypes "github.com/zenchainprotocol/zenchain-node/x/order/types"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 )

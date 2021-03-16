@@ -2,8 +2,8 @@ package v0_11
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/common"
-	"github.com/okex/okexchain/x/dex/legacy/v0_10"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/dex/legacy/v0_10"
 )
 
 func Migrate(oldGenState v0_10.GenesisState) GenesisState {

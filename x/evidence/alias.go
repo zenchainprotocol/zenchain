@@ -1,8 +1,8 @@
 package evidence
 
 import (
-	"github.com/okex/okexchain/x/evidence/internal/keeper"
-	"github.com/okex/okexchain/x/evidence/internal/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/internal/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/internal/types"
 )
 
 // nolint

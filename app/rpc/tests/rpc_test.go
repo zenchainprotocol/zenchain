@@ -16,8 +16,8 @@ import (
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/okex/okexchain/app/rpc/types"
-	"github.com/okex/okexchain/app/rpc/websockets"
+	"github.com/zenchainprotocol/zenchain-node/app/rpc/types"
+	"github.com/zenchainprotocol/zenchain-node/app/rpc/websockets"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/net/websocket"
 
@@ -696,7 +696,7 @@ func TestEth_GetBlockByHash(t *testing.T) {
 	time.Sleep(3 * time.Second)
 	expectedBlockHash := getBlockHashFromTxHash(t, hash)
 
-	// TODO: OKExChain only supports the block query with txs' hash inside no matter what the second bool argument is.
+	// TODO: zenChain only supports the block query with txs' hash inside no matter what the second bool argument is.
 	// 		eth rpc: 	false -> txs' hash inside
 	//				  	true  -> txs full content
 
@@ -729,7 +729,7 @@ func TestEth_GetBlockByNumber(t *testing.T) {
 	time.Sleep(3 * time.Second)
 	expectedHeight := getBlockHeightFromTxHash(t, hash)
 
-	// TODO: OKExChain only supports the block query with txs' hash inside no matter what the second bool argument is.
+	// TODO: zenChain only supports the block query with txs' hash inside no matter what the second bool argument is.
 	// 		eth rpc: 	false -> txs' hash inside
 	rpcRes := Call(t, "eth_getBlockByNumber", []interface{}{expectedHeight, false})
 	var res map[string]interface{}

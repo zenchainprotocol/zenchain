@@ -9,9 +9,9 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
 
-	"github.com/okex/okexchain/x/token/client/cli"
-	"github.com/okex/okexchain/x/token/client/rest"
-	tokenTypes "github.com/okex/okexchain/x/token/types"
+	"github.com/zenchainprotocol/zenchain-node/x/token/client/cli"
+	"github.com/zenchainprotocol/zenchain-node/x/token/client/rest"
+	tokenTypes "github.com/zenchainprotocol/zenchain-node/x/token/types"
 )
 
 var (

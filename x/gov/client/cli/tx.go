@@ -17,8 +17,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/auth/client/utils"
 
-	govutils "github.com/okex/okexchain/x/gov/client/utils"
-	"github.com/okex/okexchain/x/gov/types"
+	govutils "github.com/zenchainprotocol/zenchain-node/x/gov/client/utils"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/types"
 )
 
 // Proposal flags

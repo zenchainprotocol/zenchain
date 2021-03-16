@@ -3,14 +3,14 @@ package keeper
 import (
 	"testing"
 
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	"github.com/okex/okexchain/x/dex"
-	"github.com/okex/okexchain/x/order/types"
-	token "github.com/okex/okexchain/x/token/types"
+	"github.com/zenchainprotocol/zenchain-node/x/dex"
+	"github.com/zenchainprotocol/zenchain-node/x/order/types"
+	token "github.com/zenchainprotocol/zenchain-node/x/token/types"
 )
 
 func TestKeeper_Cache2Disk(t *testing.T) {

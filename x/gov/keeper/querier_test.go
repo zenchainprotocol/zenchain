@@ -10,8 +10,8 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/cli/flags"
 
-	"github.com/okex/okexchain/x/gov/types"
-	"github.com/okex/okexchain/x/staking"
+	"github.com/zenchainprotocol/zenchain-node/x/gov/types"
+	"github.com/zenchainprotocol/zenchain-node/x/staking"
 )
 
 const custom = "custom"

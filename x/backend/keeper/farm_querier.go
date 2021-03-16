@@ -5,12 +5,12 @@ import (
 	"sort"
 	"time"
 
-	"github.com/okex/okexchain/x/ammswap"
+	"github.com/zenchainprotocol/zenchain-node/x/ammswap"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/backend/types"
-	"github.com/okex/okexchain/x/common"
-	farm "github.com/okex/okexchain/x/farm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
+	farm "github.com/zenchainprotocol/zenchain-node/x/farm/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 

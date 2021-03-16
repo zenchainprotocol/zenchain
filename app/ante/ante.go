@@ -8,8 +8,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/okex/okexchain/app/crypto/ethsecp256k1"
-	evmtypes "github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/ethsecp256k1"
+	evmtypes "github.com/zenchainprotocol/zenchain-node/x/evm/types"
 
 	tmcrypto "github.com/tendermint/tendermint/crypto"
 )

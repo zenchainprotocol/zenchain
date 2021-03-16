@@ -8,10 +8,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 )
 
-// Setup initializes a new OKExChainApp. A Nop logger is set in OKExChainApp.
-func Setup(isCheckTx bool) *OKExChainApp {
+// Setup initializes a new zenChainApp. A Nop logger is set in zenChainApp.
+func Setup(isCheckTx bool) *zenChainApp {
 	db := dbm.NewMemDB()
-	app := NewOKExChainApp(log.NewNopLogger(), db, nil, true, map[int64]bool{}, 0)
+	app := NewzenChainApp(log.NewNopLogger(), db, nil, true, map[int64]bool{}, 0)
 
 	if !isCheckTx {
 		// init chain must be called to stop deliverState from being nil

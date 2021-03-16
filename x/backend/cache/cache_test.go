@@ -3,8 +3,8 @@ package cache
 import (
 	"testing"
 
-	"github.com/okex/okexchain/x/backend/types"
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/backend/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 	"github.com/stretchr/testify/require"
 )
 

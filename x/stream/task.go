@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/okex/okexchain/x/stream/types"
+	"github.com/zenchainprotocol/zenchain-node/x/stream/types"
 	"github.com/tendermint/tendermint/libs/log"
 )
 

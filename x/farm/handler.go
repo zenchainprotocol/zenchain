@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/okex/okexchain/x/common"
+	"github.com/zenchainprotocol/zenchain-node/x/common"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/okex/okexchain/x/common/perf"
-	"github.com/okex/okexchain/x/farm/keeper"
-	"github.com/okex/okexchain/x/farm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common/perf"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/types"
 )
 
 // NewHandler creates an sdk.Handler for all the farm type messages

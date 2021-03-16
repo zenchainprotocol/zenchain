@@ -10,10 +10,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 
-	"github.com/okex/okexchain/app"
-	ethermint "github.com/okex/okexchain/app/types"
-	"github.com/okex/okexchain/x/evm/keeper"
-	"github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/app"
+	ethermint "github.com/zenchainprotocol/zenchain-node/app/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/types"
 
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
@@ -34,7 +34,7 @@ type KeeperTestSuite struct {
 
 	ctx     sdk.Context
 	querier sdk.Querier
-	app     *app.OKExChainApp
+	app     *app.zenChainApp
 	stateDB *types.CommitStateDB
 	address ethcmn.Address
 }

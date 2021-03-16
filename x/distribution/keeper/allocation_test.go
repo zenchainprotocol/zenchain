@@ -9,8 +9,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/okex/okexchain/x/distribution/types"
-	"github.com/okex/okexchain/x/staking"
+	"github.com/zenchainprotocol/zenchain-node/x/distribution/types"
+	"github.com/zenchainprotocol/zenchain-node/x/staking"
 )
 
 func TestAllocateTokensToValidatorWithCommission(t *testing.T) {

@@ -1,6 +1,6 @@
 package cache
 
-import "github.com/okex/okexchain/x/backend/types"
+import "github.com/zenchainprotocol/zenchain-node/x/backend/types"
 
 // Cache defines struct to store data in memory
 type Cache struct {

@@ -12,7 +12,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/crypto/keys"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/okex/okexchain/app/crypto/hd"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/hd"
 )
 
 const (

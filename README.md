@@ -1,28 +1,27 @@
-# OKExChain
-The Infrastructure of Decentralized Exchange
+# ZenChain
+Efficient Blockchain For DEFI and NTFs
+![banner](./docs/images/ZenChain-Logo-Text-Black.png)
 
-![banner](./docs/images/okexchain-image.jpg)
+[![version](https://img.shields.io/github/tag/zenchainprotocol/zenchain-node.svg)](https://github.com/zenchainprotocol/zenchain-node/releases/latest)
+[![CircleCI](https://circleci.com/gh/zenchainprotocol/zenchain-node/tree/master.svg?style=shield)](https://circleci.com/gh/zenchainprotocol/zenchain-node/tree/master)
+[![codecov](https://codecov.io/gh/zenchainprotocol/zenchain-node/branch/master/graph/badge.svg)](https://codecov.io/gh/zenchainprotocol/zenchain-node)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zenchainprotocol/zenchain-node)](https://goreportcard.com/report/github.com/zenchainprotocol/zenchain-node)
+[![license](https://img.shields.io/github/license/zenchainprotocol/zenchain-node.svg)](https://github.com/zenchainprotocol/zenchain-node/blob/master/LICENSE)
+[![LoC](https://tokei.rs/b1/github/zenchainprotocol/zenchain-node)](https://github.com/zenchainprotocol/zenchain-node)
+[![GolangCI](https://golangci.com/badges/github.com/zenchainprotocol/zenchain-node.svg)](https://golangci.com/r/github.com/zenchainprotocol/zenchain-node)
 
-[![version](https://img.shields.io/github/tag/okex/okexchain.svg)](https://github.com/okex/okexchain/releases/latest)
-[![CircleCI](https://circleci.com/gh/okex/okexchain/tree/master.svg?style=shield)](https://circleci.com/gh/okex/okexchain/tree/master)
-[![codecov](https://codecov.io/gh/okex/okexchain/branch/master/graph/badge.svg)](https://codecov.io/gh/okex/okexchain)
-[![Go Report Card](https://goreportcard.com/badge/github.com/okex/okexchain)](https://goreportcard.com/report/github.com/okex/okexchain)
-[![license](https://img.shields.io/github/license/okex/okexchain.svg)](https://github.com/okex/okexchain/blob/master/LICENSE)
-[![LoC](https://tokei.rs/b1/github/okex/okexchain)](https://github.com/okex/okexchain)
-[![GolangCI](https://golangci.com/badges/github.com/okex/okexchain.svg)](https://golangci.com/r/github.com/okex/okexchain)
-
-This repository hosts `OKExChain`, the implementation of the OKExChain based on the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk).
+This repository hosts `ZenChain`, the implementation of the ZenChain based on the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk).
 
 **Note**: Requires [Go 1.14](https://golang.org/dl/)
 
 ## Getting Started
-See the [documentation](https://okexchain-docs.readthedocs.io/en/latest/index.html).
+See the [documentation](https://docs.zenchain.co).
 
-## OKExChain Testnet
+## ZenChain Testnet
 
-To run a full-node for the testnet of the OKExChain, first [install `okexchaind`](https://okexchain-docs.readthedocs.io/en/latest/getting-start/install-okexchain.html), then follow [the guide](https://okexchain-docs.readthedocs.io/en/latest/getting-start/join-okexchain-testnet.html).
+To run a full-node for the testnet of the ZenChain, first [install `zenchaind`](https://docs.zenchain.co/network/validators).
 
-For status updates and genesis file, see the [genesis](https://okexchain-docs.readthedocs.io/en/latest/getting-start/join-okexchain-testnet.html#genesis-seeds).
+For status updates and genesis file, see the [genesis](https://docs.zenchain.co).
 
 ## Quick Start
 

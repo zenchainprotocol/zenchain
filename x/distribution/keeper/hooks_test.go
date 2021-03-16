@@ -3,7 +3,7 @@ package keeper
 import (
 	"testing"
 
-	"github.com/okex/okexchain/x/distribution/types"
+	"github.com/zenchainprotocol/zenchain-node/x/distribution/types"
 	"github.com/stretchr/testify/require"
 )
 

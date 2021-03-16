@@ -2,7 +2,7 @@ package keeper
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/farm/types"
+	"github.com/zenchainprotocol/zenchain-node/x/farm/types"
 )
 
 // SetParams sets the farm parameters to the param space.

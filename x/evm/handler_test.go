@@ -21,12 +21,12 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	auth "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/okex/okexchain/app"
-	"github.com/okex/okexchain/app/crypto/ethsecp256k1"
-	ethermint "github.com/okex/okexchain/app/types"
-	"github.com/okex/okexchain/x/evm"
-	"github.com/okex/okexchain/x/evm/keeper"
-	"github.com/okex/okexchain/x/evm/types"
+	"github.com/zenchainprotocol/zenchain-node/app"
+	"github.com/zenchainprotocol/zenchain-node/app/crypto/ethsecp256k1"
+	ethermint "github.com/zenchainprotocol/zenchain-node/app/types"
+	"github.com/zenchainprotocol/zenchain-node/x/evm"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/types"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto/secp256k1"
@@ -38,7 +38,7 @@ type EvmTestSuite struct {
 	ctx     sdk.Context
 	handler sdk.Handler
 	querier sdk.Querier
-	app     *app.OKExChainApp
+	app     *app.zenChainApp
 	stateDB *types.CommitStateDB
 	codec   *codec.Codec
 }

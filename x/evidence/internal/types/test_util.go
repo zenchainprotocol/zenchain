@@ -13,7 +13,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/okex/okexchain/x/evidence/exported"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/exported"
 
 	"gopkg.in/yaml.v2"
 

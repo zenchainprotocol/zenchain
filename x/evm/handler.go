@@ -2,9 +2,9 @@ package evm
 
 import (
 	"github.com/ethereum/go-ethereum/common"
-	ethermint "github.com/okex/okexchain/app/types"
-	"github.com/okex/okexchain/x/common/perf"
-	"github.com/okex/okexchain/x/evm/types"
+	ethermint "github.com/zenchainprotocol/zenchain-node/app/types"
+	"github.com/zenchainprotocol/zenchain-node/x/common/perf"
+	"github.com/zenchainprotocol/zenchain-node/x/evm/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"

@@ -13,7 +13,7 @@ import (
 	authexported "github.com/cosmos/cosmos-sdk/x/auth/exported"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/cosmos/cosmos-sdk/x/genutil/types"
-	stakingtypes "github.com/okex/okexchain/x/staking/types"
+	stakingtypes "github.com/zenchainprotocol/zenchain-node/x/staking/types"
 )
 
 // ValidateAccountInGenesis checks that the provided key has sufficient coins in the genesis accounts

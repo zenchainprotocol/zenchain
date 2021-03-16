@@ -6,9 +6,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
 	"github.com/cosmos/cosmos-sdk/x/simulation"
-	"github.com/okex/okexchain/x/slashing/internal/keeper"
-	"github.com/okex/okexchain/x/slashing/internal/types"
-	stakingkeeper "github.com/okex/okexchain/x/staking/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/slashing/internal/keeper"
+	"github.com/zenchainprotocol/zenchain-node/x/slashing/internal/types"
+	stakingkeeper "github.com/zenchainprotocol/zenchain-node/x/staking/keeper"
 )
 
 // Simulation operation weights constants

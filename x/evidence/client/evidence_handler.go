@@ -5,7 +5,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client/context"
 	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/okex/okexchain/x/evidence/client/rest"
+	"github.com/zenchainprotocol/zenchain-node/x/evidence/client/rest"
 )
 
 type (
