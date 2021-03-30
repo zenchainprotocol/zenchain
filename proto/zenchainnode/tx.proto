@@ -1,0 +1,13 @@
+syntax = "proto3";
+package zenchainprotocol.zenchainnode.zenchainnode;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/zenchainprotocol/zenchain-node/x/zenchainnode/types";
+
+// Msg defines the Msg service.
+service Msg {
+    // this line is used by starport scaffolding # proto/tx/rpc
+}
+
+// this line is used by starport scaffolding # proto/tx/message
