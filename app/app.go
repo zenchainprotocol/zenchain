@@ -92,6 +92,10 @@ import (
 	coinswapkeeper "github.com/irisnet/irismod/modules/coinswap/keeper"
 	coinswaptypes "github.com/irisnet/irismod/modules/coinswap/types"
 
+	"github.com/irisnet/irismod/modules/nft"
+	nftkeeper "github.com/irisnet/irismod/modules/nft/keeper"
+	nfttypes "github.com/irisnet/irismod/modules/nft/types"
+
 	"github.com/zenchainprotocol/zenchain-node/x/zenchainnode"
 	zenchainnodekeeper "github.com/zenchainprotocol/zenchain-node/x/zenchainnode/keeper"
 	zenchainnodetypes "github.com/zenchainprotocol/zenchain-node/x/zenchainnode/types"
@@ -143,6 +147,7 @@ var (
 		vesting.AppModuleBasic{},
 		token.AppModuleBasic{},
 		coinswap.AppModuleBasic{},
+		nft.AppModuleBasic{},
 		zenchainnode.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
 	)
@@ -243,6 +248,7 @@ type App struct {
 
 	tokenKeeper    tokenkeeper.Keeper
 	coinswapKeeper coinswapkeeper.Keeper
+	nftKeeper      nftkeeper.Keeper
 
 	zenchainnodeKeeper zenchainnodekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
@@ -276,6 +282,7 @@ func New(
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey,
 		tokentypes.StoreKey,
 		coinswaptypes.StoreKey,
+		nfttypes.StoreKey,
 		zenchainnodetypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
@@ -385,6 +392,8 @@ func New(
 		app.ModuleAccountAddrs(),
 	)
 
+	app.nftKeeper = nftkeeper.NewKeeper(appCodec, keys[nfttypes.StoreKey])
+
 	app.zenchainnodeKeeper = *zenchainnodekeeper.NewKeeper(
 		appCodec, keys[zenchainnodetypes.StoreKey], keys[zenchainnodetypes.MemStoreKey],
 	)
@@ -433,6 +442,7 @@ func New(
 		transferModule,
 		token.NewAppModule(appCodec, app.tokenKeeper, app.AccountKeeper, app.BankKeeper),
 		coinswap.NewAppModule(appCodec, app.coinswapKeeper, app.AccountKeeper, app.BankKeeper),
+		nft.NewAppModule(appCodec, app.nftKeeper, app.AccountKeeper, app.BankKeeper),
 		zenchainnode.NewAppModule(appCodec, app.zenchainnodeKeeper),
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
@@ -469,6 +479,7 @@ func New(
 		ibctransfertypes.ModuleName,
 		tokentypes.ModuleName,
 		coinswaptypes.ModuleName,
+		nfttypes.ModuleName, 
 		zenchainnodetypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
