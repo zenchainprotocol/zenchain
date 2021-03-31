@@ -1,6 +1,6 @@
 accounts:
   - name: alice
-    coins: ["100000000zen"]
+    coins: ["1000000000zen"]
   - name: bob
     coins: ["500zen"]
 validator:
@@ -12,3 +12,22 @@ client:
 faucet:
   name: bob 
   coins: ["50000zen"]
+genesis:
+  app_state:
+    crisis: 
+      constant_fee:
+        denom: "zen"
+    gov: 
+      deposit_params: 
+          max_deposit_period: "172800s"
+          min_deposit: 
+            - amount: "10000000"
+              denom: "zen"
+    staking:
+      params:
+        bond_denom: "zen"
+    mint:
+      params:
+        mint_denom: "zen"
+
+      
