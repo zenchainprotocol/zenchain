@@ -169,11 +169,12 @@ var (
 
 func init() {
 	userHomeDir, err := os.UserHomeDir()
+	SetConfig()
 	nativeToken = tokentypes.Token{
 		Symbol:        "zen",
 		Name:          "Zen staking token",
 		Scale:         6,
-		MinUnit:       "uzen",
+		MinUnit:       "zen",
 		InitialSupply: 2000000000,
 		MaxSupply:     10000000000,
 		Mintable:      true,
