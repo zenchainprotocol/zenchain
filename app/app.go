@@ -8,6 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/spf13/cast"
+	"github.com/tendermint/tendermint/crypto"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
@@ -82,6 +83,15 @@ import (
 	tmjson "github.com/tendermint/tendermint/libs/json"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	appparams "github.com/zenchainprotocol/zenchain-node/app/params"
+
+	"github.com/irisnet/irismod/modules/token"
+	tokenkeeper "github.com/irisnet/irismod/modules/token/keeper"
+	tokentypes "github.com/irisnet/irismod/modules/token/types"
+
+	"github.com/irisnet/irismod/modules/coinswap"
+	coinswapkeeper "github.com/irisnet/irismod/modules/coinswap/keeper"
+	coinswaptypes "github.com/irisnet/irismod/modules/coinswap/types"
+
 	"github.com/zenchainprotocol/zenchain-node/x/zenchainnode"
 	zenchainnodekeeper "github.com/zenchainprotocol/zenchain-node/x/zenchainnode/keeper"
 	zenchainnodetypes "github.com/zenchainprotocol/zenchain-node/x/zenchainnode/types"
@@ -131,6 +141,8 @@ var (
 		evidence.AppModuleBasic{},
 		transfer.AppModuleBasic{},
 		vesting.AppModuleBasic{},
+		token.AppModuleBasic{},
+		coinswap.AppModuleBasic{},
 		zenchainnode.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
 	)
@@ -144,7 +156,10 @@ var (
 		stakingtypes.NotBondedPoolName: {authtypes.Burner, authtypes.Staking},
 		govtypes.ModuleName:            {authtypes.Burner},
 		ibctransfertypes.ModuleName:    {authtypes.Minter, authtypes.Burner},
+		tokentypes.ModuleName:          {authtypes.Minter, authtypes.Burner},
+		coinswaptypes.ModuleName:       {authtypes.Minter, authtypes.Burner},
 	}
+	nativeToken tokentypes.Token
 )
 
 var (
@@ -154,11 +169,38 @@ var (
 
 func init() {
 	userHomeDir, err := os.UserHomeDir()
+	nativeToken = tokentypes.Token{
+		Symbol:        "zen",
+		Name:          "Zen staking token",
+		Scale:         6,
+		MinUnit:       "uzen",
+		InitialSupply: 2000000000,
+		MaxSupply:     10000000000,
+		Mintable:      true,
+		Owner:         sdk.AccAddress(crypto.AddressHash([]byte(tokentypes.ModuleName))).String(),
+	}
+
 	if err != nil {
 		panic(err)
 	}
 
 	DefaultNodeHome = filepath.Join(userHomeDir, "."+Name)
+
+	owner, err := sdk.AccAddressFromBech32(nativeToken.Owner)
+	if err != nil {
+		panic(err)
+	}
+
+	tokentypes.SetNativeToken(
+		nativeToken.Symbol,
+		nativeToken.Name,
+		nativeToken.MinUnit,
+		nativeToken.Scale,
+		nativeToken.InitialSupply,
+		nativeToken.MaxSupply,
+		nativeToken.Mintable,
+		owner,
+	)
 }
 
 // App extends an ABCI application, but with most of its parameters exported.
@@ -198,6 +240,9 @@ type App struct {
 	ScopedIBCKeeper      capabilitykeeper.ScopedKeeper
 	ScopedTransferKeeper capabilitykeeper.ScopedKeeper
 
+	tokenKeeper    tokenkeeper.Keeper
+	coinswapKeeper coinswapkeeper.Keeper
+
 	zenchainnodeKeeper zenchainnodekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
@@ -228,6 +273,8 @@ func New(
 		minttypes.StoreKey, distrtypes.StoreKey, slashingtypes.StoreKey,
 		govtypes.StoreKey, paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey,
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey,
+		tokentypes.StoreKey,
+		coinswaptypes.StoreKey,
 		zenchainnodetypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
@@ -319,6 +366,24 @@ func New(
 	// If evidence needs to be handled for the app, set routes in router here and seal
 	app.EvidenceKeeper = *evidenceKeeper
 
+	app.tokenKeeper = tokenkeeper.NewKeeper(
+		appCodec,
+		keys[tokentypes.StoreKey],
+		app.GetSubspace(tokentypes.ModuleName),
+		app.BankKeeper,
+		app.ModuleAccountAddrs(),
+		authtypes.FeeCollectorName,
+	)
+
+	app.coinswapKeeper = coinswapkeeper.NewKeeper(
+		appCodec,
+		keys[coinswaptypes.StoreKey],
+		app.GetSubspace(coinswaptypes.ModuleName),
+		app.BankKeeper,
+		app.AccountKeeper,
+		app.ModuleAccountAddrs(),
+	)
+
 	app.zenchainnodeKeeper = *zenchainnodekeeper.NewKeeper(
 		appCodec, keys[zenchainnodetypes.StoreKey], keys[zenchainnodetypes.MemStoreKey],
 	)
@@ -365,6 +430,8 @@ func New(
 		ibc.NewAppModule(app.IBCKeeper),
 		params.NewAppModule(app.ParamsKeeper),
 		transferModule,
+		token.NewAppModule(appCodec, app.tokenKeeper, app.AccountKeeper, app.BankKeeper),
+		coinswap.NewAppModule(appCodec, app.coinswapKeeper, app.AccountKeeper, app.BankKeeper),
 		zenchainnode.NewAppModule(appCodec, app.zenchainnodeKeeper),
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
@@ -399,6 +466,8 @@ func New(
 		genutiltypes.ModuleName,
 		evidencetypes.ModuleName,
 		ibctransfertypes.ModuleName,
+		tokentypes.ModuleName,
+		coinswaptypes.ModuleName,
 		zenchainnodetypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
@@ -582,6 +651,8 @@ func initParamsKeeper(appCodec codec.BinaryMarshaler, legacyAmino *codec.LegacyA
 	paramsKeeper.Subspace(crisistypes.ModuleName)
 	paramsKeeper.Subspace(ibctransfertypes.ModuleName)
 	paramsKeeper.Subspace(ibchost.ModuleName)
+	paramsKeeper.Subspace(tokentypes.ModuleName)
+	paramsKeeper.Subspace(coinswaptypes.ModuleName)
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
 
 	return paramsKeeper
