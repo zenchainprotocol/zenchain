@@ -13,7 +13,9 @@ faucet:
   name: bob 
   coins: ["50000uzen"]
 build:
-  binary: "zend"
+  binary: "zenchaind"
+init:
+  home: "~/.zenchaind"
 genesis:
   app_state:
     crisis: 

@@ -102,7 +102,7 @@ import (
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
-const Name = "zenchainnode"
+const Name = "zenchaind"
 
 // this line is used by starport scaffolding # stargate/wasm/app/enabledProposals
 
