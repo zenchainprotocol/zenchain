@@ -1,6 +1,6 @@
 # ZenChain
 Efficient Blockchain For DEFI and NTFs
-![banner](./docs/images/ZenChain-Logo-Text-Black.png)
+![banner](./docs/images/ZenChain-Logo-Text-Leather.png)
 
 [![version](https://img.shields.io/github/tag/zenchainprotocol/zenchain-node.svg)](https://github.com/zenchainprotocol/zenchain-node/releases/latest)
 [![Go Report Card](https://goreportcard.com/badge/github.com/zenchainprotocol/zenchain-node)](https://goreportcard.com/report/github.com/zenchainprotocol/zenchain-node)
@@ -21,11 +21,18 @@ To run a full-node for the testnet of the ZenChain, first [install `zenchaind`](
 
 For status updates and genesis file, see the [genesis](https://docs.zenchain.co).
 
-## Quick Start
+## Quick Start for development
+
+Open Starport [in your browser](https://gitpod.io/#https://github.com/tendermint/starport/tree/master), or [install it](https://github.com/tendermint/starport/blob/develop/docs/1%20Introduction/2%20Install.md). Then:
 
 ```
-make install
+git clone https://github.com/zenchainprotocol/zenchain.git
+
+cd zenchain
+
+starport serve
 ```
+
 
 
 
