@@ -90,6 +90,16 @@ import (
 	tokenkeeper "github.com/irisnet/irismod/modules/token/keeper"
 	tokentypes "github.com/irisnet/irismod/modules/token/types"
 
+	//NFT
+	"github.com/irisnet/irismod/modules/nft"
+	nftkeeper "github.com/irisnet/irismod/modules/nft/keeper"
+	nfttypes "github.com/irisnet/irismod/modules/nft/types"
+	
+	//CoinSwap
+	"github.com/irisnet/irismod/modules/coinswap"
+	coinswapkeeper "github.com/irisnet/irismod/modules/coinswap/keeper"
+	coinswaptypes "github.com/irisnet/irismod/modules/coinswap/types"
+	
 	"github.com/zenchainprotocol/zenchain/x/zenchain"
 	zenchainkeeper "github.com/zenchainprotocol/zenchain/x/zenchain/keeper"
 	zenchaintypes "github.com/zenchainprotocol/zenchain/x/zenchain/types"
@@ -141,6 +151,8 @@ var (
 		vesting.AppModuleBasic{},
 
 		token.AppModuleBasic{},
+		nft.AppModuleBasic{},
+		coinswap.AppModuleBasic{},
 
 		zenchain.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
@@ -156,6 +168,7 @@ var (
 		govtypes.ModuleName:            {authtypes.Burner},
 		ibctransfertypes.ModuleName:    {authtypes.Minter, authtypes.Burner},
 		tokentypes.ModuleName:          {authtypes.Minter, authtypes.Burner},
+		coinswaptypes.ModuleName:       {authtypes.Minter, authtypes.Burner},
 	}
 
 	nativeToken tokentypes.Token
@@ -240,6 +253,8 @@ type App struct {
 	ScopedTransferKeeper capabilitykeeper.ScopedKeeper
 
 	tokenKeeper    tokenkeeper.Keeper
+	nftKeeper      nftkeeper.Keeper
+	coinswapKeeper coinswapkeeper.Keeper
 
 	zenchainKeeper zenchainkeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
@@ -272,6 +287,8 @@ func New(
 		govtypes.StoreKey, paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey,
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey,
 		tokentypes.StoreKey,
+		nfttypes.StoreKey,
+		coinswaptypes.StoreKey,
 		zenchaintypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
@@ -371,6 +388,16 @@ func New(
 		app.ModuleAccountAddrs(),
 		authtypes.FeeCollectorName,
 	)
+	app.nftKeeper = nftkeeper.NewKeeper(appCodec, keys[nfttypes.StoreKey])
+
+	app.coinswapKeeper = coinswapkeeper.NewKeeper(
+		appCodec,
+		keys[coinswaptypes.StoreKey],
+		app.GetSubspace(coinswaptypes.ModuleName),
+		app.BankKeeper,
+		app.AccountKeeper,
+		app.ModuleAccountAddrs(),
+	)
 
 	app.zenchainKeeper = *zenchainkeeper.NewKeeper(
 		appCodec, keys[zenchaintypes.StoreKey], keys[zenchaintypes.MemStoreKey],
@@ -419,6 +446,8 @@ func New(
 		params.NewAppModule(app.ParamsKeeper),
 		transferModule,
 		token.NewAppModule(appCodec, app.tokenKeeper, app.AccountKeeper, app.BankKeeper),
+		nft.NewAppModule(appCodec, app.nftKeeper, app.AccountKeeper, app.BankKeeper),
+		coinswap.NewAppModule(appCodec, app.coinswapKeeper, app.AccountKeeper, app.BankKeeper),
 		zenchain.NewAppModule(appCodec, app.zenchainKeeper),
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
@@ -454,6 +483,8 @@ func New(
 		evidencetypes.ModuleName,
 		ibctransfertypes.ModuleName,
 		tokentypes.ModuleName,
+		nfttypes.ModuleName,
+		coinswaptypes.ModuleName,
 		zenchaintypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
@@ -639,6 +670,7 @@ func initParamsKeeper(appCodec codec.BinaryMarshaler, legacyAmino *codec.LegacyA
 	paramsKeeper.Subspace(ibctransfertypes.ModuleName)
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(tokentypes.ModuleName)
+	paramsKeeper.Subspace(coinswaptypes.ModuleName)
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
 
 	return paramsKeeper
