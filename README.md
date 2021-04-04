@@ -1,5 +1,6 @@
 # ZenChain
 Efficient Blockchain For DEFI and NTFs
+
 ![banner](./docs/images/ZenChain-Logo-Text-Leather.png)
 
 [![version](https://img.shields.io/github/tag/zenchainprotocol/zenchain-node.svg)](https://github.com/zenchainprotocol/zenchain-node/releases/latest)
