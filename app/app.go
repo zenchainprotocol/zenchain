@@ -191,10 +191,10 @@ func init() {
 	nativeToken = tokentypes.Token{
 		Symbol:        "zen",
 		Name:          "Zen staking token",
-		Scale:         3,
+		Scale:         6,
 		MinUnit:       "uzen",
-		InitialSupply: 20000000000,
-		MaxSupply:     100000000000,
+		InitialSupply: 2000000000,
+		MaxSupply:     10000000000,
 		Mintable:      true,
 		Owner:         sdk.AccAddress(crypto.AddressHash([]byte(tokentypes.ModuleName))).String(),
 	}
