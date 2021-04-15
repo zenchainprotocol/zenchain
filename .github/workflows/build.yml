@@ -33,18 +33,17 @@ jobs:
       - name: Compile
         run: |
           go mod download
-          cd cmd/zenchaind
           go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=zenchain \
             -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind \
             -X github.com/cosmos/cosmos-sdk/version.Version=$(echo $GITHUB_REF | cut -d / -f 3)\
             -X github.com/cosmos/cosmos-sdk/version.Commit=$GITHUB_SHA'  \
-            -o build/zenchaind ./cmd/zenchaind
+            -o ./build/zenchaind ./cmd/zenchaind
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/zenchaind
+          file: ./build/zenchaind
           asset_name: zenchaind ${{ matrix.targetos }} ${{ matrix.arch }}
           tag: ${{ github.ref }}
 
