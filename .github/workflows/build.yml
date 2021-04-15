@@ -35,7 +35,11 @@ jobs:
         id: get_version
         run:
           echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-          echo ::set-output name=COMMIT::$(git rev-parse --short "$GITHUB_SHA") 
+          
+      - name: Setup git commit
+        id: get_commit
+        run:
+          echo ::set-output name=COMMIT::$(echo $GITHUB_SHA) 
       - name: Compile ${{ matrix.arch }} for ${{ matrix.targetos }}
         env:
           GOOS: ${{ matrix.targetos }}
@@ -44,8 +48,8 @@ jobs:
           go mod download
           cd cmd/zenchaind
           echo ${{ steps.get_version.outputs.VERSION }}
-          echo ${{ steps.get_version.outputs.COMMIT }}
-          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=ZenChain -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind -X github.com/cosmos/cosmos-sdk/version.Version=${{ steps.get_version.outputs.VERSION }} -X github.com/cosmos/cosmos-sdk/version.Commit=${{ steps.get_version.outputs.COMMIT }}' -o build/ .
+          echo ${{ steps.get_commit.outputs.COMMIT }}
+          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=ZenChain -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind -X github.com/cosmos/cosmos-sdk/version.Version=${{ steps.get_version.outputs.VERSION }} -X github.com/cosmos/cosmos-sdk/version.Commit=${{ steps.get_commit.outputs.COMMIT }}' -o build/ .
           zip -r zenchaind.zip build
       # - uses: actions/upload-artifact@v2
       #   with:
