@@ -63,6 +63,6 @@ jobs:
           source_file: cmd/zenchaind/build-${{ matrix.targetos }}-${{ matrix.arch }}.zip
           destination_repo: zenchainprotocol/Launchpad
           destination_folder: build/${{ steps.get_version.outputs.VERSION }}/
-          user_email: 'zenbot@zenchain.co'
-          user_name: 'ZenGithubBot'
+          user_email: 'zenchain102@gmail.com'
+          user_name: 'ZenChainDev'
           commit_message: ${{ steps.get_version.outputs.VERSION }} - Publish buid ${{ matrix.targetos }} ${{ matrix.arch }}
