@@ -31,7 +31,10 @@ jobs:
           GOOS: ${{ matrix.targetos }}
           GOARCH: ${{ matrix.arch }}
 
-      - name: Compile
+      - name: Compile ${{ matrix.arch }} for ${{ matrix.targetos }}
+        env:
+          GOOS: ${{ matrix.targetos }}
+          GOARCH: ${{ matrix.arch }}
         run: |
           go mod download
           cd cmd/zenchaind
