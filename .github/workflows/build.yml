@@ -4,11 +4,11 @@ name: zenchain
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
-on: 
-  push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+" # Push events to matching v*, i.e. v1.0, v20.15.10
+on: [push]
+  # push:
+  #   # Sequence of patterns matched against refs/tags
+  #   tags:
+  #     - "v[0-9]+.[0-9]+.[0-9]+" # Push events to matching v*, i.e. v1.0, v20.15.10
 
 # This workflow makes x86_64 binaries for mac, windows, and linux.
 
@@ -35,8 +35,6 @@ jobs:
           go mod download
           go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=zenchain \
             -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind \
-            -X github.com/cosmos/cosmos-sdk/version.Version=$(echo $GITHUB_REF | cut -d / -f 3)\
-            -X github.com/cosmos/cosmos-sdk/version.Commit=$GITHUB_SHA'  \
             -o ./build/zenchaind ./cmd/zenchaind
 
       - name: Upload binaries to release
