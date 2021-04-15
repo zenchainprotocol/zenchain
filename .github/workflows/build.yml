@@ -31,6 +31,11 @@ jobs:
           GOOS: ${{ matrix.targetos }}
           GOARCH: ${{ matrix.arch }}
 
+      - name: Setup version
+        id: get_version
+        run:
+          echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
       - name: Compile ${{ matrix.arch }} for ${{ matrix.targetos }}
         env:
           GOOS: ${{ matrix.targetos }}
@@ -38,8 +43,20 @@ jobs:
         run: |
           go mod download
           cd cmd/zenchaind
-          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=ZenChain -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind -X github.com/cosmos/cosmos-sdk/version.Version=1.1.3-2-g7ec7413 -X github.com/cosmos/cosmos-sdk/version.Commit=7ec741347c17989d016ad366c1f8653e5c22f817 ' .
-      - uses: actions/upload-artifact@v2
+          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=ZenChain -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind -X github.com/cosmos/cosmos-sdk/version.Version=$(echo $GITHUB_REF | cut -d / -f 3) -X github.com/cosmos/cosmos-sdk/version.Commit=$(git rev-parse --short "$GITHUB_SHA") ' -o build/ .
+          zip -r zenchaind.zip build
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: zenchaind ${{ matrix.targetos }} ${{ matrix.arch }}
+      #     path: cmd/zenchaind/zenchaind.zip
+      - name: Push to Lauchpad repo
+        uses: zenchainprotocol/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          name: zenchaind ${{ matrix.targetos }} ${{ matrix.arch }}
-          path: cmd/zenchaind/zenchaind
+          source_file: cmd/zenchaind/zenchaind.zip
+          destination_repo: zenchainprotocol/Launchpad
+          destination_folder: build/${{ steps.get_version.outputs.VERSION }}/${{ matrix.targetos }}-${{ matrix.arch }}/
+          user_email: 'zenbot@zenchain.co'
+          user_name: 'ZenGithubBot'
+          commit_message: ${{ steps.get_version.outputs.VERSION }} - Publish buid ${{ matrix.targetos }} ${{ matrix.arch }}
