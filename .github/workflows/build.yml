@@ -34,7 +34,7 @@ jobs:
         run: |
           go mod download
           go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=zenchain \
-            -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind \
+            -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind' \
             -o ./build/zenchaind ./cmd/zenchaind
 
       - name: Upload binaries to release
