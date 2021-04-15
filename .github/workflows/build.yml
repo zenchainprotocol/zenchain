@@ -10,6 +10,7 @@ on: [push]
   #   tags:
   #     - "v[0-9]+.[0-9]+.[0-9]+" # Push events to matching v*, i.e. v1.0, v20.15.10
 
+
 # This workflow makes x86_64 binaries for mac, windows, and linux.
 
 jobs:
@@ -33,15 +34,9 @@ jobs:
       - name: Compile
         run: |
           go mod download
-          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=zenchain \
-            -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind' \
-            -o ./build/zenchaind ./cmd/zenchaind
-
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
+          cd cmd/zenchaind
+          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=ZenChain -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind -X github.com/cosmos/cosmos-sdk/version.Version=1.1.3-2-g7ec7413 -X github.com/cosmos/cosmos-sdk/version.Commit=7ec741347c17989d016ad366c1f8653e5c22f817 ' .
+      - uses: actions/upload-artifact@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./build/zenchaind
-          asset_name: zenchaind ${{ matrix.targetos }} ${{ matrix.arch }}
-          tag: ${{ github.ref }}
-
+          name: zenchaind ${{ matrix.targetos }} ${{ matrix.arch }}
+          path: cmd/zenchaind/zenchaind
