@@ -35,10 +35,10 @@ jobs:
           go mod download
           cd cmd/zenchaind
           go build . 
-          go build -X github.com/cosmos/cosmos-sdk/version.Name=zenchain \
+          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=zenchain \
             -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind \
             -X github.com/cosmos/cosmos-sdk/version.Version=$(echo $GITHUB_REF | cut -d / -f 3)\
-            -X github.com/cosmos/cosmos-sdk/version.Commit=$GITHUB_SHA \
+            -X github.com/cosmos/cosmos-sdk/version.Commit=$GITHUB_SHA'  \
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
