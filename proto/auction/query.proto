@@ -1,0 +1,39 @@
+syntax = "proto3";
+package zenchainprotocol.zenchain.auction;
+
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+// this line is used by starport scaffolding # 1
+import "auction/order.proto";
+
+option go_package = "github.com/zenchainprotocol/zenchain/x/auction/types";
+
+// Query defines the gRPC querier service.
+service Query {
+    // this line is used by starport scaffolding # 2
+	rpc Order(QueryGetOrderRequest) returns (QueryGetOrderResponse) {
+		option (google.api.http).get = "/zenchainprotocol/zenchain/auction/order/{id}";
+	}
+	rpc OrderAll(QueryAllOrderRequest) returns (QueryAllOrderResponse) {
+		option (google.api.http).get = "/zenchainprotocol/zenchain/auction/order";
+	}
+
+}
+
+// this line is used by starport scaffolding # 3
+message QueryGetOrderRequest {
+	uint64 id = 1;
+}
+
+message QueryGetOrderResponse {
+	Order Order = 1;
+}
+
+message QueryAllOrderRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllOrderResponse {
+	repeated Order Order = 1;
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

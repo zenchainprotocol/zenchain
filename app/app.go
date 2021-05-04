@@ -94,16 +94,19 @@ import (
 	"github.com/irisnet/irismod/modules/nft"
 	nftkeeper "github.com/irisnet/irismod/modules/nft/keeper"
 	nfttypes "github.com/irisnet/irismod/modules/nft/types"
-	
+
 	//CoinSwap
 	"github.com/irisnet/irismod/modules/coinswap"
 	coinswapkeeper "github.com/irisnet/irismod/modules/coinswap/keeper"
 	coinswaptypes "github.com/irisnet/irismod/modules/coinswap/types"
-	
+
 	"github.com/zenchainprotocol/zenchain/x/zenchain"
 	zenchainkeeper "github.com/zenchainprotocol/zenchain/x/zenchain/keeper"
 	zenchaintypes "github.com/zenchainprotocol/zenchain/x/zenchain/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
+	"github.com/zenchainprotocol/zenchain/x/auction"
+	auctionkeeper "github.com/zenchainprotocol/zenchain/x/auction/keeper"
+	auctiontypes "github.com/zenchainprotocol/zenchain/x/auction/types"
 )
 
 const Name = "zenchain"
@@ -156,6 +159,7 @@ var (
 
 		zenchain.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
+		auction.AppModuleBasic{},
 	)
 
 	// module account permissions
@@ -259,6 +263,8 @@ type App struct {
 	zenchainKeeper zenchainkeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
+	auctionKeeper auctionkeeper.Keeper
+
 	// the module manager
 	mm *module.Manager
 }
@@ -291,6 +297,7 @@ func New(
 		coinswaptypes.StoreKey,
 		zenchaintypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
+		auctiontypes.StoreKey,
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
@@ -405,6 +412,13 @@ func New(
 
 	// this line is used by starport scaffolding # stargate/app/keeperDefinition
 
+	app.auctionKeeper = *auctionkeeper.NewKeeper(
+		appCodec,
+		keys[auctiontypes.StoreKey],
+		keys[auctiontypes.MemStoreKey],
+	)
+	auctionModule := auction.NewAppModule(appCodec, app.auctionKeeper)
+
 	app.GovKeeper = govkeeper.NewKeeper(
 		appCodec, keys[govtypes.StoreKey], app.GetSubspace(govtypes.ModuleName), app.AccountKeeper, app.BankKeeper,
 		&stakingKeeper, govRouter,
@@ -450,6 +464,7 @@ func New(
 		coinswap.NewAppModule(appCodec, app.coinswapKeeper, app.AccountKeeper, app.BankKeeper),
 		zenchain.NewAppModule(appCodec, app.zenchainKeeper),
 		// this line is used by starport scaffolding # stargate/app/appModule
+		auctionModule,
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -487,6 +502,7 @@ func New(
 		coinswaptypes.ModuleName,
 		zenchaintypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
+		auctiontypes.ModuleName,
 	)
 
 	app.mm.RegisterInvariants(&app.CrisisKeeper)
@@ -672,6 +688,7 @@ func initParamsKeeper(appCodec codec.BinaryMarshaler, legacyAmino *codec.LegacyA
 	paramsKeeper.Subspace(tokentypes.ModuleName)
 	paramsKeeper.Subspace(coinswaptypes.ModuleName)
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
+	paramsKeeper.Subspace(auctiontypes.ModuleName)
 
 	return paramsKeeper
 }

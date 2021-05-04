@@ -1,0 +1,17 @@
+syntax = "proto3";
+package zenchainprotocol.zenchain.auction;
+
+option go_package = "github.com/zenchainprotocol/zenchain/x/auction/types";
+
+import "gogoproto/gogo.proto";
+
+message Order {
+  string creator = 1;
+  uint64 id = 2;
+  string denomid = 3; 
+  string tokenid = 4; 
+  string startprice = 5; 
+  string stepprice = 6; 
+  string starttime = 7; 
+  string duration = 8; 
+}

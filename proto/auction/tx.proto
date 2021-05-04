@@ -1,0 +1,49 @@
+syntax = "proto3";
+package zenchainprotocol.zenchain.auction;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/zenchainprotocol/zenchain/x/auction/types";
+
+// Msg defines the Msg service.
+service Msg {
+    // this line is used by starport scaffolding # proto/tx/rpc
+  rpc CreateOrder(MsgCreateOrder) returns (MsgCreateOrderResponse);
+  rpc UpdateOrder(MsgUpdateOrder) returns (MsgUpdateOrderResponse);
+  rpc DeleteOrder(MsgDeleteOrder) returns (MsgDeleteOrderResponse);
+}
+
+// this line is used by starport scaffolding # proto/tx/message
+message MsgCreateOrder {
+  string creator = 1;
+  string denomid = 2;
+  string tokenid = 3;
+  string startprice = 4;
+  string stepprice = 5;
+  string starttime = 6;
+  string duration = 7;
+}
+
+message MsgCreateOrderResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateOrder {
+  string creator = 1;
+  uint64 id = 2;
+  string denomid = 3;
+  string tokenid = 4;
+  string startprice = 5;
+  string stepprice = 6;
+  string starttime = 7;
+  string duration = 8;
+}
+
+message MsgUpdateOrderResponse { }
+
+message MsgDeleteOrder {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteOrderResponse { }
