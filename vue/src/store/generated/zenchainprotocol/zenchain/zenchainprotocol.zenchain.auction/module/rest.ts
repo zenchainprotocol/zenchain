@@ -9,12 +9,32 @@
  * ---------------------------------------------------------------
  */
 
+export interface AuctionBid {
+  creator?: string;
+
+  /** @format uint64 */
+  id?: string;
+
+  /** @format uint64 */
+  OrderId?: string;
+  BidPrice?: string;
+}
+
+export interface AuctionMsgCreateBidResponse {
+  /** @format uint64 */
+  id?: string;
+}
+
 export interface AuctionMsgCreateOrderResponse {
   /** @format uint64 */
   id?: string;
 }
 
+export type AuctionMsgDeleteBidResponse = object;
+
 export type AuctionMsgDeleteOrderResponse = object;
+
+export type AuctionMsgUpdateBidResponse = object;
 
 export type AuctionMsgUpdateOrderResponse = object;
 
@@ -31,6 +51,21 @@ export interface AuctionOrder {
   duration?: string;
 }
 
+export interface AuctionQueryAllBidResponse {
+  Bid?: AuctionBid[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
+
 export interface AuctionQueryAllOrderResponse {
   Order?: AuctionOrder[];
 
@@ -44,6 +79,10 @@ export interface AuctionQueryAllOrderResponse {
    *  }
    */
   pagination?: V1Beta1PageResponse;
+}
+
+export interface AuctionQueryGetBidResponse {
+  Bid?: AuctionBid;
 }
 
 export interface AuctionQueryGetOrderResponse {
@@ -312,10 +351,50 @@ export class HttpClient<SecurityDataType = unknown> {
 }
 
 /**
- * @title auction/tx.proto
+ * @title auction/query.proto
  * @version version not set
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryBidAll
+   * @request GET:/zenchainprotocol/zenchain/auction/bid
+   */
+  queryBidAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.countTotal"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<AuctionQueryAllBidResponse, RpcStatus>({
+      path: `/zenchainprotocol/zenchain/auction/bid`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryBid
+   * @summary this line is used by starport scaffolding # 2
+   * @request GET:/zenchainprotocol/zenchain/auction/bid/{id}
+   */
+  queryBid = (id: string, params: RequestParams = {}) =>
+    this.request<AuctionQueryGetBidResponse, RpcStatus>({
+      path: `/zenchainprotocol/zenchain/auction/bid/${id}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
   /**
    * No description
    *
@@ -345,7 +424,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryOrder
-   * @summary this line is used by starport scaffolding # 2
    * @request GET:/zenchainprotocol/zenchain/auction/order/{id}
    */
   queryOrder = (id: string, params: RequestParams = {}) =>

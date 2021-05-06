@@ -6,12 +6,34 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/tendermint/tendermint/crypto"
 	"github.com/zenchainprotocol/zenchain/x/auction/types"
+	nftTypes "github.com/irisnet/irismod/modules/nft/types"
 )
 
 func (k msgServer) CreateOrder(goCtx context.Context, msg *types.MsgCreateOrder) (*types.MsgCreateOrderResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	//Check denomid
+
+	//Check tokenid
+	//Check balance
+	moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte(types.ModuleName)))
+	feeCoins, err := sdk.ParseCoinsNormalized("200000000uzen")
+	if err != nil {
+		return nil, err
+	}
+	creatorAddress, err := sdk.AccAddressFromBech32(msg.Creator)
+	if err != nil {
+		return nil, err
+	}
+	if err := k.bankKeeper.SendCoins(ctx, creatorAddress, moduleAcct, feeCoins); err != nil {
+		return nil, err
+	}
+
+	if !k.nftKeeper.HasNFT(ctx, msg.Denomid, msg.Tokenid) {
+		return nil, sdkerrors.Wrapf(nftTypes.ErrInvalidCollection, fmt.Sprintf("NFT %s is not exists in collection %s", msg.Denomid, msg.Tokenid))
+	}
 	id := k.AppendOrder(
 		ctx,
 		msg.Creator,

@@ -416,6 +416,8 @@ func New(
 		appCodec,
 		keys[auctiontypes.StoreKey],
 		keys[auctiontypes.MemStoreKey],
+		app.BankKeeper,
+		app.nftKeeper,
 	)
 	auctionModule := auction.NewAppModule(appCodec, app.auctionKeeper)
 

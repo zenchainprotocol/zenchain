@@ -2,6 +2,393 @@
 import { Reader, util, configure, Writer } from "protobufjs/minimal";
 import * as Long from "long";
 export const protobufPackage = "zenchainprotocol.zenchain.auction";
+const baseMsgCreateBid = { creator: "", OrderId: 0, BidPrice: "" };
+export const MsgCreateBid = {
+    encode(message, writer = Writer.create()) {
+        if (message.creator !== "") {
+            writer.uint32(10).string(message.creator);
+        }
+        if (message.OrderId !== 0) {
+            writer.uint32(16).uint64(message.OrderId);
+        }
+        if (message.BidPrice !== "") {
+            writer.uint32(26).string(message.BidPrice);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgCreateBid };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.creator = reader.string();
+                    break;
+                case 2:
+                    message.OrderId = longToNumber(reader.uint64());
+                    break;
+                case 3:
+                    message.BidPrice = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseMsgCreateBid };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = String(object.creator);
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.OrderId !== undefined && object.OrderId !== null) {
+            message.OrderId = Number(object.OrderId);
+        }
+        else {
+            message.OrderId = 0;
+        }
+        if (object.BidPrice !== undefined && object.BidPrice !== null) {
+            message.BidPrice = String(object.BidPrice);
+        }
+        else {
+            message.BidPrice = "";
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.creator !== undefined && (obj.creator = message.creator);
+        message.OrderId !== undefined && (obj.OrderId = message.OrderId);
+        message.BidPrice !== undefined && (obj.BidPrice = message.BidPrice);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseMsgCreateBid };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = object.creator;
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.OrderId !== undefined && object.OrderId !== null) {
+            message.OrderId = object.OrderId;
+        }
+        else {
+            message.OrderId = 0;
+        }
+        if (object.BidPrice !== undefined && object.BidPrice !== null) {
+            message.BidPrice = object.BidPrice;
+        }
+        else {
+            message.BidPrice = "";
+        }
+        return message;
+    },
+};
+const baseMsgCreateBidResponse = { id: 0 };
+export const MsgCreateBidResponse = {
+    encode(message, writer = Writer.create()) {
+        if (message.id !== 0) {
+            writer.uint32(8).uint64(message.id);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgCreateBidResponse };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.id = longToNumber(reader.uint64());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseMsgCreateBidResponse };
+        if (object.id !== undefined && object.id !== null) {
+            message.id = Number(object.id);
+        }
+        else {
+            message.id = 0;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.id !== undefined && (obj.id = message.id);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseMsgCreateBidResponse };
+        if (object.id !== undefined && object.id !== null) {
+            message.id = object.id;
+        }
+        else {
+            message.id = 0;
+        }
+        return message;
+    },
+};
+const baseMsgUpdateBid = {
+    creator: "",
+    id: 0,
+    OrderId: 0,
+    BidPrice: "",
+};
+export const MsgUpdateBid = {
+    encode(message, writer = Writer.create()) {
+        if (message.creator !== "") {
+            writer.uint32(10).string(message.creator);
+        }
+        if (message.id !== 0) {
+            writer.uint32(16).uint64(message.id);
+        }
+        if (message.OrderId !== 0) {
+            writer.uint32(24).uint64(message.OrderId);
+        }
+        if (message.BidPrice !== "") {
+            writer.uint32(34).string(message.BidPrice);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgUpdateBid };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.creator = reader.string();
+                    break;
+                case 2:
+                    message.id = longToNumber(reader.uint64());
+                    break;
+                case 3:
+                    message.OrderId = longToNumber(reader.uint64());
+                    break;
+                case 4:
+                    message.BidPrice = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseMsgUpdateBid };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = String(object.creator);
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.id !== undefined && object.id !== null) {
+            message.id = Number(object.id);
+        }
+        else {
+            message.id = 0;
+        }
+        if (object.OrderId !== undefined && object.OrderId !== null) {
+            message.OrderId = Number(object.OrderId);
+        }
+        else {
+            message.OrderId = 0;
+        }
+        if (object.BidPrice !== undefined && object.BidPrice !== null) {
+            message.BidPrice = String(object.BidPrice);
+        }
+        else {
+            message.BidPrice = "";
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.creator !== undefined && (obj.creator = message.creator);
+        message.id !== undefined && (obj.id = message.id);
+        message.OrderId !== undefined && (obj.OrderId = message.OrderId);
+        message.BidPrice !== undefined && (obj.BidPrice = message.BidPrice);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseMsgUpdateBid };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = object.creator;
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.id !== undefined && object.id !== null) {
+            message.id = object.id;
+        }
+        else {
+            message.id = 0;
+        }
+        if (object.OrderId !== undefined && object.OrderId !== null) {
+            message.OrderId = object.OrderId;
+        }
+        else {
+            message.OrderId = 0;
+        }
+        if (object.BidPrice !== undefined && object.BidPrice !== null) {
+            message.BidPrice = object.BidPrice;
+        }
+        else {
+            message.BidPrice = "";
+        }
+        return message;
+    },
+};
+const baseMsgUpdateBidResponse = {};
+export const MsgUpdateBidResponse = {
+    encode(_, writer = Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgUpdateBidResponse };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(_) {
+        const message = { ...baseMsgUpdateBidResponse };
+        return message;
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    fromPartial(_) {
+        const message = { ...baseMsgUpdateBidResponse };
+        return message;
+    },
+};
+const baseMsgDeleteBid = { creator: "", id: 0 };
+export const MsgDeleteBid = {
+    encode(message, writer = Writer.create()) {
+        if (message.creator !== "") {
+            writer.uint32(10).string(message.creator);
+        }
+        if (message.id !== 0) {
+            writer.uint32(16).uint64(message.id);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgDeleteBid };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.creator = reader.string();
+                    break;
+                case 2:
+                    message.id = longToNumber(reader.uint64());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseMsgDeleteBid };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = String(object.creator);
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.id !== undefined && object.id !== null) {
+            message.id = Number(object.id);
+        }
+        else {
+            message.id = 0;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.creator !== undefined && (obj.creator = message.creator);
+        message.id !== undefined && (obj.id = message.id);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseMsgDeleteBid };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = object.creator;
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.id !== undefined && object.id !== null) {
+            message.id = object.id;
+        }
+        else {
+            message.id = 0;
+        }
+        return message;
+    },
+};
+const baseMsgDeleteBidResponse = {};
+export const MsgDeleteBidResponse = {
+    encode(_, writer = Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgDeleteBidResponse };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(_) {
+        const message = { ...baseMsgDeleteBidResponse };
+        return message;
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    fromPartial(_) {
+        const message = { ...baseMsgDeleteBidResponse };
+        return message;
+    },
+};
 const baseMsgCreateOrder = {
     creator: "",
     denomid: "",
@@ -556,6 +943,21 @@ export const MsgDeleteOrderResponse = {
 export class MsgClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
+    }
+    CreateBid(request) {
+        const data = MsgCreateBid.encode(request).finish();
+        const promise = this.rpc.request("zenchainprotocol.zenchain.auction.Msg", "CreateBid", data);
+        return promise.then((data) => MsgCreateBidResponse.decode(new Reader(data)));
+    }
+    UpdateBid(request) {
+        const data = MsgUpdateBid.encode(request).finish();
+        const promise = this.rpc.request("zenchainprotocol.zenchain.auction.Msg", "UpdateBid", data);
+        return promise.then((data) => MsgUpdateBidResponse.decode(new Reader(data)));
+    }
+    DeleteBid(request) {
+        const data = MsgDeleteBid.encode(request).finish();
+        const promise = this.rpc.request("zenchainprotocol.zenchain.auction.Msg", "DeleteBid", data);
+        return promise.then((data) => MsgDeleteBidResponse.decode(new Reader(data)));
     }
     CreateOrder(request) {
         const data = MsgCreateOrder.encode(request).finish();

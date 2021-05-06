@@ -4,15 +4,21 @@ import { StdFee } from "@cosmjs/launchpad";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
-import { MsgDeleteOrder } from "./types/auction/tx";
 import { MsgUpdateOrder } from "./types/auction/tx";
+import { MsgUpdateBid } from "./types/auction/tx";
+import { MsgDeleteBid } from "./types/auction/tx";
 import { MsgCreateOrder } from "./types/auction/tx";
+import { MsgDeleteOrder } from "./types/auction/tx";
+import { MsgCreateBid } from "./types/auction/tx";
 
 
 const types = [
-  ["/zenchainprotocol.zenchain.auction.MsgDeleteOrder", MsgDeleteOrder],
   ["/zenchainprotocol.zenchain.auction.MsgUpdateOrder", MsgUpdateOrder],
+  ["/zenchainprotocol.zenchain.auction.MsgUpdateBid", MsgUpdateBid],
+  ["/zenchainprotocol.zenchain.auction.MsgDeleteBid", MsgDeleteBid],
   ["/zenchainprotocol.zenchain.auction.MsgCreateOrder", MsgCreateOrder],
+  ["/zenchainprotocol.zenchain.auction.MsgDeleteOrder", MsgDeleteOrder],
+  ["/zenchainprotocol.zenchain.auction.MsgCreateBid", MsgCreateBid],
   
 ];
 
@@ -40,9 +46,12 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee=defaultFee, memo=null }: SignAndBroadcastOptions) => memo?client.signAndBroadcast(address, msgs, fee,memo):client.signAndBroadcast(address, msgs, fee),
-    msgDeleteOrder: (data: MsgDeleteOrder): EncodeObject => ({ typeUrl: "/zenchainprotocol.zenchain.auction.MsgDeleteOrder", value: data }),
     msgUpdateOrder: (data: MsgUpdateOrder): EncodeObject => ({ typeUrl: "/zenchainprotocol.zenchain.auction.MsgUpdateOrder", value: data }),
+    msgUpdateBid: (data: MsgUpdateBid): EncodeObject => ({ typeUrl: "/zenchainprotocol.zenchain.auction.MsgUpdateBid", value: data }),
+    msgDeleteBid: (data: MsgDeleteBid): EncodeObject => ({ typeUrl: "/zenchainprotocol.zenchain.auction.MsgDeleteBid", value: data }),
     msgCreateOrder: (data: MsgCreateOrder): EncodeObject => ({ typeUrl: "/zenchainprotocol.zenchain.auction.MsgCreateOrder", value: data }),
+    msgDeleteOrder: (data: MsgDeleteOrder): EncodeObject => ({ typeUrl: "/zenchainprotocol.zenchain.auction.MsgDeleteOrder", value: data }),
+    msgCreateBid: (data: MsgCreateBid): EncodeObject => ({ typeUrl: "/zenchainprotocol.zenchain.auction.MsgCreateBid", value: data }),
     
   };
 };

@@ -130,12 +130,40 @@ export class HttpClient {
     }
 }
 /**
- * @title auction/tx.proto
+ * @title auction/query.proto
  * @version version not set
  */
 export class Api extends HttpClient {
     constructor() {
         super(...arguments);
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryBidAll
+         * @request GET:/zenchainprotocol/zenchain/auction/bid
+         */
+        this.queryBidAll = (query, params = {}) => this.request({
+            path: `/zenchainprotocol/zenchain/auction/bid`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryBid
+         * @summary this line is used by starport scaffolding # 2
+         * @request GET:/zenchainprotocol/zenchain/auction/bid/{id}
+         */
+        this.queryBid = (id, params = {}) => this.request({
+            path: `/zenchainprotocol/zenchain/auction/bid/${id}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
         /**
          * No description
          *
@@ -155,7 +183,6 @@ export class Api extends HttpClient {
          *
          * @tags Query
          * @name QueryOrder
-         * @summary this line is used by starport scaffolding # 2
          * @request GET:/zenchainprotocol/zenchain/auction/order/{id}
          */
         this.queryOrder = (id, params = {}) => this.request({

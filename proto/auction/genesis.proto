@@ -2,6 +2,7 @@ syntax = "proto3";
 package zenchainprotocol.zenchain.auction;
 
 // this line is used by starport scaffolding # genesis/proto/import
+import "auction/bid.proto";
 import "auction/order.proto";
 
 option go_package = "github.com/zenchainprotocol/zenchain/x/auction/types";
@@ -9,6 +10,7 @@ option go_package = "github.com/zenchainprotocol/zenchain/x/auction/types";
 // GenesisState defines the auction module's genesis state.
 message GenesisState {
     // this line is used by starport scaffolding # genesis/proto/state
+		repeated Bid bidList = 2; // this line is used by starport scaffolding # genesis/proto/stateField
 		repeated Order orderList = 1; // this line is used by starport scaffolding # genesis/proto/stateField
     // this line is used by starport scaffolding # ibc/genesis/proto
 }

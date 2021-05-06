@@ -1,0 +1,13 @@
+syntax = "proto3";
+package zenchainprotocol.zenchain.auction;
+
+option go_package = "github.com/zenchainprotocol/zenchain/x/auction/types";
+
+import "gogoproto/gogo.proto";
+
+message Bid {
+  string creator = 1;
+  uint64 id = 2;
+  uint64 OrderId = 3; 
+  string BidPrice = 4; 
+}

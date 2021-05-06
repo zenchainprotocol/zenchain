@@ -1,9 +1,12 @@
+import { Bid } from "../auction/bid";
 import { Order } from "../auction/order";
 import { Writer, Reader } from "protobufjs/minimal";
 export declare const protobufPackage = "zenchainprotocol.zenchain.auction";
 /** GenesisState defines the auction module's genesis state. */
 export interface GenesisState {
     /** this line is used by starport scaffolding # genesis/proto/state */
+    bidList: Bid[];
+    /** this line is used by starport scaffolding # genesis/proto/stateField */
     orderList: Order[];
 }
 export declare const GenesisState: {

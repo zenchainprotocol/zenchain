@@ -1,15 +1,33 @@
 /* eslint-disable */
 import { Reader, util, configure, Writer } from "protobufjs/minimal";
 import * as Long from "long";
-import { Order } from "../auction/order";
+import { Bid } from "../auction/bid";
 import {
   PageRequest,
   PageResponse,
 } from "../cosmos/base/query/v1beta1/pagination";
+import { Order } from "../auction/order";
 
 export const protobufPackage = "zenchainprotocol.zenchain.auction";
 
 /** this line is used by starport scaffolding # 3 */
+export interface QueryGetBidRequest {
+  id: number;
+}
+
+export interface QueryGetBidResponse {
+  Bid: Bid | undefined;
+}
+
+export interface QueryAllBidRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryAllBidResponse {
+  Bid: Bid[];
+  pagination: PageResponse | undefined;
+}
+
 export interface QueryGetOrderRequest {
   id: number;
 }
@@ -26,6 +44,272 @@ export interface QueryAllOrderResponse {
   Order: Order[];
   pagination: PageResponse | undefined;
 }
+
+const baseQueryGetBidRequest: object = { id: 0 };
+
+export const QueryGetBidRequest = {
+  encode(
+    message: QueryGetBidRequest,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.id !== 0) {
+      writer.uint32(8).uint64(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetBidRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryGetBidRequest } as QueryGetBidRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = longToNumber(reader.uint64() as Long);
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetBidRequest {
+    const message = { ...baseQueryGetBidRequest } as QueryGetBidRequest;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = Number(object.id);
+    } else {
+      message.id = 0;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryGetBidRequest): unknown {
+    const obj: any = {};
+    message.id !== undefined && (obj.id = message.id);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryGetBidRequest>): QueryGetBidRequest {
+    const message = { ...baseQueryGetBidRequest } as QueryGetBidRequest;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = 0;
+    }
+    return message;
+  },
+};
+
+const baseQueryGetBidResponse: object = {};
+
+export const QueryGetBidResponse = {
+  encode(
+    message: QueryGetBidResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.Bid !== undefined) {
+      Bid.encode(message.Bid, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetBidResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryGetBidResponse } as QueryGetBidResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.Bid = Bid.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetBidResponse {
+    const message = { ...baseQueryGetBidResponse } as QueryGetBidResponse;
+    if (object.Bid !== undefined && object.Bid !== null) {
+      message.Bid = Bid.fromJSON(object.Bid);
+    } else {
+      message.Bid = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryGetBidResponse): unknown {
+    const obj: any = {};
+    message.Bid !== undefined &&
+      (obj.Bid = message.Bid ? Bid.toJSON(message.Bid) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryGetBidResponse>): QueryGetBidResponse {
+    const message = { ...baseQueryGetBidResponse } as QueryGetBidResponse;
+    if (object.Bid !== undefined && object.Bid !== null) {
+      message.Bid = Bid.fromPartial(object.Bid);
+    } else {
+      message.Bid = undefined;
+    }
+    return message;
+  },
+};
+
+const baseQueryAllBidRequest: object = {};
+
+export const QueryAllBidRequest = {
+  encode(
+    message: QueryAllBidRequest,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllBidRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllBidRequest } as QueryAllBidRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllBidRequest {
+    const message = { ...baseQueryAllBidRequest } as QueryAllBidRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllBidRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination
+        ? PageRequest.toJSON(message.pagination)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllBidRequest>): QueryAllBidRequest {
+    const message = { ...baseQueryAllBidRequest } as QueryAllBidRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
+const baseQueryAllBidResponse: object = {};
+
+export const QueryAllBidResponse = {
+  encode(
+    message: QueryAllBidResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    for (const v of message.Bid) {
+      Bid.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(
+        message.pagination,
+        writer.uint32(18).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllBidResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllBidResponse } as QueryAllBidResponse;
+    message.Bid = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.Bid.push(Bid.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllBidResponse {
+    const message = { ...baseQueryAllBidResponse } as QueryAllBidResponse;
+    message.Bid = [];
+    if (object.Bid !== undefined && object.Bid !== null) {
+      for (const e of object.Bid) {
+        message.Bid.push(Bid.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllBidResponse): unknown {
+    const obj: any = {};
+    if (message.Bid) {
+      obj.Bid = message.Bid.map((e) => (e ? Bid.toJSON(e) : undefined));
+    } else {
+      obj.Bid = [];
+    }
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination
+        ? PageResponse.toJSON(message.pagination)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllBidResponse>): QueryAllBidResponse {
+    const message = { ...baseQueryAllBidResponse } as QueryAllBidResponse;
+    message.Bid = [];
+    if (object.Bid !== undefined && object.Bid !== null) {
+      for (const e of object.Bid) {
+        message.Bid.push(Bid.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
 
 const baseQueryGetOrderRequest: object = { id: 0 };
 
@@ -300,6 +584,8 @@ export const QueryAllOrderResponse = {
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** this line is used by starport scaffolding # 2 */
+  Bid(request: QueryGetBidRequest): Promise<QueryGetBidResponse>;
+  BidAll(request: QueryAllBidRequest): Promise<QueryAllBidResponse>;
   Order(request: QueryGetOrderRequest): Promise<QueryGetOrderResponse>;
   OrderAll(request: QueryAllOrderRequest): Promise<QueryAllOrderResponse>;
 }
@@ -309,6 +595,26 @@ export class QueryClientImpl implements Query {
   constructor(rpc: Rpc) {
     this.rpc = rpc;
   }
+  Bid(request: QueryGetBidRequest): Promise<QueryGetBidResponse> {
+    const data = QueryGetBidRequest.encode(request).finish();
+    const promise = this.rpc.request(
+      "zenchainprotocol.zenchain.auction.Query",
+      "Bid",
+      data
+    );
+    return promise.then((data) => QueryGetBidResponse.decode(new Reader(data)));
+  }
+
+  BidAll(request: QueryAllBidRequest): Promise<QueryAllBidResponse> {
+    const data = QueryAllBidRequest.encode(request).finish();
+    const promise = this.rpc.request(
+      "zenchainprotocol.zenchain.auction.Query",
+      "BidAll",
+      data
+    );
+    return promise.then((data) => QueryAllBidResponse.decode(new Reader(data)));
+  }
+
   Order(request: QueryGetOrderRequest): Promise<QueryGetOrderResponse> {
     const data = QueryGetOrderRequest.encode(request).finish();
     const promise = this.rpc.request(

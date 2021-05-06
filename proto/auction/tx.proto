@@ -8,12 +8,41 @@ option go_package = "github.com/zenchainprotocol/zenchain/x/auction/types";
 // Msg defines the Msg service.
 service Msg {
     // this line is used by starport scaffolding # proto/tx/rpc
+  rpc CreateBid(MsgCreateBid) returns (MsgCreateBidResponse);
+  rpc UpdateBid(MsgUpdateBid) returns (MsgUpdateBidResponse);
+  rpc DeleteBid(MsgDeleteBid) returns (MsgDeleteBidResponse);
   rpc CreateOrder(MsgCreateOrder) returns (MsgCreateOrderResponse);
   rpc UpdateOrder(MsgUpdateOrder) returns (MsgUpdateOrderResponse);
   rpc DeleteOrder(MsgDeleteOrder) returns (MsgDeleteOrderResponse);
 }
 
 // this line is used by starport scaffolding # proto/tx/message
+message MsgCreateBid {
+  string creator = 1;
+  uint64 OrderId = 2;
+  string BidPrice = 3;
+}
+
+message MsgCreateBidResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateBid {
+  string creator = 1;
+  uint64 id = 2;
+  uint64 OrderId = 3;
+  string BidPrice = 4;
+}
+
+message MsgUpdateBidResponse { }
+
+message MsgDeleteBid {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteBidResponse { }
+
 message MsgCreateOrder {
   string creator = 1;
   string denomid = 2;

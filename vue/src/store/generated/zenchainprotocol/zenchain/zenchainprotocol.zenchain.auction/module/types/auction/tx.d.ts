@@ -1,6 +1,28 @@
 import { Reader, Writer } from "protobufjs/minimal";
 export declare const protobufPackage = "zenchainprotocol.zenchain.auction";
 /** this line is used by starport scaffolding # proto/tx/message */
+export interface MsgCreateBid {
+    creator: string;
+    OrderId: number;
+    BidPrice: string;
+}
+export interface MsgCreateBidResponse {
+    id: number;
+}
+export interface MsgUpdateBid {
+    creator: string;
+    id: number;
+    OrderId: number;
+    BidPrice: string;
+}
+export interface MsgUpdateBidResponse {
+}
+export interface MsgDeleteBid {
+    creator: string;
+    id: number;
+}
+export interface MsgDeleteBidResponse {
+}
 export interface MsgCreateOrder {
     creator: string;
     denomid: string;
@@ -31,6 +53,48 @@ export interface MsgDeleteOrder {
 }
 export interface MsgDeleteOrderResponse {
 }
+export declare const MsgCreateBid: {
+    encode(message: MsgCreateBid, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateBid;
+    fromJSON(object: any): MsgCreateBid;
+    toJSON(message: MsgCreateBid): unknown;
+    fromPartial(object: DeepPartial<MsgCreateBid>): MsgCreateBid;
+};
+export declare const MsgCreateBidResponse: {
+    encode(message: MsgCreateBidResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateBidResponse;
+    fromJSON(object: any): MsgCreateBidResponse;
+    toJSON(message: MsgCreateBidResponse): unknown;
+    fromPartial(object: DeepPartial<MsgCreateBidResponse>): MsgCreateBidResponse;
+};
+export declare const MsgUpdateBid: {
+    encode(message: MsgUpdateBid, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateBid;
+    fromJSON(object: any): MsgUpdateBid;
+    toJSON(message: MsgUpdateBid): unknown;
+    fromPartial(object: DeepPartial<MsgUpdateBid>): MsgUpdateBid;
+};
+export declare const MsgUpdateBidResponse: {
+    encode(_: MsgUpdateBidResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateBidResponse;
+    fromJSON(_: any): MsgUpdateBidResponse;
+    toJSON(_: MsgUpdateBidResponse): unknown;
+    fromPartial(_: DeepPartial<MsgUpdateBidResponse>): MsgUpdateBidResponse;
+};
+export declare const MsgDeleteBid: {
+    encode(message: MsgDeleteBid, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteBid;
+    fromJSON(object: any): MsgDeleteBid;
+    toJSON(message: MsgDeleteBid): unknown;
+    fromPartial(object: DeepPartial<MsgDeleteBid>): MsgDeleteBid;
+};
+export declare const MsgDeleteBidResponse: {
+    encode(_: MsgDeleteBidResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteBidResponse;
+    fromJSON(_: any): MsgDeleteBidResponse;
+    toJSON(_: MsgDeleteBidResponse): unknown;
+    fromPartial(_: DeepPartial<MsgDeleteBidResponse>): MsgDeleteBidResponse;
+};
 export declare const MsgCreateOrder: {
     encode(message: MsgCreateOrder, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): MsgCreateOrder;
@@ -76,6 +140,9 @@ export declare const MsgDeleteOrderResponse: {
 /** Msg defines the Msg service. */
 export interface Msg {
     /** this line is used by starport scaffolding # proto/tx/rpc */
+    CreateBid(request: MsgCreateBid): Promise<MsgCreateBidResponse>;
+    UpdateBid(request: MsgUpdateBid): Promise<MsgUpdateBidResponse>;
+    DeleteBid(request: MsgDeleteBid): Promise<MsgDeleteBidResponse>;
     CreateOrder(request: MsgCreateOrder): Promise<MsgCreateOrderResponse>;
     UpdateOrder(request: MsgUpdateOrder): Promise<MsgUpdateOrderResponse>;
     DeleteOrder(request: MsgDeleteOrder): Promise<MsgDeleteOrderResponse>;
@@ -83,6 +150,9 @@ export interface Msg {
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
     constructor(rpc: Rpc);
+    CreateBid(request: MsgCreateBid): Promise<MsgCreateBidResponse>;
+    UpdateBid(request: MsgUpdateBid): Promise<MsgUpdateBidResponse>;
+    DeleteBid(request: MsgDeleteBid): Promise<MsgDeleteBidResponse>;
     CreateOrder(request: MsgCreateOrder): Promise<MsgCreateOrderResponse>;
     UpdateOrder(request: MsgUpdateOrder): Promise<MsgUpdateOrderResponse>;
     DeleteOrder(request: MsgDeleteOrder): Promise<MsgDeleteOrderResponse>;

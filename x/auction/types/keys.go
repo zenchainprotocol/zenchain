@@ -29,3 +29,8 @@ const (
 	OrderKey      = "Order-value-"
 	OrderCountKey = "Order-count-"
 )
+
+const (
+	BidKey      = "Bid-value-"
+	BidCountKey = "Bid-count-"
+)
