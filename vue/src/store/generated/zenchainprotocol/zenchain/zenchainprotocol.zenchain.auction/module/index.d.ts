@@ -3,9 +3,9 @@ import { OfflineSigner, EncodeObject } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
 import { MsgUpdateOrder } from "./types/auction/tx";
 import { MsgUpdateBid } from "./types/auction/tx";
-import { MsgDeleteBid } from "./types/auction/tx";
 import { MsgCreateOrder } from "./types/auction/tx";
 import { MsgDeleteOrder } from "./types/auction/tx";
+import { MsgDeleteBid } from "./types/auction/tx";
 import { MsgCreateBid } from "./types/auction/tx";
 interface TxClientOptions {
     addr: string;
@@ -18,9 +18,9 @@ declare const txClient: (wallet: OfflineSigner, { addr: addr }?: TxClientOptions
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions) => Promise<import("@cosmjs/stargate").BroadcastTxResponse>;
     msgUpdateOrder: (data: MsgUpdateOrder) => EncodeObject;
     msgUpdateBid: (data: MsgUpdateBid) => EncodeObject;
-    msgDeleteBid: (data: MsgDeleteBid) => EncodeObject;
     msgCreateOrder: (data: MsgCreateOrder) => EncodeObject;
     msgDeleteOrder: (data: MsgDeleteOrder) => EncodeObject;
+    msgDeleteBid: (data: MsgDeleteBid) => EncodeObject;
     msgCreateBid: (data: MsgCreateBid) => EncodeObject;
 }>;
 interface QueryClientOptions {

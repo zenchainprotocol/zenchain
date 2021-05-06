@@ -34,6 +34,17 @@ func (k msgServer) CreateOrder(goCtx context.Context, msg *types.MsgCreateOrder)
 	if !k.nftKeeper.HasNFT(ctx, msg.Denomid, msg.Tokenid) {
 		return nil, sdkerrors.Wrapf(nftTypes.ErrInvalidCollection, fmt.Sprintf("NFT %s is not exists in collection %s", msg.Denomid, msg.Tokenid))
 	}
+
+	//Transefer NFT to module
+	if err := k.nftKeeper.TransferOwner(ctx, msg.Denomid, msg.Tokenid,
+		"[do-not-modify]",
+		"[do-not-modify]",
+		"[do-not-modify]",
+		creatorAddress,
+		moduleAcct,
+	); err != nil {
+		return nil, err
+	}
 	id := k.AppendOrder(
 		ctx,
 		msg.Creator,

@@ -12,6 +12,10 @@ type BankKeeper interface {
 }
 
 // NftKeeper defines the expected Nft keeper
-type NftKeeper interface{
+type NftKeeper interface {
 	HasNFT(ctx sdk.Context, denomID, tokenID string) bool
+	TransferOwner(
+		ctx sdk.Context, denomID, tokenID, tokenNm, tokenURI,
+		tokenData string, srcOwner, dstOwner sdk.AccAddress,
+	) error
 }
