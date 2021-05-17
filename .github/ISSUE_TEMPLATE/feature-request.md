@@ -19,7 +19,11 @@ v                     without deliberation
 
 <!-- Why do we need this feature? 
 What problems may be addressed by introducing this feature?
+<<<<<<< HEAD
 What benefits does the SDK stand to gain by including this feature?
+=======
+What benefits does zenchain stand to gain by including this feature?
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 Are there any disadvantages of including this feature? -->
 
 ## Proposal

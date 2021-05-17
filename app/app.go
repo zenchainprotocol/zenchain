@@ -1,5 +1,6 @@
 package app
 
+<<<<<<< HEAD
 // DONTCOVER
 
 import (
@@ -19,6 +20,31 @@ import (
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 	"github.com/cosmos/cosmos-sdk/simapp"
 	"github.com/cosmos/cosmos-sdk/testutil/testdata"
+=======
+import (
+	"io"
+	"os"
+	"path/filepath"
+
+	"github.com/cosmos/cosmos-sdk/client"
+	"github.com/cosmos/cosmos-sdk/codec/types"
+	"github.com/tendermint/tendermint/crypto"
+
+	"github.com/spf13/cast"
+
+	abci "github.com/tendermint/tendermint/abci/types"
+	"github.com/tendermint/tendermint/libs/log"
+	tmos "github.com/tendermint/tendermint/libs/os"
+	dbm "github.com/tendermint/tm-db"
+
+	"github.com/cosmos/cosmos-sdk/baseapp"
+	"github.com/cosmos/cosmos-sdk/client/grpc/tmservice"
+	"github.com/cosmos/cosmos-sdk/client/rpc"
+	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/cosmos/cosmos-sdk/server/api"
+	"github.com/cosmos/cosmos-sdk/server/config"
+	servertypes "github.com/cosmos/cosmos-sdk/server/types"
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/version"
@@ -26,7 +52,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 	authrest "github.com/cosmos/cosmos-sdk/x/auth/client/rest"
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
+<<<<<<< HEAD
 	authsims "github.com/cosmos/cosmos-sdk/x/auth/simulation"
+=======
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
@@ -49,9 +78,16 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/genutil"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	"github.com/cosmos/cosmos-sdk/x/gov"
+<<<<<<< HEAD
 	govkeeper "github.com/cosmos/cosmos-sdk/x/gov/keeper"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/cosmos/cosmos-sdk/x/ibc/applications/transfer"
+=======
+	govclient "github.com/cosmos/cosmos-sdk/x/gov/client"
+	govkeeper "github.com/cosmos/cosmos-sdk/x/gov/keeper"
+	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
+	transfer "github.com/cosmos/cosmos-sdk/x/ibc/applications/transfer"
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	ibctransferkeeper "github.com/cosmos/cosmos-sdk/x/ibc/applications/transfer/keeper"
 	ibctransfertypes "github.com/cosmos/cosmos-sdk/x/ibc/applications/transfer/types"
 	ibc "github.com/cosmos/cosmos-sdk/x/ibc/core"
@@ -59,7 +95,10 @@ import (
 	porttypes "github.com/cosmos/cosmos-sdk/x/ibc/core/05-port/types"
 	ibchost "github.com/cosmos/cosmos-sdk/x/ibc/core/24-host"
 	ibckeeper "github.com/cosmos/cosmos-sdk/x/ibc/core/keeper"
+<<<<<<< HEAD
 	ibcmock "github.com/cosmos/cosmos-sdk/x/ibc/testing/mock"
+=======
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	"github.com/cosmos/cosmos-sdk/x/mint"
 	mintkeeper "github.com/cosmos/cosmos-sdk/x/mint/keeper"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
@@ -78,6 +117,7 @@ import (
 	upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
 	upgradekeeper "github.com/cosmos/cosmos-sdk/x/upgrade/keeper"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
+<<<<<<< HEAD
 	"github.com/gorilla/mux"
 	"github.com/rakyll/statik/fs"
 	"github.com/spf13/cast"
@@ -98,6 +138,52 @@ import (
 )
 
 const appName = "LiquidityApp"
+=======
+	tmjson "github.com/tendermint/tendermint/libs/json"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	appparams "github.com/zenchainprotocol/zenchain/app/params"
+
+	//Token
+	"github.com/irisnet/irismod/modules/token"
+	tokenkeeper "github.com/irisnet/irismod/modules/token/keeper"
+	tokentypes "github.com/irisnet/irismod/modules/token/types"
+
+	//NFT
+	"github.com/irisnet/irismod/modules/nft"
+	nftkeeper "github.com/irisnet/irismod/modules/nft/keeper"
+	nfttypes "github.com/irisnet/irismod/modules/nft/types"
+	
+	//Swap
+	//liquidityparams "github.com/tendermint/liquidity/app/params"
+	"github.com/tendermint/liquidity/x/liquidity"
+	liquiditykeeper "github.com/tendermint/liquidity/x/liquidity/keeper"
+	liquiditytypes "github.com/tendermint/liquidity/x/liquidity/types"
+	
+	"github.com/zenchainprotocol/zenchain/x/zenchain"
+	zenchainkeeper "github.com/zenchainprotocol/zenchain/x/zenchain/keeper"
+	zenchaintypes "github.com/zenchainprotocol/zenchain/x/zenchain/types"
+	// this line is used by starport scaffolding # stargate/app/moduleImport
+)
+
+const Name = "zenchain"
+
+// this line is used by starport scaffolding # stargate/wasm/app/enabledProposals
+
+func getGovProposalHandlers() []govclient.ProposalHandler {
+	var govProposalHandlers []govclient.ProposalHandler
+	// this line is used by starport scaffolding # stargate/app/govProposalHandlers
+
+	govProposalHandlers = append(govProposalHandlers,
+		paramsclient.ProposalHandler,
+		distrclient.ProposalHandler,
+		upgradeclient.ProposalHandler,
+		upgradeclient.CancelProposalHandler,
+		// this line is used by starport scaffolding # stargate/app/govProposalHandler
+	)
+
+	return govProposalHandlers
+}
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 
 var (
 	// DefaultNodeHome default home directories for the application daemon
@@ -114,9 +200,13 @@ var (
 		staking.AppModuleBasic{},
 		mint.AppModuleBasic{},
 		distr.AppModuleBasic{},
+<<<<<<< HEAD
 		gov.NewAppModuleBasic(
 			paramsclient.ProposalHandler, distrclient.ProposalHandler, upgradeclient.ProposalHandler, upgradeclient.CancelProposalHandler,
 		),
+=======
+		gov.NewAppModuleBasic(getGovProposalHandlers()...),
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 		params.AppModuleBasic{},
 		crisis.AppModuleBasic{},
 		slashing.AppModuleBasic{},
@@ -125,7 +215,17 @@ var (
 		evidence.AppModuleBasic{},
 		transfer.AppModuleBasic{},
 		vesting.AppModuleBasic{},
+<<<<<<< HEAD
 		liquidity.AppModuleBasic{},
+=======
+
+		token.AppModuleBasic{},
+		nft.AppModuleBasic{},
+		liquidity.AppModuleBasic{},
+
+		zenchain.AppModuleBasic{},
+		// this line is used by starport scaffolding # stargate/app/moduleBasic
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	)
 
 	// module account permissions
@@ -137,6 +237,7 @@ var (
 		stakingtypes.NotBondedPoolName: {authtypes.Burner, authtypes.Staking},
 		govtypes.ModuleName:            {authtypes.Burner},
 		ibctransfertypes.ModuleName:    {authtypes.Minter, authtypes.Burner},
+<<<<<<< HEAD
 		liquiditytypes.ModuleName:      {authtypes.Minter, authtypes.Burner},
 	}
 )
@@ -149,6 +250,62 @@ var _ simapp.App = (*LiquidityApp)(nil)
 // capabilities aren't needed for testing.
 type LiquidityApp struct {
 	*baseapp.BaseApp
+=======
+		tokentypes.ModuleName:          {authtypes.Minter, authtypes.Burner},
+		liquiditytypes.ModuleName:      {authtypes.Minter, authtypes.Burner},
+	}
+
+	nativeToken tokentypes.Token
+)
+
+var (
+	_ CosmosApp               = (*App)(nil)
+	_ servertypes.Application = (*App)(nil)
+)
+
+func init() {
+	userHomeDir, err := os.UserHomeDir()
+	if err != nil {
+		panic(err)
+	}
+
+	DefaultNodeHome = filepath.Join(userHomeDir, "."+Name)
+
+	SetConfig()
+	nativeToken = tokentypes.Token{
+		Symbol:        "zen",
+		Name:          "Zen staking token",
+		Scale:         3,
+		MinUnit:       "uzen",
+		InitialSupply: 20000000000,
+		MaxSupply:     100000000000,
+		Mintable:      true,
+		Owner:         sdk.AccAddress(crypto.AddressHash([]byte(tokentypes.ModuleName))).String(),
+	}
+	owner, err := sdk.AccAddressFromBech32(nativeToken.Owner)
+	if err != nil {
+		panic(err)
+	}
+
+	tokentypes.SetNativeToken(
+		nativeToken.Symbol,
+		nativeToken.Name,
+		nativeToken.MinUnit,
+		nativeToken.Scale,
+		nativeToken.InitialSupply,
+		nativeToken.MaxSupply,
+		nativeToken.Mintable,
+		owner,
+	)
+}
+
+// App extends an ABCI application, but with most of its parameters exported.
+// They are exported for convenience in creating helper functions, as object
+// capabilities aren't needed for testing.
+type App struct {
+	*baseapp.BaseApp
+
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	cdc               *codec.LegacyAmino
 	appCodec          codec.Marshaler
 	interfaceRegistry types.InterfaceRegistry
@@ -174,12 +331,16 @@ type LiquidityApp struct {
 	ParamsKeeper     paramskeeper.Keeper
 	IBCKeeper        *ibckeeper.Keeper // IBC Keeper must be a pointer in the app, so we can SetRouter on it correctly
 	EvidenceKeeper   evidencekeeper.Keeper
+<<<<<<< HEAD
 	LiquidityKeeper  liquiditykeeper.Keeper
+=======
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	TransferKeeper   ibctransferkeeper.Keeper
 
 	// make scoped keepers public for test purposes
 	ScopedIBCKeeper      capabilitykeeper.ScopedKeeper
 	ScopedTransferKeeper capabilitykeeper.ScopedKeeper
+<<<<<<< HEAD
 	ScopedIBCMockKeeper  capabilitykeeper.ScopedKeeper
 
 	// the module manager
@@ -203,12 +364,39 @@ func NewLiquidityApp(
 	logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest bool, skipUpgradeHeights map[int64]bool,
 	homePath string, invCheckPeriod uint, encodingConfig liquidityparams.EncodingConfig, appOpts servertypes.AppOptions, baseAppOptions ...func(*baseapp.BaseApp),
 ) *LiquidityApp {
+=======
+
+	tokenKeeper    tokenkeeper.Keeper
+	nftKeeper      nftkeeper.Keeper
+	LiquidityKeeper  liquiditykeeper.Keeper
+
+	zenchainKeeper zenchainkeeper.Keeper
+	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
+
+	// the module manager
+	mm *module.Manager
+}
+
+// New returns a reference to an initialized Gaia.
+// NewSimApp returns a reference to an initialized SimApp.
+func New(
+	logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest bool, skipUpgradeHeights map[int64]bool,
+	homePath string, invCheckPeriod uint, encodingConfig appparams.EncodingConfig,
+	
+	// this line is used by starport scaffolding # stargate/app/newArgument
+	appOpts servertypes.AppOptions, baseAppOptions ...func(*baseapp.BaseApp),
+) *App {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 
 	appCodec := encodingConfig.Marshaler
 	cdc := encodingConfig.Amino
 	interfaceRegistry := encodingConfig.InterfaceRegistry
 
+<<<<<<< HEAD
 	bApp := baseapp.NewBaseApp(appName, logger, db, encodingConfig.TxConfig.TxDecoder(), baseAppOptions...)
+=======
+	bApp := baseapp.NewBaseApp(Name, logger, db, encodingConfig.TxConfig.TxDecoder(), baseAppOptions...)
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	bApp.SetCommitMultiStoreTracer(traceStore)
 	bApp.SetAppVersion(version.Version)
 	bApp.SetInterfaceRegistry(interfaceRegistry)
@@ -218,12 +406,24 @@ func NewLiquidityApp(
 		minttypes.StoreKey, distrtypes.StoreKey, slashingtypes.StoreKey,
 		govtypes.StoreKey, paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey,
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey,
+<<<<<<< HEAD
 		liquiditytypes.StoreKey,
+=======
+		tokentypes.StoreKey,
+		nfttypes.StoreKey,
+		liquiditytypes.StoreKey,
+		zenchaintypes.StoreKey,
+		// this line is used by starport scaffolding # stargate/app/storeKey
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
 
+<<<<<<< HEAD
 	app := &LiquidityApp{
+=======
+	app := &App{
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 		BaseApp:           bApp,
 		cdc:               cdc,
 		appCodec:          appCodec,
@@ -241,11 +441,18 @@ func NewLiquidityApp(
 
 	// add capability keeper and ScopeToModule for ibc module
 	app.CapabilityKeeper = capabilitykeeper.NewKeeper(appCodec, keys[capabilitytypes.StoreKey], memKeys[capabilitytypes.MemStoreKey])
+<<<<<<< HEAD
 	scopedIBCKeeper := app.CapabilityKeeper.ScopeToModule(ibchost.ModuleName)
 	scopedTransferKeeper := app.CapabilityKeeper.ScopeToModule(ibctransfertypes.ModuleName)
 	// NOTE: the IBC mock keeper and application module is used only for testing core IBC. Do
 	// note replicate if you do not need to test core IBC or light clients.
 	scopedIBCMockKeeper := app.CapabilityKeeper.ScopeToModule(ibcmock.ModuleName)
+=======
+
+	// grant capabilities for the ibc and ibc-transfer modules
+	scopedIBCKeeper := app.CapabilityKeeper.ScopeToModule(ibchost.ModuleName)
+	scopedTransferKeeper := app.CapabilityKeeper.ScopeToModule(ibctransfertypes.ModuleName)
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 
 	// add keepers
 	app.AccountKeeper = authkeeper.NewAccountKeeper(
@@ -254,19 +461,34 @@ func NewLiquidityApp(
 	app.BankKeeper = bankkeeper.NewBaseKeeper(
 		appCodec, keys[banktypes.StoreKey], app.AccountKeeper, app.GetSubspace(banktypes.ModuleName), app.ModuleAccountAddrs(),
 	)
+<<<<<<< HEAD
 	StakingKeeper := stakingkeeper.NewKeeper(
 		appCodec, keys[stakingtypes.StoreKey], app.AccountKeeper, app.BankKeeper, app.GetSubspace(stakingtypes.ModuleName),
 	)
 	app.MintKeeper = mintkeeper.NewKeeper(
 		appCodec, keys[minttypes.StoreKey], app.GetSubspace(minttypes.ModuleName), &StakingKeeper,
+=======
+	stakingKeeper := stakingkeeper.NewKeeper(
+		appCodec, keys[stakingtypes.StoreKey], app.AccountKeeper, app.BankKeeper, app.GetSubspace(stakingtypes.ModuleName),
+	)
+	app.MintKeeper = mintkeeper.NewKeeper(
+		appCodec, keys[minttypes.StoreKey], app.GetSubspace(minttypes.ModuleName), &stakingKeeper,
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 		app.AccountKeeper, app.BankKeeper, authtypes.FeeCollectorName,
 	)
 	app.DistrKeeper = distrkeeper.NewKeeper(
 		appCodec, keys[distrtypes.StoreKey], app.GetSubspace(distrtypes.ModuleName), app.AccountKeeper, app.BankKeeper,
+<<<<<<< HEAD
 		&StakingKeeper, authtypes.FeeCollectorName, app.ModuleAccountAddrs(),
 	)
 	app.SlashingKeeper = slashingkeeper.NewKeeper(
 		appCodec, keys[slashingtypes.StoreKey], &StakingKeeper, app.GetSubspace(slashingtypes.ModuleName),
+=======
+		&stakingKeeper, authtypes.FeeCollectorName, app.ModuleAccountAddrs(),
+	)
+	app.SlashingKeeper = slashingkeeper.NewKeeper(
+		appCodec, keys[slashingtypes.StoreKey], &stakingKeeper, app.GetSubspace(slashingtypes.ModuleName),
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	)
 	app.CrisisKeeper = crisiskeeper.NewKeeper(
 		app.GetSubspace(crisistypes.ModuleName), invCheckPeriod, app.BankKeeper, authtypes.FeeCollectorName,
@@ -274,11 +496,21 @@ func NewLiquidityApp(
 	app.UpgradeKeeper = upgradekeeper.NewKeeper(skipUpgradeHeights, keys[upgradetypes.StoreKey], appCodec, homePath)
 
 	// register the staking hooks
+<<<<<<< HEAD
 	// NOTE: StakingKeeper above is passed by reference, so that it will contain these hooks
 	app.StakingKeeper = *StakingKeeper.SetHooks(
 		stakingtypes.NewMultiStakingHooks(app.DistrKeeper.Hooks(), app.SlashingKeeper.Hooks()),
 	)
 
+=======
+	// NOTE: stakingKeeper above is passed by reference, so that it will contain these hooks
+	app.StakingKeeper = *stakingKeeper.SetHooks(
+		stakingtypes.NewMultiStakingHooks(app.DistrKeeper.Hooks(), app.SlashingKeeper.Hooks()),
+	)
+
+	// ... other modules keepers
+
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	// Create IBC Keeper
 	app.IBCKeeper = ibckeeper.NewKeeper(
 		appCodec, keys[ibchost.StoreKey], app.GetSubspace(ibchost.ModuleName), app.StakingKeeper, scopedIBCKeeper,
@@ -291,10 +523,13 @@ func NewLiquidityApp(
 		AddRoute(distrtypes.RouterKey, distr.NewCommunityPoolSpendProposalHandler(app.DistrKeeper)).
 		AddRoute(upgradetypes.RouterKey, upgrade.NewSoftwareUpgradeProposalHandler(app.UpgradeKeeper)).
 		AddRoute(ibchost.RouterKey, ibcclient.NewClientUpdateProposalHandler(app.IBCKeeper.ClientKeeper))
+<<<<<<< HEAD
 	app.GovKeeper = govkeeper.NewKeeper(
 		appCodec, keys[govtypes.StoreKey], app.GetSubspace(govtypes.ModuleName), app.AccountKeeper, app.BankKeeper,
 		&StakingKeeper, govRouter,
 	)
+=======
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 
 	// Create Transfer Keepers
 	app.TransferKeeper = ibctransferkeeper.NewKeeper(
@@ -304,6 +539,7 @@ func NewLiquidityApp(
 	)
 	transferModule := transfer.NewAppModule(app.TransferKeeper)
 
+<<<<<<< HEAD
 	// NOTE: the IBC mock keeper and application module is used only for testing core IBC. Do
 	// note replicate if you do not need to test core IBC or light clients.
 	mockModule := ibcmock.NewAppModule(scopedIBCMockKeeper)
@@ -315,27 +551,74 @@ func NewLiquidityApp(
 	app.IBCKeeper.SetRouter(ibcRouter)
 
 	// create evidence keeper with router
+=======
+	// Create evidence Keeper for to register the IBC light client misbehaviour evidence route
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	evidenceKeeper := evidencekeeper.NewKeeper(
 		appCodec, keys[evidencetypes.StoreKey], &app.StakingKeeper, app.SlashingKeeper,
 	)
 	// If evidence needs to be handled for the app, set routes in router here and seal
 	app.EvidenceKeeper = *evidenceKeeper
 
+<<<<<<< HEAD
+=======
+	app.tokenKeeper = tokenkeeper.NewKeeper(
+		appCodec,
+		keys[tokentypes.StoreKey],
+		app.GetSubspace(tokentypes.ModuleName),
+		app.BankKeeper,
+		app.ModuleAccountAddrs(),
+		authtypes.FeeCollectorName,
+	)
+	app.nftKeeper = nftkeeper.NewKeeper(appCodec, keys[nfttypes.StoreKey])
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	app.LiquidityKeeper = liquiditykeeper.NewKeeper(
 		appCodec, keys[liquiditytypes.StoreKey], app.GetSubspace(liquiditytypes.ModuleName),
 		app.BankKeeper, app.AccountKeeper, app.DistrKeeper,
 	)
 
+<<<<<<< HEAD
+=======
+	app.zenchainKeeper = *zenchainkeeper.NewKeeper(
+		appCodec, keys[zenchaintypes.StoreKey], keys[zenchaintypes.MemStoreKey],
+	)
+
+	// this line is used by starport scaffolding # stargate/app/keeperDefinition
+
+	app.GovKeeper = govkeeper.NewKeeper(
+		appCodec, keys[govtypes.StoreKey], app.GetSubspace(govtypes.ModuleName), app.AccountKeeper, app.BankKeeper,
+		&stakingKeeper, govRouter,
+	)
+
+	// Create static IBC router, add transfer route, then set and seal it
+	ibcRouter := porttypes.NewRouter()
+	ibcRouter.AddRoute(ibctransfertypes.ModuleName, transferModule)
+	// this line is used by starport scaffolding # ibc/app/router
+	app.IBCKeeper.SetRouter(ibcRouter)
+
+	/****  Module Options ****/
+
+	// NOTE: we may consider parsing `appOpts` inside module constructors. For the moment
+	// we prefer to be more strict in what arguments the modules expect.
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	var skipGenesisInvariants = cast.ToBool(appOpts.Get(crisis.FlagSkipGenesisInvariants))
 
 	// NOTE: Any module instantiated in the module manager that is later modified
 	// must be passed by reference here.
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	app.mm = module.NewManager(
 		genutil.NewAppModule(
 			app.AccountKeeper, app.StakingKeeper, app.BaseApp.DeliverTx,
 			encodingConfig.TxConfig,
 		),
+<<<<<<< HEAD
 		auth.NewAppModule(appCodec, app.AccountKeeper, authsims.RandomGenesisAccounts),
+=======
+		auth.NewAppModule(appCodec, app.AccountKeeper, nil),
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 		vesting.NewAppModule(app.AccountKeeper, app.BankKeeper),
 		bank.NewAppModule(appCodec, app.BankKeeper, app.AccountKeeper),
 		capability.NewAppModule(appCodec, *app.CapabilityKeeper),
@@ -350,7 +633,15 @@ func NewLiquidityApp(
 		ibc.NewAppModule(app.IBCKeeper),
 		params.NewAppModule(app.ParamsKeeper),
 		transferModule,
+<<<<<<< HEAD
 		liquidity.NewAppModule(appCodec, app.LiquidityKeeper, app.AccountKeeper, app.BankKeeper, app.DistrKeeper),
+=======
+		token.NewAppModule(appCodec, app.tokenKeeper, app.AccountKeeper, app.BankKeeper),
+		nft.NewAppModule(appCodec, app.nftKeeper, app.AccountKeeper, app.BankKeeper),
+		liquidity.NewAppModule(appCodec, app.LiquidityKeeper, app.AccountKeeper, app.BankKeeper, app.DistrKeeper),
+		zenchain.NewAppModule(appCodec, app.zenchainKeeper),
+		// this line is used by starport scaffolding # stargate/app/appModule
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -358,12 +649,21 @@ func NewLiquidityApp(
 	// CanWithdrawInvariant invariant.
 	// NOTE: staking module is required if HistoricalEntries param > 0
 	app.mm.SetOrderBeginBlockers(
+<<<<<<< HEAD
 		upgradetypes.ModuleName, minttypes.ModuleName, distrtypes.ModuleName,
 		slashingtypes.ModuleName, evidencetypes.ModuleName, stakingtypes.ModuleName,
 		liquiditytypes.ModuleName, ibchost.ModuleName,
 	)
 	app.mm.SetOrderEndBlockers(
 		crisistypes.ModuleName, govtypes.ModuleName, stakingtypes.ModuleName,
+=======
+		upgradetypes.ModuleName, minttypes.ModuleName, distrtypes.ModuleName, slashingtypes.ModuleName,
+		evidencetypes.ModuleName, stakingtypes.ModuleName, ibchost.ModuleName,
+		liquiditytypes.ModuleName,
+	)
+
+	app.mm.SetOrderEndBlockers(crisistypes.ModuleName, govtypes.ModuleName, stakingtypes.ModuleName,
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 		liquiditytypes.ModuleName,
 	)
 
@@ -373,16 +673,38 @@ func NewLiquidityApp(
 	// so that other modules that want to create or claim capabilities afterwards in InitChain
 	// can do so safely.
 	app.mm.SetOrderInitGenesis(
+<<<<<<< HEAD
 		capabilitytypes.ModuleName, authtypes.ModuleName, banktypes.ModuleName, distrtypes.ModuleName, stakingtypes.ModuleName,
 		slashingtypes.ModuleName, govtypes.ModuleName, minttypes.ModuleName, crisistypes.ModuleName,
 		ibchost.ModuleName, genutiltypes.ModuleName, evidencetypes.ModuleName, liquiditytypes.ModuleName,
 		ibctransfertypes.ModuleName,
+=======
+		capabilitytypes.ModuleName,
+		authtypes.ModuleName,
+		banktypes.ModuleName,
+		distrtypes.ModuleName,
+		stakingtypes.ModuleName,
+		slashingtypes.ModuleName,
+		govtypes.ModuleName,
+		minttypes.ModuleName,
+		crisistypes.ModuleName,
+		ibchost.ModuleName,
+		genutiltypes.ModuleName,
+		evidencetypes.ModuleName,
+		ibctransfertypes.ModuleName,
+		tokentypes.ModuleName,
+		nfttypes.ModuleName,
+		liquiditytypes.ModuleName,
+		zenchaintypes.ModuleName,
+		// this line is used by starport scaffolding # stargate/app/initGenesis
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	)
 
 	app.mm.RegisterInvariants(&app.CrisisKeeper)
 	app.mm.RegisterRoutes(app.Router(), app.QueryRouter(), encodingConfig.Amino)
 	app.mm.RegisterServices(module.NewConfigurator(app.MsgServiceRouter(), app.GRPCQueryRouter()))
 
+<<<<<<< HEAD
 	// add test gRPC service for testing gRPC queries in isolation
 	testdata.RegisterQueryServer(app.GRPCQueryRouter(), testdata.QueryImpl{})
 
@@ -409,6 +731,8 @@ func NewLiquidityApp(
 	// register the store decoders for simulation tests
 	app.sm.RegisterStoreDecoders()
 
+=======
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	// initialize stores
 	app.MountKVStores(keys)
 	app.MountTransientStores(tkeys)
@@ -417,6 +741,7 @@ func NewLiquidityApp(
 	// initialize BaseApp
 	app.SetInitChainer(app.InitChainer)
 	app.SetBeginBlocker(app.BeginBlocker)
+<<<<<<< HEAD
 	app.SetAnteHandler(
 		ante.NewAnteHandler(
 			app.AccountKeeper, app.BankKeeper,
@@ -424,6 +749,15 @@ func NewLiquidityApp(
 			encodingConfig.TxConfig.SignModeHandler(),
 		),
 	)
+=======
+	app.SetAnteHandler(NewAnteHandler(
+		app.AccountKeeper,
+		app.BankKeeper,
+		app.tokenKeeper,
+		ante.DefaultSigVerificationGasConsumer,
+		encodingConfig.TxConfig.SignModeHandler(),
+	))
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	app.SetEndBlocker(app.EndBlocker)
 
 	if loadLatest {
@@ -445,6 +779,7 @@ func NewLiquidityApp(
 	app.ScopedIBCKeeper = scopedIBCKeeper
 	app.ScopedTransferKeeper = scopedTransferKeeper
 
+<<<<<<< HEAD
 	// NOTE: the IBC mock keeper and application module is used only for testing core IBC. Do
 	// note replicate if you do not need to test core IBC or light clients.
 	app.ScopedIBCMockKeeper = scopedIBCMockKeeper
@@ -465,16 +800,34 @@ func (app *LiquidityApp) Name() string { return app.BaseApp.Name() }
 
 // BeginBlocker application updates every begin block
 func (app *LiquidityApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+=======
+	return app
+}
+
+// Name returns the name of the App
+func (app *App) Name() string { return app.BaseApp.Name() }
+
+// BeginBlocker application updates every begin block
+func (app *App) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	return app.mm.BeginBlock(ctx, req)
 }
 
 // EndBlocker application updates every end block
+<<<<<<< HEAD
 func (app *LiquidityApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
+=======
+func (app *App) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	return app.mm.EndBlock(ctx, req)
 }
 
 // InitChainer application update at chain initialization
+<<<<<<< HEAD
 func (app *LiquidityApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+=======
+func (app *App) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	var genesisState GenesisState
 	if err := tmjson.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
 		panic(err)
@@ -483,12 +836,20 @@ func (app *LiquidityApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain)
 }
 
 // LoadHeight loads a particular height
+<<<<<<< HEAD
 func (app *LiquidityApp) LoadHeight(height int64) error {
+=======
+func (app *App) LoadHeight(height int64) error {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	return app.LoadVersion(height)
 }
 
 // ModuleAccountAddrs returns all the app's module account addresses.
+<<<<<<< HEAD
 func (app *LiquidityApp) ModuleAccountAddrs() map[string]bool {
+=======
+func (app *App) ModuleAccountAddrs() map[string]bool {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	modAccAddrs := make(map[string]bool)
 	for acc := range maccPerms {
 		modAccAddrs[authtypes.NewModuleAddress(acc).String()] = true
@@ -497,6 +858,7 @@ func (app *LiquidityApp) ModuleAccountAddrs() map[string]bool {
 	return modAccAddrs
 }
 
+<<<<<<< HEAD
 // LegacyAmino returns LiquidityApp's amino codec.
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
@@ -515,38 +877,75 @@ func (app *LiquidityApp) AppCodec() codec.Marshaler {
 
 // InterfaceRegistry returns LiquidityApp's InterfaceRegistry
 func (app *LiquidityApp) InterfaceRegistry() types.InterfaceRegistry {
+=======
+// LegacyAmino returns SimApp's amino codec.
+//
+// NOTE: This is solely to be used for testing purposes as it may be desirable
+// for modules to register their own custom testing types.
+func (app *App) LegacyAmino() *codec.LegacyAmino {
+	return app.cdc
+}
+
+// AppCodec returns Gaia's app codec.
+//
+// NOTE: This is solely to be used for testing purposes as it may be desirable
+// for modules to register their own custom testing types.
+func (app *App) AppCodec() codec.Marshaler {
+	return app.appCodec
+}
+
+// InterfaceRegistry returns Gaia's InterfaceRegistry
+func (app *App) InterfaceRegistry() types.InterfaceRegistry {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	return app.interfaceRegistry
 }
 
 // GetKey returns the KVStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
+<<<<<<< HEAD
 func (app *LiquidityApp) GetKey(storeKey string) *sdk.KVStoreKey {
+=======
+func (app *App) GetKey(storeKey string) *sdk.KVStoreKey {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	return app.keys[storeKey]
 }
 
 // GetTKey returns the TransientStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
+<<<<<<< HEAD
 func (app *LiquidityApp) GetTKey(storeKey string) *sdk.TransientStoreKey {
+=======
+func (app *App) GetTKey(storeKey string) *sdk.TransientStoreKey {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	return app.tkeys[storeKey]
 }
 
 // GetMemKey returns the MemStoreKey for the provided mem key.
 //
 // NOTE: This is solely used for testing purposes.
+<<<<<<< HEAD
 func (app *LiquidityApp) GetMemKey(storeKey string) *sdk.MemoryStoreKey {
+=======
+func (app *App) GetMemKey(storeKey string) *sdk.MemoryStoreKey {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	return app.memKeys[storeKey]
 }
 
 // GetSubspace returns a param subspace for a given module name.
 //
 // NOTE: This is solely to be used for testing purposes.
+<<<<<<< HEAD
 func (app *LiquidityApp) GetSubspace(moduleName string) paramstypes.Subspace {
+=======
+func (app *App) GetSubspace(moduleName string) paramstypes.Subspace {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	subspace, _ := app.ParamsKeeper.GetSubspace(moduleName)
 	return subspace
 }
 
+<<<<<<< HEAD
 // SimulationManager implements the SimulationApp interface
 func (app *LiquidityApp) SimulationManager() *module.SimulationManager {
 	return app.sm
@@ -555,6 +954,11 @@ func (app *LiquidityApp) SimulationManager() *module.SimulationManager {
 // RegisterAPIRoutes registers all application module routes with the provided
 // API server.
 func (app *LiquidityApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
+=======
+// RegisterAPIRoutes registers all application module routes with the provided
+// API server.
+func (app *App) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	clientCtx := apiSvr.ClientCtx
 	rpc.RegisterRoutes(clientCtx, apiSvr.Router)
 	// Register legacy tx routes.
@@ -567,6 +971,7 @@ func (app *LiquidityApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.
 	// Register legacy and grpc-gateway routes for all modules.
 	ModuleBasics.RegisterRESTRoutes(clientCtx, apiSvr.Router)
 	ModuleBasics.RegisterGRPCGatewayRoutes(clientCtx, apiSvr.GRPCGatewayRouter)
+<<<<<<< HEAD
 
 	// register swagger API from root so that other applications can override easily
 	if apiConfig.Swagger {
@@ -576,10 +981,17 @@ func (app *LiquidityApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.
 
 // RegisterTxService implements the Application.RegisterTxService method.
 func (app *LiquidityApp) RegisterTxService(clientCtx client.Context) {
+=======
+}
+
+// RegisterTxService implements the Application.RegisterTxService method.
+func (app *App) RegisterTxService(clientCtx client.Context) {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	authtx.RegisterTxService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.BaseApp.Simulate, app.interfaceRegistry)
 }
 
 // RegisterTendermintService implements the Application.RegisterTendermintService method.
+<<<<<<< HEAD
 func (app *LiquidityApp) RegisterTendermintService(clientCtx client.Context) {
 	tmservice.RegisterTendermintService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.interfaceRegistry)
 }
@@ -595,6 +1007,12 @@ func RegisterSwaggerAPI(ctx client.Context, rtr *mux.Router) {
 	rtr.PathPrefix("/swagger-liquidity/").Handler(http.StripPrefix("/swagger-liquidity/", staticServer))
 }
 
+=======
+func (app *App) RegisterTendermintService(clientCtx client.Context) {
+	tmservice.RegisterTendermintService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.interfaceRegistry)
+}
+
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 // GetMaccPerms returns a copy of the module account permissions
 func GetMaccPerms() map[string][]string {
 	dupMaccPerms := make(map[string][]string)
@@ -618,7 +1036,13 @@ func initParamsKeeper(appCodec codec.BinaryMarshaler, legacyAmino *codec.LegacyA
 	paramsKeeper.Subspace(crisistypes.ModuleName)
 	paramsKeeper.Subspace(ibctransfertypes.ModuleName)
 	paramsKeeper.Subspace(ibchost.ModuleName)
+<<<<<<< HEAD
 	paramsKeeper.Subspace(liquiditytypes.ModuleName)
+=======
+	paramsKeeper.Subspace(tokentypes.ModuleName)
+	paramsKeeper.Subspace(liquiditytypes.ModuleName)
+	// this line is used by starport scaffolding # stargate/app/paramSubspace
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 
 	return paramsKeeper
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OS
 .DS_Store
 *.swp
@@ -53,3 +54,8 @@ dependency-graph.png
 
 # Localnet
 data
+=======
+vue/node_modules
+vue/dist
+secret.yml
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 client/docs/swagger-ui/* linguist-vendored
 *.ts linguist-generated
 *.js linguist-generated
+=======
+doc/swagger-ui/* linguist-vendored
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d

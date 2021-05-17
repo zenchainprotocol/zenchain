@@ -1,24 +1,42 @@
 package app
 
+<<<<<<< HEAD
 // DONTCOVER
 
+=======
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 import (
 	"encoding/json"
 	"log"
 
+<<<<<<< HEAD
+=======
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+<<<<<<< HEAD
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+=======
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 )
 
 // ExportAppStateAndValidators exports the state of the application for a genesis
 // file.
+<<<<<<< HEAD
 func (app *LiquidityApp) ExportAppStateAndValidators(
 	forZeroHeight bool, jailAllowedAddrs []string,
 ) (servertypes.ExportedApp, error) {
+=======
+func (app *App) ExportAppStateAndValidators(
+	forZeroHeight bool, jailAllowedAddrs []string,
+) (servertypes.ExportedApp, error) {
+
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	// as if they could withdraw from the start of the next block
 	ctx := app.NewContext(true, tmproto.Header{Height: app.LastBlockHeight()})
 
@@ -37,18 +55,32 @@ func (app *LiquidityApp) ExportAppStateAndValidators(
 	}
 
 	validators, err := staking.WriteValidators(ctx, app.StakingKeeper)
+<<<<<<< HEAD
+=======
+	if err != nil {
+		return servertypes.ExportedApp{}, err
+	}
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	return servertypes.ExportedApp{
 		AppState:        appState,
 		Validators:      validators,
 		Height:          height,
 		ConsensusParams: app.BaseApp.GetConsensusParams(ctx),
+<<<<<<< HEAD
 	}, err
+=======
+	}, nil
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 }
 
 // prepare for fresh start at zero height
 // NOTE zero height genesis is a temporary feature which will be deprecated
 //      in favour of export at a block height
+<<<<<<< HEAD
 func (app *LiquidityApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs []string) {
+=======
+func (app *App) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs []string) {
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	applyAllowedAddrs := false
 
 	// check if there is a allowed address list
@@ -73,16 +105,31 @@ func (app *LiquidityApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAd
 
 	// withdraw all validator commission
 	app.StakingKeeper.IterateValidators(ctx, func(_ int64, val stakingtypes.ValidatorI) (stop bool) {
+<<<<<<< HEAD
 		_, _ = app.DistrKeeper.WithdrawValidatorCommission(ctx, val.GetOperator())
+=======
+		_, err := app.DistrKeeper.WithdrawValidatorCommission(ctx, val.GetOperator())
+		if err != nil {
+			panic(err)
+		}
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 		return false
 	})
 
 	// withdraw all delegator rewards
 	dels := app.StakingKeeper.GetAllDelegations(ctx)
+<<<<<<< HEAD
 	for _, del := range dels {
 		delegatorAddress, _ := sdk.AccAddressFromBech32(del.DelegatorAddress)
 		validatorAddress, _ := sdk.ValAddressFromBech32(del.ValidatorAddress)
 		_, _ = app.DistrKeeper.WithdrawDelegationRewards(ctx, delegatorAddress, validatorAddress)
+=======
+	for _, delegation := range dels {
+		_, err := app.DistrKeeper.WithdrawDelegationRewards(ctx, delegation.GetDelegatorAddr(), delegation.GetValidatorAddr())
+		if err != nil {
+			panic(err)
+		}
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	}
 
 	// clear validator slash events
@@ -109,10 +156,15 @@ func (app *LiquidityApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAd
 
 	// reinitialize all delegations
 	for _, del := range dels {
+<<<<<<< HEAD
 		delegatorAddress, _ := sdk.AccAddressFromBech32(del.DelegatorAddress)
 		validatorAddress, _ := sdk.ValAddressFromBech32(del.ValidatorAddress)
 		app.DistrKeeper.Hooks().BeforeDelegationCreated(ctx, delegatorAddress, validatorAddress)
 		app.DistrKeeper.Hooks().AfterDelegationModified(ctx, delegatorAddress, validatorAddress)
+=======
+		app.DistrKeeper.Hooks().BeforeDelegationCreated(ctx, del.GetDelegatorAddr(), del.GetValidatorAddr())
+		app.DistrKeeper.Hooks().AfterDelegationModified(ctx, del.GetDelegatorAddr(), del.GetValidatorAddr())
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	}
 
 	// reset context height
@@ -162,9 +214,14 @@ func (app *LiquidityApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAd
 
 	iter.Close()
 
+<<<<<<< HEAD
 	_, err := app.StakingKeeper.ApplyAndReturnValidatorSetUpdates(ctx)
 	if err != nil {
 		log.Fatal(err)
+=======
+	if _, err := app.StakingKeeper.ApplyAndReturnValidatorSetUpdates(ctx); err != nil {
+		panic(err)
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 	}
 
 	/* Handle slashing state. */

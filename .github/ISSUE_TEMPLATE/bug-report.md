@@ -12,6 +12,7 @@ v    Please also ensure that this is not a duplicate issue :)
 
 ## Summary of Bug
 
+<<<<<<< HEAD
 <!-- Concisely describe the issue -->
 
 ## Version
@@ -25,6 +26,32 @@ v    Please also ensure that this is not a duplicate issue :)
 ____
 
 ## For Admin Use
+=======
+### 1. Describe
+<!-- Concisely describe the issue -->
+
+### 2. Impact
+<!-- What impact to the system the issue results -->
+
+### 3. Recover
+<!-- How does system go back to normal once it happens? -->
+
+## Expected Result
+
+<!-- What result is expected after the issue addressed? -->
+
+## Version
+
+<!-- git commit hash, output of `zenchaincli --version`, output of `zenchaind --version` -->
+
+## Steps to Reproduce
+
+<!-- What commands in order should someone run to reproduce your problem -->
+
+____
+
+#### For Admin Use
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 
 - [ ] Not duplicate issue
 - [ ] Appropriate labels applied

@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+ZenChain
+License: Apache2.0
+
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -178,7 +184,11 @@
    APPENDIX: How to apply the Apache License to your work.
 
       To apply the Apache License to your work, attach the following
+<<<<<<< HEAD
       boilerplate notice, with the fields enclosed by brackets "[]"
+=======
+      boilerplate notice, with the fields enclosed by brackets "{}"
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
       replaced with your own identifying information. (Don't include
       the brackets!)  The text should be enclosed in the appropriate
       comment syntax for the file format. We also recommend that a
@@ -186,7 +196,11 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
+<<<<<<< HEAD
    Copyright [yyyy] [name of copyright owner]
+=======
+   Copyright 2016 All in Bits, Inc
+>>>>>>> d5ca49900ba5c120e365148b35ab8d6debdfe88d
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
