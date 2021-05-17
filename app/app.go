@@ -95,11 +95,11 @@ import (
 	nftkeeper "github.com/irisnet/irismod/modules/nft/keeper"
 	nfttypes "github.com/irisnet/irismod/modules/nft/types"
 	
-	//CoinSwap
-	"github.com/irisnet/irismod/modules/coinswap"
-	coinswapkeeper "github.com/irisnet/irismod/modules/coinswap/keeper"
-	coinswaptypes "github.com/irisnet/irismod/modules/coinswap/types"
-	
+	//Swap
+	"github.com/tendermint/liquidity/x/liquidity"
+	liquiditykeeper "github.com/tendermint/liquidity/x/liquidity/keeper"
+	liquiditytypes "github.com/tendermint/liquidity/x/liquidity/types"
+
 	"github.com/zenchainprotocol/zenchain/x/zenchain"
 	zenchainkeeper "github.com/zenchainprotocol/zenchain/x/zenchain/keeper"
 	zenchaintypes "github.com/zenchainprotocol/zenchain/x/zenchain/types"
@@ -152,7 +152,7 @@ var (
 
 		token.AppModuleBasic{},
 		nft.AppModuleBasic{},
-		coinswap.AppModuleBasic{},
+		liquidity.AppModuleBasic{},
 
 		zenchain.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
@@ -167,8 +167,9 @@ var (
 		stakingtypes.NotBondedPoolName: {authtypes.Burner, authtypes.Staking},
 		govtypes.ModuleName:            {authtypes.Burner},
 		ibctransfertypes.ModuleName:    {authtypes.Minter, authtypes.Burner},
+
+		liquiditytypes.ModuleName:      {authtypes.Minter, authtypes.Burner},
 		tokentypes.ModuleName:          {authtypes.Minter, authtypes.Burner},
-		coinswaptypes.ModuleName:       {authtypes.Minter, authtypes.Burner},
 	}
 
 	nativeToken tokentypes.Token
@@ -254,7 +255,7 @@ type App struct {
 
 	tokenKeeper    tokenkeeper.Keeper
 	nftKeeper      nftkeeper.Keeper
-	coinswapKeeper coinswapkeeper.Keeper
+	LiquidityKeeper  liquiditykeeper.Keeper
 
 	zenchainKeeper zenchainkeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
@@ -288,7 +289,7 @@ func New(
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey,
 		tokentypes.StoreKey,
 		nfttypes.StoreKey,
-		coinswaptypes.StoreKey,
+		liquiditytypes.StoreKey,
 		zenchaintypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
@@ -390,13 +391,9 @@ func New(
 	)
 	app.nftKeeper = nftkeeper.NewKeeper(appCodec, keys[nfttypes.StoreKey])
 
-	app.coinswapKeeper = coinswapkeeper.NewKeeper(
-		appCodec,
-		keys[coinswaptypes.StoreKey],
-		app.GetSubspace(coinswaptypes.ModuleName),
-		app.BankKeeper,
-		app.AccountKeeper,
-		app.ModuleAccountAddrs(),
+	app.LiquidityKeeper = liquiditykeeper.NewKeeper(
+		appCodec, keys[liquiditytypes.StoreKey], app.GetSubspace(liquiditytypes.ModuleName),
+		app.BankKeeper, app.AccountKeeper, app.DistrKeeper,
 	)
 
 	app.zenchainKeeper = *zenchainkeeper.NewKeeper(
@@ -447,7 +444,7 @@ func New(
 		transferModule,
 		token.NewAppModule(appCodec, app.tokenKeeper, app.AccountKeeper, app.BankKeeper),
 		nft.NewAppModule(appCodec, app.nftKeeper, app.AccountKeeper, app.BankKeeper),
-		coinswap.NewAppModule(appCodec, app.coinswapKeeper, app.AccountKeeper, app.BankKeeper),
+		liquidity.NewAppModule(appCodec, app.LiquidityKeeper, app.AccountKeeper, app.BankKeeper, app.DistrKeeper),
 		zenchain.NewAppModule(appCodec, app.zenchainKeeper),
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
@@ -458,10 +455,10 @@ func New(
 	// NOTE: staking module is required if HistoricalEntries param > 0
 	app.mm.SetOrderBeginBlockers(
 		upgradetypes.ModuleName, minttypes.ModuleName, distrtypes.ModuleName, slashingtypes.ModuleName,
-		evidencetypes.ModuleName, stakingtypes.ModuleName, ibchost.ModuleName,
+		evidencetypes.ModuleName, stakingtypes.ModuleName, liquiditytypes.ModuleName, ibchost.ModuleName,
 	)
 
-	app.mm.SetOrderEndBlockers(crisistypes.ModuleName, govtypes.ModuleName, stakingtypes.ModuleName)
+	app.mm.SetOrderEndBlockers(crisistypes.ModuleName, govtypes.ModuleName, stakingtypes.ModuleName, liquiditytypes.ModuleName)
 
 	// NOTE: The genutils module must occur after staking so that pools are
 	// properly initialized with tokens from genesis accounts.
@@ -484,7 +481,7 @@ func New(
 		ibctransfertypes.ModuleName,
 		tokentypes.ModuleName,
 		nfttypes.ModuleName,
-		coinswaptypes.ModuleName,
+		liquiditytypes.ModuleName,
 		zenchaintypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
@@ -670,7 +667,8 @@ func initParamsKeeper(appCodec codec.BinaryMarshaler, legacyAmino *codec.LegacyA
 	paramsKeeper.Subspace(ibctransfertypes.ModuleName)
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(tokentypes.ModuleName)
-	paramsKeeper.Subspace(coinswaptypes.ModuleName)
+	paramsKeeper.Subspace(liquiditytypes.ModuleName)
+
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
 
 	return paramsKeeper
