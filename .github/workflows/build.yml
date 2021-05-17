@@ -49,8 +49,12 @@ jobs:
           cd cmd/zenchaind
           echo ${{ steps.get_version.outputs.VERSION }}
           echo ${{ steps.get_commit.outputs.COMMIT }}
-          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=ZenChain -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind -X github.com/cosmos/cosmos-sdk/version.Version=${{ steps.get_version.outputs.VERSION }} -X github.com/cosmos/cosmos-sdk/version.Commit=${{ steps.get_commit.outputs.COMMIT }}' -o build-${{ matrix.targetos }}-${{ matrix.arch }}/ .
+          go build -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=ZenChain -X github.com/cosmos/cosmos-sdk/version.AppName=zenchaind -X github.com/cosmos/cosmos-sdk/version.Version=${{ steps.get_version.outputs.VERSION }} -X github.com/cosmos/cosmos-sdk/version.Commit=${{ steps.get_commit.outputs.COMMIT }}' -o build/build-${{ matrix.targetos }}-${{ matrix.arch }}/ .
           zip -r build-${{ matrix.targetos }}-${{ matrix.arch }}.zip build-${{ matrix.targetos }}-${{ matrix.arch }}
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish to lanchpad
+    steps:
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: zenchaind ${{ matrix.targetos }} ${{ matrix.arch }}
@@ -60,9 +64,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: cmd/zenchaind/build-${{ matrix.targetos }}-${{ matrix.arch }}.zip
+          source_file: cmd/zenchaind/build/.
           destination_repo: zenchainprotocol/Launchpad
           destination_folder: build/${{ steps.get_version.outputs.VERSION }}/
           user_email: 'zenchain102@gmail.com'
           user_name: 'ZenChainDev'
-          commit_message: ${{ steps.get_version.outputs.VERSION }} - Publish buid ${{ matrix.targetos }} ${{ matrix.arch }}
+          commit_message: ${{ steps.get_version.outputs.VERSION }} - Publish buid
